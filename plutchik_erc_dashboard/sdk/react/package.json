@@ -1,0 +1,18 @@
+{
+  "name": "@plutchik-erc/react-sdk",
+  "version": "1.0.0",
+  "description": "React SDK for Plutchik Emotion Recognition in Conversation API",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "echo 'Build script not configured for standalone components.'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "author": "",
+  "license": "MIT"
+}

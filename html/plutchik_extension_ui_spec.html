@@ -1,0 +1,728 @@
+
+<h2 class="sr-only">Plutchik ERC browser extension UI specification — showing end user view, developer view, and model routing logic across Reddit, Gmail, LinkedIn, and custom sites</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:13px;line-height:1.6;color:var(--color-text-primary)}
+
+.view-switcher{display:flex;gap:6px;margin-bottom:20px}
+.vs-btn{padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:transparent;color:var(--color-text-secondary);transition:all .15s}
+.vs-btn.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:transparent}
+
+.view{display:none}
+.view.active{display:block}
+
+.browser-frame{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:16px}
+.browser-bar{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:8px 12px;display:flex;align-items:center;gap:8px}
+.browser-dots{display:flex;gap:4px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--color-border-secondary)}
+.url-bar{flex:1;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:4px 10px;font-size:11px;font-family:var(--font-mono);color:var(--color-text-secondary)}
+.ext-icon{width:22px;height:22px;border-radius:5px;background:#EEEDFE;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0.5px solid #AFA9EC}
+.ext-dot{width:8px;height:8px;border-radius:50%;background:#534AB7}
+
+.page-content{padding:14px;min-height:280px;position:relative}
+
+.comment-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px;margin-bottom:8px;position:relative}
+.comment-meta{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.avatar{width:20px;height:20px;border-radius:50%;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:var(--color-text-info);flex-shrink:0}
+.username{font-size:11px;font-weight:500}
+.comment-text{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+
+.emo-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:500;margin-top:6px;cursor:pointer;border:0.5px solid transparent}
+.emo-badge.intense{background:#FAECE7;color:#712B13;border-color:#F0997B}
+.emo-badge.primary{background:#EEEDFE;color:#3C3489;border-color:#AFA9EC}
+.emo-badge.mild{background:#E6F1FB;color:#0C447C;border-color:#85B7EB}
+.emo-badge.dyadic{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+.emo-badge.sarcasm{background:#FAEEDA;color:#633806;border-color:#EF9F27}
+.emo-badge.low-conf{background:var(--color-background-secondary);color:var(--color-text-secondary);border-color:var(--color-border-secondary);border-style:dashed}
+.conf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+.tooltip-popup{background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:12px 14px;width:220px;position:absolute;z-index:10;right:12px;top:40px;display:none}
+.tooltip-popup.visible{display:block}
+.tp-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:3px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tp-row:last-child{border-bottom:none}
+.tp-bar-wrap{width:80px;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.tp-bar{height:5px;border-radius:3px}
+
+.model-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:12px;font-size:10px;font-weight:500}
+.model-pill.roberta{background:#E1F5EE;color:#085041}
+.model-pill.nemotron{background:#EEEDFE;color:#3C3489}
+
+.floater{position:absolute;bottom:16px;right:16px;background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:10px 12px;width:200px;font-size:12px}
+.floater-title{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+
+.section-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);margin:16px 0 8px}
+.section-label:first-child{margin-top:0}
+
+.dev-panel{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.dev-header{background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);padding:8px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.dev-title{font-size:13px;font-weight:500}
+.dev-body{padding:14px;display:none}
+.dev-body.open{display:block}
+
+.code-block{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px;font-family:var(--font-mono);font-size:11px;line-height:1.75;margin:8px 0;overflow-x:auto;white-space:pre}
+.cc{color:var(--color-text-tertiary)}
+.ck{color:#534AB7}
+.cs{color:#0F6E56}
+
+.routing-row{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:8px;margin:4px 0;border:0.5px solid var(--color-border-tertiary)}
+.routing-row:hover{background:var(--color-background-secondary)}
+.site-badge{font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;min-width:70px;text-align:center}
+.routing-arrow{color:var(--color-text-tertiary);font-size:11px}
+.routing-reason{font-size:11px;color:var(--color-text-secondary);flex:1}
+
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px}
+.toggle-row:last-child{border-bottom:none}
+.tog{position:relative;width:32px;height:18px;display:inline-block;flex-shrink:0}
+.tog input{opacity:0;width:0;height:0}
+.tog-slider{position:absolute;inset:0;border-radius:9px;background:var(--color-border-secondary);cursor:pointer;transition:background .2s}
+.tog input:checked + .tog-slider{background:var(--color-text-success)}
+.tog-slider::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:2px;left:2px;transition:transform .2s}
+.tog input:checked + .tog-slider::after{transform:translateX(14px)}
+
+.stat-row{display:flex;gap:8px;margin:10px 0}
+.stat-chip{background:var(--color-background-secondary);border-radius:6px;padding:8px 12px;flex:1;text-align:center}
+.stat-val{font-size:18px;font-weight:500}
+.stat-lbl{font-size:10px;color:var(--color-text-secondary);margin-top:2px}
+
+.site-tab{display:flex;gap:0;margin-bottom:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.st{padding:6px 12px;font-size:12px;cursor:pointer;color:var(--color-text-secondary);border-bottom:1.5px solid transparent;margin-bottom:-1px}
+.st.active{color:var(--color-text-primary);border-bottom-color:var(--color-text-primary);font-weight:500}
+
+.gmail-item{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:8px 12px;display:flex;gap:10px;align-items:center;cursor:pointer}
+.gmail-item:hover{background:var(--color-background-secondary)}
+.gmail-sender{font-size:12px;font-weight:500;width:100px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gmail-subject{font-size:12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gmail-emo{flex-shrink:0}
+
+.li-post{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.li-meta{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.li-avatar{width:28px;height:28px;border-radius:50%;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-info);flex-shrink:0}
+.li-name{font-size:12px;font-weight:500}
+.li-role{font-size:11px;color:var(--color-text-secondary)}
+</style>
+
+<div style="padding:0 0 20px">
+
+<div class="view-switcher">
+  <button class="vs-btn active" onclick="switchView('user')">End user view</button>
+  <button class="vs-btn" onclick="switchView('dev')">Developer view</button>
+  <button class="vs-btn" onclick="switchView('routing')">Model routing</button>
+  <button class="vs-btn" onclick="switchView('settings')">Extension settings</button>
+</div>
+
+<div class="view active" id="view-user">
+  <div class="site-tab">
+    <div class="st active" onclick="switchSite('reddit',this)">Reddit</div>
+    <div class="st" onclick="switchSite('gmail',this)">Gmail</div>
+    <div class="st" onclick="switchSite('linkedin',this)">LinkedIn</div>
+    <div class="st" onclick="switchSite('custom',this)">Any site</div>
+  </div>
+
+  <div id="site-reddit">
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="url-bar">reddit.com/r/MachineLearning/comments/...</div>
+        <div class="ext-icon" onclick="toggleFloater()"><div class="ext-dot"></div></div>
+      </div>
+      <div class="page-content">
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-bottom:10px;font-weight:500">r/MachineLearning · 847 comments · Plutchik scanning active</div>
+
+        <div class="comment-card" id="c1">
+          <div class="comment-meta">
+            <div class="avatar">u1</div>
+            <span class="username">gradient_enjoyer</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· 2h</span>
+          </div>
+          <div class="comment-text">"This paper is genuinely incredible. I've never seen attention weights visualized this cleanly before."</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">
+            <span class="emo-badge primary" onclick="showTooltip('t1')">
+              <span class="conf-dot" style="background:#534AB7"></span>admiration · 89%
+            </span>
+            <div class="tooltip-popup" id="t1">
+              <div style="font-size:11px;font-weight:500;margin-bottom:8px;display:flex;justify-content:space-between">
+                Full distribution
+                <span class="model-pill roberta">RoBERTa</span>
+              </div>
+              <div class="tp-row"><span>admiration</span><div class="tp-bar-wrap"><div class="tp-bar" style="width:89%;background:#534AB7"></div></div><span>89%</span></div>
+              <div class="tp-row"><span>joy</span><div class="tp-bar-wrap"><div class="tp-bar" style="width:7%;background:#534AB7"></div></div><span>7%</span></div>
+              <div class="tp-row"><span>trust</span><div class="tp-bar-wrap"><div class="tp-bar" style="width:4%;background:#534AB7"></div></div><span>4%</span></div>
+              <div style="font-size:10px;color:var(--color-text-tertiary);margin-top:6px">Sarcasm: 3% · Intensity: mild ring</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment-card" id="c2">
+          <div class="comment-meta">
+            <div class="avatar">u2</div>
+            <span class="username">null_hypothesis_99</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· 1h</span>
+          </div>
+          <div class="comment-text">"Oh great, another transformer paper that 'revolutionizes' the field. Can't wait to see this forgotten in 6 months."</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">
+            <span class="emo-badge intense">
+              <span class="conf-dot" style="background:#993C1D"></span>contempt · 91%
+            </span>
+            <span class="emo-badge sarcasm">
+              <span class="conf-dot" style="background:#854F0B"></span>sarcasm · 87%
+            </span>
+          </div>
+        </div>
+
+        <div class="comment-card" id="c3">
+          <div class="comment-meta">
+            <div class="avatar">u3</div>
+            <span class="username">bayesian_wanderer</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· 45m</span>
+          </div>
+          <div class="comment-text">"I'm not sure how I feel about this. The results seem solid but the methodology section raises some questions for me."</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">
+            <span class="emo-badge low-conf">
+              <span class="conf-dot" style="background:var(--color-text-tertiary)"></span>low confidence · review
+            </span>
+          </div>
+        </div>
+
+        <div class="comment-card">
+          <div class="comment-meta">
+            <div class="avatar">u4</div>
+            <span class="username">tensors_all_way</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· 20m</span>
+          </div>
+          <div class="comment-text">"The benchmark comparison section is really thorough. I appreciate that they tested on three separate datasets."</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">
+            <span class="emo-badge dyadic">
+              <span class="conf-dot" style="background:#0F6E56"></span>trust · 82%
+            </span>
+          </div>
+        </div>
+
+        <div class="floater" id="floater" style="display:none">
+          <div class="floater-title">Session summary</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+            <div class="stat-chip"><div class="stat-val">4</div><div class="stat-lbl">Scanned</div></div>
+            <div class="stat-chip"><div class="stat-val">1</div><div class="stat-lbl">Low conf</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:6px">Top emotions this thread</div>
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span>contempt</span><span style="color:#993C1D">1</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span>admiration</span><span style="color:#3C3489">1</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span>trust</span><span style="color:#085041">1</span></div>
+          </div>
+          <div style="margin-top:8px;font-size:10px;color:var(--color-text-tertiary)">RoBERTa active · on-device</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-gmail" style="display:none">
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="url-bar">mail.google.com/mail/u/0/</div>
+        <div class="ext-icon"><div class="ext-dot"></div></div>
+      </div>
+      <div class="page-content" style="padding:0">
+        <div style="background:var(--color-background-secondary);padding:8px 14px;font-size:11px;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Inbox · Plutchik scanning received messages</div>
+        <div class="gmail-item">
+          <div class="gmail-sender">Sarah Chen</div>
+          <div class="gmail-subject">Re: Q3 report — this needs to be addressed</div>
+          <div class="gmail-emo"><span class="emo-badge intense" style="margin:0"><span class="conf-dot" style="background:#993C1D"></span>anger · 78%</span></div>
+        </div>
+        <div class="gmail-item">
+          <div class="gmail-sender">Marcus Webb</div>
+          <div class="gmail-subject">Thanks for the introduction! Really appreciated</div>
+          <div class="gmail-emo"><span class="emo-badge dyadic" style="margin:0"><span class="conf-dot" style="background:#0F6E56"></span>love · 85%</span></div>
+        </div>
+        <div class="gmail-item">
+          <div class="gmail-sender">noreply@platform</div>
+          <div class="gmail-subject">Your request has been processed successfully</div>
+          <div class="gmail-emo"><span class="emo-badge low-conf" style="margin:0"><span class="conf-dot" style="background:var(--color-text-tertiary)"></span>neutral</span></div>
+        </div>
+        <div class="gmail-item">
+          <div class="gmail-sender">Dr. Patel</div>
+          <div class="gmail-subject">Feedback on your submission — some concerns</div>
+          <div class="gmail-emo"><span class="emo-badge intense" style="margin:0"><span class="conf-dot" style="background:#712B13"></span>disapproval · 71%</span></div>
+        </div>
+        <div class="gmail-item">
+          <div class="gmail-sender">Priya K.</div>
+          <div class="gmail-subject">Re: Launch — I'm sure this will go perfectly</div>
+          <div class="gmail-emo"><span class="emo-badge sarcasm" style="margin:0"><span class="conf-dot" style="background:#854F0B"></span>sarcasm · 83%</span></div>
+        </div>
+        <div style="padding:10px 14px;font-size:11px;color:var(--color-text-tertiary)">Nemotron active on Gmail — deeper semantic context</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-linkedin" style="display:none">
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="url-bar">linkedin.com/feed</div>
+        <div class="ext-icon"><div class="ext-dot"></div></div>
+      </div>
+      <div class="page-content">
+        <div class="li-post">
+          <div class="li-meta">
+            <div class="li-avatar">JR</div>
+            <div><div class="li-name">James R.</div><div class="li-role">Senior Director · TechCorp</div></div>
+          </div>
+          <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">"Thrilled to announce our record-breaking quarter. The team has shown incredible resilience despite recent restructuring."</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap">
+            <span class="emo-badge primary"><span class="conf-dot" style="background:#534AB7"></span>joy · 62%</span>
+            <span class="emo-badge sarcasm"><span class="conf-dot" style="background:#854F0B"></span>sarcasm · 44%</span>
+          </div>
+          <div style="font-size:10px;color:var(--color-text-tertiary);margin-top:6px">Nemotron: professional register detected, sarcasm ambiguous — low conf on sarcasm flag</div>
+        </div>
+        <div class="li-post">
+          <div class="li-meta">
+            <div class="li-avatar">AP</div>
+            <div><div class="li-name">Ananya P.</div><div class="li-role">ML Engineer · OpenResearch</div></div>
+          </div>
+          <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">"Just shipped my first open-source model. Six months of nights and weekends. Genuinely proud of this one."</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap">
+            <span class="emo-badge primary"><span class="conf-dot" style="background:#534AB7"></span>pride → admiration · 88%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-custom" style="display:none">
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="url-bar">yourapp.com/support/tickets/4821</div>
+        <div class="ext-icon"><div class="ext-dot"></div></div>
+      </div>
+      <div class="page-content">
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-bottom:10px;font-weight:500">Support ticket #4821 · Generic DOM adapter active · scanning [data-message], .comment, p</div>
+        <div class="comment-card">
+          <div class="comment-meta">
+            <div class="avatar" style="background:var(--color-background-danger);color:var(--color-text-danger)">CX</div>
+            <span class="username">Customer</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· Day 1</span>
+          </div>
+          <div class="comment-text">"Hi, I'm having trouble with my order — it hasn't arrived yet."</div>
+          <div style="display:flex;gap:5px;margin-top:6px"><span class="emo-badge mild"><span class="conf-dot" style="background:#185FA5"></span>apprehension · 76%</span></div>
+        </div>
+        <div class="comment-card">
+          <div class="comment-meta">
+            <div class="avatar" style="background:var(--color-background-success);color:var(--color-text-success)">AG</div>
+            <span class="username">Support agent</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· Day 1</span>
+          </div>
+          <div class="comment-text">"Thank you for reaching out! Your order is currently in transit."</div>
+          <div style="display:flex;gap:5px;margin-top:6px"><span class="emo-badge mild"><span class="conf-dot" style="background:#185FA5"></span>serenity · 68%</span></div>
+        </div>
+        <div class="comment-card">
+          <div class="comment-meta">
+            <div class="avatar" style="background:var(--color-background-danger);color:var(--color-text-danger)">CX</div>
+            <span class="username">Customer</span>
+            <span style="font-size:10px;color:var(--color-text-tertiary)">· Day 3</span>
+          </div>
+          <div class="comment-text">"Still nothing. It's been 3 days. I was supposed to have this by yesterday. Your tracking page just says 'processing'."</div>
+          <div style="display:flex;gap:5px;margin-top:6px">
+            <span class="emo-badge intense"><span class="conf-dot" style="background:#993C1D"></span>rage · 84%</span>
+            <span style="font-size:10px;color:var(--color-text-danger);display:flex;align-items:center;gap:4px;padding:2px 8px;background:#FCEBEB;border-radius:10px">escalation detected</span>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--color-text-tertiary);margin-top:8px">Generic adapter · RoBERTa active · selectors matched: .comment-card</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="view" id="view-dev">
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('d1')">
+      <span class="dev-title">DOM adapter registry</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">4 adapters registered ▾</span>
+    </div>
+    <div class="dev-body" id="d1">
+      <div class="code-block"><span class="ck">const</span> AdapterRegistry = {
+  adapters: {
+    reddit:   RedditAdapter,
+    gmail:    GmailAdapter,
+    linkedin: LinkedInAdapter,
+    generic:  GenericAdapter,  <span class="cc">// fallback</span>
+  },
+
+  <span class="ck">resolve</span>(url) {
+    <span class="ck">if</span> (url.includes(<span class="cs">'reddit.com'</span>))   <span class="ck">return</span> <span class="cs">'reddit'</span>
+    <span class="ck">if</span> (url.includes(<span class="cs">'mail.google'</span>)) <span class="ck">return</span> <span class="cs">'gmail'</span>
+    <span class="ck">if</span> (url.includes(<span class="cs">'linkedin.com'</span>)) <span class="ck">return</span> <span class="cs">'linkedin'</span>
+    <span class="ck">return</span> <span class="cs">'generic'</span>
+  },
+
+  <span class="ck">getSelectors</span>(key) {
+    <span class="cc">// Each adapter exposes what to scan</span>
+    <span class="ck">return</span> this.adapters[key].selectors
+  }
+}</div>
+      <div style="margin-top:8px">
+        <div class="routing-row">
+          <span class="site-badge" style="background:#FAEEDA;color:#633806">reddit.com</span>
+          <span class="routing-arrow">→</span>
+          <span class="routing-reason">selectors: [data-testid="comment"] p</span>
+          <span class="model-pill roberta">RoBERTa</span>
+        </div>
+        <div class="routing-row">
+          <span class="site-badge" style="background:#E6F1FB;color:#0C447C">mail.google</span>
+          <span class="routing-arrow">→</span>
+          <span class="routing-reason">selectors: .a3s.aiL, .gmail_quote</span>
+          <span class="model-pill nemotron">Nemotron</span>
+        </div>
+        <div class="routing-row">
+          <span class="site-badge" style="background:#E1F5EE;color:#085041">linkedin.com</span>
+          <span class="routing-arrow">→</span>
+          <span class="routing-reason">selectors: .feed-shared-update-v2__description</span>
+          <span class="model-pill nemotron">Nemotron</span>
+        </div>
+        <div class="routing-row">
+          <span class="site-badge" style="background:#F1EFE8;color:#444441">generic</span>
+          <span class="routing-arrow">→</span>
+          <span class="routing-reason">selectors: [data-message], .comment, p (heuristic)</span>
+          <span class="model-pill roberta">RoBERTa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('d2')">
+      <span class="dev-title">Shadow DOM badge injection</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">isolation pattern ▾</span>
+    </div>
+    <div class="dev-body" id="d2">
+      <div class="code-block"><span class="ck">function</span> injectBadge(element, prediction) {
+  <span class="ck">const</span> host = document.createElement(<span class="cs">'span'</span>)
+  host.style.cssText = <span class="cs">'display:inline-block;margin-left:6px'</span>
+
+  <span class="cc">// Closed shadow root — no style bleed in or out</span>
+  <span class="ck">const</span> shadow = host.attachShadow({ mode: <span class="cs">'closed'</span> })
+
+  <span class="ck">const</span> badge = buildBadge(prediction)
+  <span class="cc">// prediction = { emotion, confidence, ring,</span>
+  <span class="cc">//   sarcasm_prob, hitl_flag, model_used }</span>
+
+  shadow.appendChild(badge)
+  element.appendChild(host)
+}
+
+<span class="ck">function</span> buildBadge(p) {
+  <span class="ck">const</span> el = document.createElement(<span class="cs">'span'</span>)
+  <span class="ck">if</span> (p.hitl_flag) {
+    el.textContent = <span class="cs">'low confidence'</span>
+    el.className = <span class="cs">'badge low-conf'</span>
+  } <span class="ck">else</span> {
+    el.textContent = <span class="cs">`</span>${p.emotion} · ${Math.round(p.confidence * 100)}<span class="cs">%`</span>
+    el.className = <span class="cs">`badge ${p.ring}`</span>
+  }
+  <span class="ck">return</span> el
+}</div>
+    </div>
+  </div>
+
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('d3')">
+      <span class="dev-title">Adding a custom site adapter</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">developer API ▾</span>
+    </div>
+    <div class="dev-body" id="d3">
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Register any site by implementing four methods. Drop the file in <code style="font-family:var(--font-mono);font-size:11px">plugin/adapters/</code> and it auto-registers.</div>
+      <div class="code-block"><span class="cc">// plugin/adapters/my_site_adapter.js</span>
+<span class="ck">export const</span> MySiteAdapter = {
+  name: <span class="cs">'mysite'</span>,
+
+  <span class="cc">// 1. URL match — when to activate</span>
+  match: (url) => url.includes(<span class="cs">'mysite.com'</span>),
+
+  <span class="cc">// 2. What to scan — returns [{text, element}]</span>
+  extract: () => {
+    <span class="ck">return</span> [...document.querySelectorAll(<span class="cs">'.message-body'</span>)]
+      .map(el => ({ text: el.innerText.trim(), element: el }))
+      .filter(m => m.text.length >= 30)
+  },
+
+  <span class="cc">// 3. Model hint — override auto-routing</span>
+  modelHint: <span class="cs">'nemotron'</span>,  <span class="cc">// or 'roberta' or 'auto'</span>
+
+  <span class="cc">// 4. Where to attach the badge</span>
+  badgeTarget: (element) => element.querySelector(<span class="cs">'.message-footer'</span>) ?? element
+}</div>
+      <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px">The <code style="font-family:var(--font-mono)">modelHint</code> field lets you force a model for a specific site. If <code style="font-family:var(--font-mono)">'auto'</code>, the routing engine decides based on context signals.</div>
+    </div>
+  </div>
+
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('d4')">
+      <span class="dev-title">Inference pipeline — how a scan works</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">message passing ▾</span>
+    </div>
+    <div class="dev-body" id="d4">
+      <div class="code-block"><span class="cc">// content_script.js → background_worker.js</span>
+
+<span class="cc">// Step 1: content script extracts texts from DOM</span>
+<span class="ck">const</span> adapter = AdapterRegistry.resolve(location.href)
+<span class="ck">const</span> items = adapter.extract()
+
+<span class="cc">// Step 2: batch send to background worker</span>
+chrome.runtime.sendMessage({
+  type: <span class="cs">'SCAN_BATCH'</span>,
+  items: items.map(i => i.text),
+  site: adapter.name,
+  modelHint: adapter.modelHint,
+})
+
+<span class="cc">// background_worker.js</span>
+<span class="cc">// Step 3: route to correct model, run WASM inference</span>
+chrome.runtime.onMessage.addListener((msg, _, reply) => {
+  <span class="ck">const</span> model = ModelRouter.select(msg.site, msg.items)
+  <span class="cc">// model = 'roberta' | 'nemotron'</span>
+  <span class="ck">const</span> results = model.inferBatch(msg.items)
+
+  <span class="cc">// Step 4: wrap each result through HITL assessor</span>
+  <span class="ck">const</span> assessed = results.map(r => HITLAssessor.assess(r))
+
+  <span class="cc">// Step 5: send back to content script for injection</span>
+  reply({ predictions: assessed })
+})</div>
+    </div>
+  </div>
+</div>
+
+<div class="view" id="view-routing">
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px">The routing engine picks the model at runtime. It is never hardcoded — it reads five signals and decides.</div>
+
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('r1')">
+      <span class="dev-title">Five routing signals</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">how the decision is made ▾</span>
+    </div>
+    <div class="dev-body open" id="r1">
+      <div class="code-block"><span class="ck">class</span> ModelRouter {
+  <span class="ck">static</span> select(site, texts) {
+    <span class="ck">const</span> signals = {
+
+      <span class="cc">// Signal 1: site identity</span>
+      <span class="cc">// gmail + linkedin = professional register → Nemotron</span>
+      <span class="cc">// reddit + generic = conversational → RoBERTa</span>
+      siteScore: SITE_MODEL_MAP[site] ?? <span class="cs">'roberta'</span>,
+
+      <span class="cc">// Signal 2: average text length</span>
+      <span class="cc">// Short texts (&lt;20 words) → RoBERTa (fast, sufficient)</span>
+      <span class="cc">// Long texts (&gt;80 words) → Nemotron (better long context)</span>
+      lengthScore: avgWords(texts) > 80 ? <span class="cs">'nemotron'</span> : <span class="cs">'roberta'</span>,
+
+      <span class="cc">// Signal 3: formal register heuristic</span>
+      <span class="cc">// Detects formal markers: "Dear", "Regards", "Per our call"</span>
+      formalScore: hasFormalMarkers(texts) ? <span class="cs">'nemotron'</span> : <span class="cs">'roberta'</span>,
+
+      <span class="cc">// Signal 4: developer modelHint override</span>
+      <span class="cc">// Adapter can force a model — takes priority</span>
+      hintScore: adapter.modelHint !== <span class="cs">'auto'</span> ? adapter.modelHint : null,
+
+      <span class="cc">// Signal 5: device capability</span>
+      <span class="cc">// Nemotron requires WebGPU. Fall back to RoBERTa if unavailable.</span>
+      capScore: navigator.gpu ? null : <span class="cs">'roberta'</span>,
+    }
+
+    <span class="cc">// Priority: hint > capability > formal > length > site</span>
+    <span class="ck">return</span> signals.hintScore
+      ?? signals.capScore
+      ?? majority([signals.formalScore, signals.lengthScore, signals.siteScore])
+  }
+}</div>
+    </div>
+  </div>
+
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('r2')">
+      <span class="dev-title">RoBERTa vs Nemotron — what each model is for</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">capability matrix ▾</span>
+    </div>
+    <div class="dev-body open" id="r2">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:12px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
+            <span class="model-pill roberta" style="font-size:11px;padding:3px 10px">RoBERTa</span>
+            <span style="font-size:11px;color:var(--color-text-secondary)">Fast · WASM · CPU</span>
+          </div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+            Best for short conversational text. Reddit comments, chat messages, short social posts. Runs entirely on CPU via WASM. 82M params, &lt;300ms. The default model on any site where the adapter doesn't specify otherwise.
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--color-text-secondary)">Triggers: reddit, generic, avg text &lt;80 words, no GPU</div>
+        </div>
+        <div style="border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:12px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
+            <span class="model-pill nemotron" style="font-size:11px;padding:3px 10px">Nemotron</span>
+            <span style="font-size:11px;color:var(--color-text-secondary)">Deep · WebGPU · Context</span>
+          </div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+            Best for professional register, long-form text, or when dissonance between formal surface and emotional subtext is the primary signal. Gmail threads, LinkedIn posts, customer support tickets. Requires WebGPU. Better at detecting corporate sarcasm and passive contempt.
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--color-text-secondary)">Triggers: gmail, linkedin, formal markers, avg text &gt;80 words, GPU available</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:var(--color-text-tertiary);border-top:0.5px solid var(--color-border-tertiary);padding-top:8px">
+        Both models run fully on-device. No text is sent to any server. Model files load lazily on first scan — RoBERTa loads in ~1.2s, Nemotron in ~3.8s. Both cache in memory for the session.
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-panel">
+    <div class="dev-header" onclick="toggleDev('r3')">
+      <span class="dev-title">Live routing trace — what the dev console shows</span>
+      <span style="font-size:11px;color:var(--color-text-secondary)">debug output ▾</span>
+    </div>
+    <div class="dev-body" id="r3">
+      <div class="code-block"><span class="cc">// chrome devtools console — extension debug mode</span>
+[Plutchik] Adapter resolved: gmail
+[Plutchik] Extracted 5 items (avg 47 words)
+[Plutchik] Routing signals: {
+  site: <span class="cs">"nemotron"</span>,       <span class="cc">// gmail = professional</span>
+  length: <span class="cs">"roberta"</span>,     <span class="cc">// &lt;80 words avg</span>
+  formal: <span class="cs">"nemotron"</span>,     <span class="cc">// "Dear", "Regards" detected</span>
+  hint: null,           <span class="cc">// no adapter override</span>
+  capability: null,     <span class="cc">// WebGPU available</span>
+}
+[Plutchik] Decision: nemotron (majority: 2 vs 1)
+[Plutchik] Model loaded from cache
+[Plutchik] Inference: 5 items in 412ms
+[Plutchik] HITL flags: 1 low-confidence (item 3)
+[Plutchik] Injected 5 badges via shadow DOM</div>
+    </div>
+  </div>
+</div>
+
+<div class="view" id="view-settings">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px">
+        <div style="background:var(--color-background-secondary);padding:8px 14px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary)">User-facing settings</div>
+        <div style="padding:10px 14px">
+          <div class="toggle-row">
+            <span>Extension enabled</span>
+            <label class="tog"><input type="checkbox" checked><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Show sarcasm flags</span>
+            <label class="tog"><input type="checkbox" checked><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Show low-confidence labels</span>
+            <label class="tog"><input type="checkbox" checked><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Session summary floater</span>
+            <label class="tog"><input type="checkbox" checked><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Expand on hover</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Contribute to HITL dataset</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+        </div>
+      </div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+        <div style="background:var(--color-background-secondary);padding:8px 14px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary)">Site permissions</div>
+        <div style="padding:10px 14px">
+          <div class="toggle-row">
+            <span>reddit.com</span>
+            <label class="tog"><input type="checkbox" checked><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>mail.google.com</span>
+            <label class="tog"><input type="checkbox" checked><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>linkedin.com</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Scan unlisted sites</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px">
+        <div style="background:var(--color-background-secondary);padding:8px 14px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary)">Developer settings</div>
+        <div style="padding:10px 14px">
+          <div class="toggle-row">
+            <span>Force RoBERTa everywhere</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Force Nemotron everywhere</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Show routing trace in console</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Show full distribution on badge</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Expose inference API to page</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span>Custom adapter directory</span>
+            <label class="tog"><input type="checkbox"><span class="tog-slider"></span></label>
+          </div>
+        </div>
+      </div>
+      <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+        <div style="background:var(--color-background-secondary);padding:8px 14px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary)">Privacy</div>
+        <div style="padding:10px 14px;font-size:12px;color:var(--color-text-secondary);line-height:1.6">
+          <div style="margin-bottom:8px">All inference runs on-device. No text is sent to any external server at any point.</div>
+          <div style="margin-bottom:8px">HITL contribution is opt-in. If enabled, low-confidence samples are sent to the annotator queue with text only — no URL, no username, no metadata.</div>
+          <div>The extension uses <code style="font-family:var(--font-mono);font-size:11px">activeTab</code> permission only. It cannot access any page you haven't opened in the current tab.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function switchView(id) {
+  document.querySelectorAll('.vs-btn').forEach((b,i) => b.classList.toggle('active',['user','dev','routing','settings'][i]===id));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id==='view-'+id));
+}
+function switchSite(id, el) {
+  document.querySelectorAll('.st').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['reddit','gmail','linkedin','custom'].forEach(s => {
+    const el = document.getElementById('site-'+s);
+    if(el) el.style.display = s===id ? 'block' : 'none';
+  });
+}
+function toggleDev(id) {
+  const body = document.getElementById(id);
+  body.classList.toggle('open');
+}
+function showTooltip(id) {
+  const t = document.getElementById(id);
+  const vis = t.classList.toggle('visible');
+  if(vis) document.querySelectorAll('.tooltip-popup').forEach(p => { if(p.id!==id) p.classList.remove('visible'); });
+}
+function toggleFloater() {
+  const f = document.getElementById('floater');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+document.addEventListener('click', e => {
+  if(!e.target.closest('.emo-badge') && !e.target.closest('.tooltip-popup')) {
+    document.querySelectorAll('.tooltip-popup').forEach(p => p.classList.remove('visible'));
+  }
+});
+</script>
