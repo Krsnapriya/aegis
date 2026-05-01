@@ -19,14 +19,15 @@ import uvicorn
 from collections import deque, OrderedDict
 
 project_dir = Path(__file__).parent
+sys.path.insert(0, str(project_dir))
 
 # Imports from local package
-from plutchik_erc_dashboard.models.multitask_emotion_model import PluTchikMultiTaskModel
-from plutchik_erc_dashboard.utils.preprocessing import ERCPreprocessor
-from plutchik_erc_dashboard.utils.constants import PLUTCHIK, EMOTION_NAMES, NUM_EMOTIONS, RING_INTENSITY
-from plutchik_erc_dashboard.utils.explainability_v2 import CaptumExplainer
-from plutchik_erc_dashboard.database import engine, get_db, Base, SessionLocal
-from plutchik_erc_dashboard.models.db_models import DB_Prediction, DB_Correction, DB_DialogueTurn
+from models.multitask_emotion_model import PluTchikMultiTaskModel
+from models.db_models import DB_Prediction, DB_Correction, DB_DialogueTurn
+from utils.preprocessing import ERCPreprocessor
+from utils.constants import PLUTCHIK, EMOTION_NAMES, NUM_EMOTIONS, RING_INTENSITY
+from utils.explainability_v2 import CaptumExplainer
+from database import engine, get_db, Base, SessionLocal
 
 try:
     Base.metadata.create_all(bind=engine)

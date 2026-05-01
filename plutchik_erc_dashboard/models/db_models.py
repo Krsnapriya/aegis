@@ -1,7 +1,11 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, JSON, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from plutchik_erc_dashboard.database import Base
+import sys
+from pathlib import Path
+project_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(project_dir))
+from database import Base
 
 class DB_Prediction(Base):
     __tablename__ = "predictions"
