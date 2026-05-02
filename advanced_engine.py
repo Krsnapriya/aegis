@@ -3,6 +3,7 @@ Advanced Emotional Intelligence Engine
 Implements: Neural ODEs, Counterfactual Augmentation, Multimodal Incongruity
 """
 
+import time
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -282,7 +283,7 @@ class AdvancedPlutchikEngine:
             "reframe_suggestions": reframe_suggestions,
             "risk_level": risk_level,
             "baseline_deviation": baseline_deviation,
-            "timestamp": torch.randint(0, 1000, (1,)).item()
+            "timestamp": time.time()
         }
 
 if __name__ == "__main__":

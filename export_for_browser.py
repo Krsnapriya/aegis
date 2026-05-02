@@ -380,8 +380,11 @@ export default PlutchikOnDeviceInference;
 
 if __name__ == '__main__':
     import sys
-    
-    model_path = sys.argv[1] if len(sys.argv) > 1 else '/workspace/my_plutchik_model/best_model.pt'
+    import os
+
+    # Default model path: look next to this script, then fall back to a legacy workspace path.
+    _default = os.path.join(os.path.dirname(__file__), 'my_plutchik_model', 'best_model.pt')
+    model_path = sys.argv[1] if len(sys.argv) > 1 else os.environ.get('PLUTCHIK_MODEL_PATH', _default)
     
     print("="*70)
     print("PLUTCHIK MODEL EXPORT FOR BROWSER (WASM/WebGPU)")

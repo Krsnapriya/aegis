@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Plutchik Dynamic Coach",
   "version": "3.0.0",
-  "description": "On-demand emotional intelligence coach. Activates only when you request it.",
+  "description": "On-demand emotional intelligence coach. Activates only when you request it. Privacy-first: 100% on-device inference by default.",
   "permissions": [
     "activeTab",
     "storage",
@@ -13,12 +13,11 @@
   "host_permissions": [
     "https://www.reddit.com/*",
     "https://mail.google.com/*",
-    "https://www.linkedin.com/*",
-    "http://localhost:8000/*",
-    "http://127.0.0.1:8000/*"
+    "https://www.linkedin.com/*"
   ],
   "action": {
     "default_title": "Activate Plutchik Coach",
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -47,7 +46,13 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["emotion-wheel.html", "icons/*", "styles.css", "model/*", "ondevice-inference.js"],
+      "resources": [
+        "icons/*",
+        "styles.css",
+        "model/*",
+        "lib/*",
+        "ondevice-inference.js"
+      ],
       "matches": ["<all_urls>"]
     }
   ],

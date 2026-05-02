@@ -12,3 +12,5 @@ plotly
 streamlit
 captum
 pytest
+onnx
+onnxruntime

@@ -1,14 +1,29 @@
+"""
+Optional inference server (FastAPI) for cloud/server mode.
+
+DEFAULT MODE: The Chrome extension performs 100% on-device inference using
+ONNX/WebAssembly. This server is NOT required for normal use.
+
+Enable server mode only by explicitly passing ``--server-mode`` to the
+extension (not implemented by default) or calling these endpoints directly
+from your own tooling.
+
+Usage:
+    python inference_server.py [--model /path/to/best_model.pt] [--port 8000]
+"""
 from fastapi import FastAPI, HTTPException, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
-import torch
+import argparse as _argparse
 import json
-from pathlib import Path
+import os
 import sys
 import time
 from collections import deque
+from pathlib import Path
 import numpy as np
+import torch
 
 sys.path.insert(0, str(Path(__file__).parent))
 from models.multitask_emotion_model import PluTchikMultiTaskModel, EMOTION_CLASSES, INTENSITY_LABELS
@@ -61,12 +76,28 @@ class DynamicAnalysisResponse(BaseModel):
     baseline_deviation: Optional[Dict[str, Any]]
     signals: List[str]
 
+# ─── CLI args ─────────────────────────────────────────────────────────────────
+_parser = _argparse.ArgumentParser(description='Plutchik optional inference server')
+_parser.add_argument('--model', default=None,
+    help='Path to best_model.pt checkpoint (default: auto-detect)')
+_parser.add_argument('--port', type=int, default=8000)
+_args, _unknown = _parser.parse_known_args()
+
+# Resolve model path: CLI → env var → repo-relative default
+_default_model = Path(__file__).parent / 'my_plutchik_model' / 'best_model.pt'
+MODEL_PATH = Path(_args.model or os.environ.get('PLUTCHIK_MODEL_PATH', str(_default_model)))
+
 # Load model at startup
 print("Loading model...")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = PluTchikMultiTaskModel().to(device)
-checkpoint = torch.load('/workspace/my_plutchik_model/best_model.pt', map_location=device, weights_only=True)
-model.load_state_dict(checkpoint['model_state_dict'])
+if MODEL_PATH.exists():
+    checkpoint = torch.load(str(MODEL_PATH), map_location=device, weights_only=True)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    print(f"✓ Model loaded from {MODEL_PATH} on {device}")
+else:
+    print(f"⚠ Model checkpoint not found at {MODEL_PATH}. Using random weights.")
+    print("  Run: python export_for_browser.py   (after training with scripts/train.py)")
 model.eval()
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 print(f"✓ Model loaded on {device}")
@@ -464,8 +495,8 @@ async def submit_correction(text: str, true_emotion: str, true_sarcasm: bool,
         'timestamp': time.time()
     }
     
-    # Append to corrections file
-    corr_file = Path('/workspace/plutchik_erc/data/corrections.jsonl')
+    # Append to corrections file (repo-relative data directory)
+    corr_file = Path(__file__).parent / 'data' / 'corrections.jsonl'
     corr_file.parent.mkdir(parents=True, exist_ok=True)
     
     with open(corr_file, 'a') as f:
@@ -475,4 +506,4 @@ async def submit_correction(text: str, true_emotion: str, true_sarcasm: bool,
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=_args.port)
