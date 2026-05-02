@@ -1,0 +1,14 @@
+torchdiffeq
+fastapi
+uvicorn
+transformers
+torch
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+plotly
+streamlit
+captum
+pytest
