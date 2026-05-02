@@ -8,10 +8,12 @@ from pathlib import Path
 import sys
 import time
 from collections import deque
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 from models.multitask_emotion_model import PluTchikMultiTaskModel, EMOTION_CLASSES, INTENSITY_LABELS
 from transformers import BertTokenizer
+from captum.attr import IntegratedGradients
 
 app = FastAPI(title="Plutchik ERC Inference API", version="1.0.0")
 
@@ -46,7 +48,7 @@ class PredictResponse(BaseModel):
 print("Loading model...")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = PluTchikMultiTaskModel().to(device)
-checkpoint = torch.load('/workspace/plutchik_erc/my_plutchik_model/best_model.pt', map_location=device, weights_only=True)
+checkpoint = torch.load('/workspace/my_plutchik_model/best_model.pt', map_location=device, weights_only=True)
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
@@ -54,6 +56,78 @@ print(f"✓ Model loaded on {device}")
 
 # Session management (sliding context window)
 sessions: Dict[str, deque] = {}
+
+# Captum Integrated Gradients for explainability
+ig = None
+
+def init_captum():
+    global ig
+    if ig is None:
+        ig = IntegratedGradients(model)
+
+def get_token_attributions(text: str, context: List[str] = None, target_emotion_idx: int = None) -> List[Dict]:
+    """Use Captum Integrated Gradients to get token-level attributions"""
+    init_captum()
+    
+    # Build input with optional context
+    if context:
+        full_text = " [CONTEXT] ".join(context[-2:]) + " [CURRENT] " + text
+    else:
+        full_text = text
+    
+    inputs = tokenizer.encode_plus(
+        full_text,
+        max_length=128,
+        padding='max_length',
+        truncation=True,
+        return_tensors='pt'
+    )
+    
+    input_ids = inputs['input_ids'].to(device)
+    attention_mask = inputs['attention_mask'].to(device)
+    tokens = tokenizer.convert_ids_to_tokens(input_ids[0])
+    
+    # If no target emotion specified, use the predicted one
+    if target_emotion_idx is None:
+        with torch.no_grad():
+            outputs = model(input_ids, attention_mask)
+            emotion_probs = torch.softmax(outputs['emotion_logits'], dim=-1)[0]
+            target_emotion_idx = emotion_probs.argmax().item()
+    
+    # Compute Integrated Gradients
+    def predict_func(inputs_tensor):
+        outputs = model(inputs_tensor, attention_mask)
+        return outputs['emotion_logits'][:, target_emotion_idx]
+    
+    input_ids.requires_grad_(True)
+    attributions, delta = ig.attribute(
+        input_ids,
+        baselines=input_ids.clone().fill_(tokenizer.pad_token_id),
+        target=target_emotion_idx,
+        return_convergence_delta=True
+    )
+    
+    attributions = attributions.sum(dim=-1).squeeze(0).detach().cpu().numpy()
+    
+    # Map attributions to tokens
+    token_attributions = []
+    for i, (token, attr) in enumerate(zip(tokens, attributions)):
+        if token not in ['[CLS]', '[SEP]', '[PAD]']:
+            token_attributions.append({
+                'token': token.replace('##', ''),
+                'attribution': round(float(abs(attr)), 4),
+                'signed_attribution': round(float(attr), 4),
+                'position': i
+            })
+    
+    # Normalize attributions to 0-1 range
+    if token_attributions:
+        max_attr = max(t['attribution'] for t in token_attributions)
+        if max_attr > 0:
+            for t in token_attributions:
+                t['attribution'] = round(t['attribution'] / max_attr, 4)
+    
+    return token_attributions
 
 def check_rate_limit(api_key: Optional[str]) -> bool:
     if not api_key or api_key not in API_KEYS:
@@ -183,30 +257,133 @@ async def predict_arc(conversation: List[str], x_api_key: Optional[str] = Header
         'emotional_arc': [t['emotion'] for t in trajectory]
     }
 
-@app.post("/explain")
-async def explain(text: str, context: Optional[List[str]] = [], x_api_key: Optional[str] = Header(None)):
-    """Return prediction with basic token importance (simplified Captum-style)"""
+@app.post("/compare")
+async def compare_conversations(conv_a: List[str], conv_b: List[str], x_api_key: Optional[str] = Header(None)):
+    """Compare two conversations side-by-side to see where emotional trajectories diverge"""
     if not check_rate_limit(x_api_key):
         raise HTTPException(status_code=429, detail="Rate limit exceeded")
     
-    # Run standard inference
+    # Analyze both conversations
+    arc_a = []
+    arc_b = []
+    
+    for i, turn in enumerate(conv_a):
+        result = run_inference(turn, conv_a[:i])
+        arc_a.append({'turn': i + 1, 'text': turn, **result})
+    
+    for i, turn in enumerate(conv_b):
+        result = run_inference(turn, conv_b[:i])
+        arc_b.append({'turn': i + 1, 'text': turn, **result})
+    
+    # Calculate divergence at each turn
+    comparison = []
+    max_turns = max(len(arc_a), len(arc_b))
+    
+    for i in range(max_turns):
+        turn_data = {'turn': i + 1}
+        
+        if i < len(arc_a):
+            turn_data['conv_a'] = {
+                'emotion': arc_a[i]['emotion'],
+                'confidence': arc_a[i]['confidence'],
+                'sarcasm': arc_a[i]['sarcasm'],
+                'intensity': arc_a[i]['intensity']
+            }
+            dist_a = torch.tensor(list(arc_a[i]['all_emotions'].values()))
+        else:
+            turn_data['conv_a'] = None
+            dist_a = None
+        
+        if i < len(arc_b):
+            turn_data['conv_b'] = {
+                'emotion': arc_b[i]['emotion'],
+                'confidence': arc_b[i]['confidence'],
+                'sarcasm': arc_b[i]['sarcasm'],
+                'intensity': arc_b[i]['intensity']
+            }
+            dist_b = torch.tensor(list(arc_b[i]['all_emotions'].values()))
+        else:
+            turn_data['conv_b'] = None
+            dist_b = None
+        
+        # Calculate Jensen-Shannon divergence between distributions
+        if dist_a is not None and dist_b is not None:
+            m = 0.5 * (dist_a + dist_b)
+            js_div = 0.5 * (
+                torch.nn.functional.kl_div(torch.log(dist_a + 1e-8), m + 1e-8, reduction='sum') +
+                torch.nn.functional.kl_div(torch.log(dist_b + 1e-8), m + 1e-8, reduction='sum')
+            ).item()
+            turn_data['divergence'] = round(js_div, 4)
+            turn_data['emotion_match'] = arc_a[i]['emotion'] == arc_b[i]['emotion']
+        else:
+            turn_data['divergence'] = None
+            turn_data['emotion_match'] = None
+    
+    # Find key divergence points (where emotions differ significantly)
+    high_divergence_turns = [t for t in comparison if t.get('divergence', 0) > 0.3 or t.get('emotion_match') == False]
+    
+    # Summary statistics
+    summary = {
+        'conv_a_length': len(arc_a),
+        'conv_b_length': len(arc_b),
+        'conv_a_avg_confidence': sum(t['confidence'] for t in arc_a) / len(arc_a) if arc_a else 0,
+        'conv_b_avg_confidence': sum(t['confidence'] for t in arc_b) / len(arc_b) if arc_b else 0,
+        'conv_a_sarcasm_rate': sum(1 for t in arc_a if t['sarcasm']) / len(arc_a) if arc_a else 0,
+        'conv_b_sarcasm_rate': sum(1 for t in arc_b if t['sarcasm']) / len(arc_b) if arc_b else 0,
+        'emotion_agreement_rate': sum(1 for t in comparison if t.get('emotion_match')) / len(comparison) if comparison else 0,
+        'avg_divergence': sum(t.get('divergence', 0) for t in comparison if t.get('divergence') is not None) / len([t for t in comparison if t.get('divergence') is not None]) if comparison else 0
+    }
+    
+    return {
+        'comparison': comparison,
+        'summary': summary,
+        'key_divergence_points': high_divergence_turns,
+        'conv_a_trajectory': arc_a,
+        'conv_b_trajectory': arc_b
+    }
+
+@app.post("/explain")
+async def explain(text: str, context: Optional[List[str]] = [], x_api_key: Optional[str] = Header(None)):
+    """Return prediction with Captum Integrated Gradients token attributions"""
+    if not check_rate_limit(x_api_key):
+        raise HTTPException(status_code=429, detail="Rate limit exceeded")
+    
+    # Run standard inference first to get prediction
     result = run_inference(text, context)
     
-    # Simplified attribution: highlight words that differ from neutral
-    words = text.split()
-    attributions = []
-    
-    for word in words:
-        # Crude approximation: longer words and exclamations get higher scores
-        score = min(1.0, len(word) / 10.0)
-        if word.endswith('!') or word.endswith('?'):
-            score *= 1.5
-        attributions.append({'token': word, 'attribution': round(min(score, 1.0), 4)})
+    # Get Captum token attributions
+    try:
+        token_attributions = get_token_attributions(text, context)
+        
+        # Also analyze context influence - which words in previous turns affected this prediction
+        context_attributions = []
+        if context:
+            # Run IG on the full context + current to see which context tokens mattered
+            full_context_text = " [CONTEXT] ".join(context[-2:])
+            context_tokens = get_token_attributions(full_context_text, [], 
+                                                    target_emotion_idx=EMOTION_CLASSES.index(result['emotion']))
+            context_attributions = context_tokens[:20]  # Top 20 context tokens
+        
+        method = 'captum_integrated_gradients'
+    except Exception as e:
+        # Fallback to simple method if Captum fails
+        words = text.split()
+        token_attributions = [
+            {'token': w, 'attribution': round(min(1.0, len(w) / 10.0), 4)} 
+            for w in words
+        ]
+        context_attributions = []
+        method = f'simplified_fallback_error:{str(e)[:50]}'
     
     return {
         **result,
-        'token_attributions': attributions,
-        'method': 'simplified_gradient_approximation'
+        'token_attributions': token_attributions,
+        'context_attributions': context_attributions,
+        'method': method,
+        'explanation_summary': {
+            'top_positive_tokens': sorted(token_attributions, key=lambda x: x.get('signed_attribution', x['attribution']), reverse=True)[:5],
+            'top_negative_tokens': sorted(token_attributions, key=lambda x: x.get('signed_attribution', -x['attribution']))[:5]
+        }
     }
 
 @app.post("/correct")
