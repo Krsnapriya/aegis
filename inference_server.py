@@ -15,6 +15,9 @@ from models.multitask_emotion_model import PluTchikMultiTaskModel, EMOTION_CLASS
 from transformers import BertTokenizer
 from captum.attr import IntegratedGradients
 
+# Import the advanced engine
+from advanced_engine import AdvancedPlutchikEngine
+
 app = FastAPI(title="Plutchik ERC Inference API", version="1.0.0")
 
 # CORS for dashboard
@@ -44,6 +47,20 @@ class PredictResponse(BaseModel):
     intensity_scores: Dict[str, float]
     primary_emotion_ring: str  # mild/primary/intense
 
+class DynamicAnalysisRequest(BaseModel):
+    text: str
+    session_id: Optional[str] = "default"
+    user_baseline: Optional[Dict[str, Any]] = None
+
+class DynamicAnalysisResponse(BaseModel):
+    risk_level: str
+    sarcasm_probability: float
+    trajectory_forecast: List[List[float]]
+    inflection_point: int
+    reframe_suggestions: List[str]
+    baseline_deviation: Optional[Dict[str, Any]]
+    signals: List[str]
+
 # Load model at startup
 print("Loading model...")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -56,6 +73,9 @@ print(f"✓ Model loaded on {device}")
 
 # Session management (sliding context window)
 sessions: Dict[str, deque] = {}
+
+# Initialize advanced engine
+advanced_engine = AdvancedPlutchikEngine(device=device)
 
 # Captum Integrated Gradients for explainability
 ig = None
@@ -204,6 +224,52 @@ async def predict(req: PredictRequest, x_api_key: Optional[str] = Header(None)):
     
     result = run_inference(req.text, context)
     return PredictResponse(**result)
+
+@app.post("/analyze/dynamic", response_model=DynamicAnalysisResponse)
+async def analyze_dynamic(req: DynamicAnalysisRequest, x_api_key: Optional[str] = Header(None)):
+    """
+    Advanced dynamic analysis with trajectory forecasting, sarcasm detection, and reframing.
+    Uses Neural ODEs for forecasting and multimodal incongruity for sarcasm.
+    """
+    if not check_rate_limit(x_api_key):
+        raise HTTPException(status_code=429, detail="Rate limit exceeded")
+    
+    # Get current emotion from standard inference
+    context = list(sessions.get(req.session_id, deque()))[:-1]
+    base_result = run_inference(req.text, context)
+    
+    # Convert emotion dict to vector
+    emotion_vector = [base_result['all_emotions'].get(e, 0.0) for e in EMOTION_CLASSES]
+    
+    # Build dialogue history for forecasting
+    dialogue_history = []
+    for turn_text in context:
+        turn_result = run_inference(turn_text, [])
+        turn_vector = [turn_result['all_emotions'].get(e, 0.0) for e in EMOTION_CLASSES]
+        dialogue_history.append(turn_vector)
+    
+    # Run advanced analysis
+    analysis = advanced_engine.analyze_dynamic(
+        text=req.text,
+        current_emotion_vector=emotion_vector,
+        dialogue_history=dialogue_history,
+        user_baseline=req.user_baseline
+    )
+    
+    # Update session
+    if req.session_id not in sessions:
+        sessions[req.session_id] = deque(maxlen=3)
+    sessions[req.session_id].append(req.text)
+    
+    return DynamicAnalysisResponse(
+        risk_level=analysis['risk_level'],
+        sarcasm_probability=analysis['incongruity']['sarcasm_probability'],
+        trajectory_forecast=analysis['forecast']['trajectory'],
+        inflection_point=analysis['forecast']['inflection_point_step'],
+        reframe_suggestions=analysis['reframe_suggestions'],
+        baseline_deviation=analysis['baseline_deviation'],
+        signals=analysis['incongruity']['signals']
+    )
 
 @app.post("/predict/batch")
 async def predict_batch(texts: List[str], x_api_key: Optional[str] = Header(None)):
