@@ -1,140 +1,128 @@
-/**
- * Plutchik Emotion Detector - Background Service Worker
- * Handles on-device inference using WebGPU/WASM
- */
+// Plutchik Dynamic Coach - Background Service Worker
+// Handles on-demand activation and multi-user request routing
 
-// Emotion classes (32)
-const EMOTION_CLASSES = [
-  'ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing',
-  'rage', 'vigilance', 'joy', 'trust', 'fear', 'surprise', 'sadness',
-  'disgust', 'anger', 'anticipation', 'serenity', 'acceptance',
-  'apprehension', 'distraction', 'pensiveness', 'boredom', 'annoyance',
-  'interest', 'optimism', 'love', 'submission', 'awe', 'disapproval',
-  'remorse', 'contempt', 'aggressiveness'
-];
+let activeSessions = new Map();
+let requestIdCounter = 0;
 
-// Color mapping for emotion rings
-const EMOTION_COLORS = {
-  // Joy sector
-  'joy': '#FFD700', 'ecstasy': '#FF69B4', 'serenity': '#FFE4B5',
-  // Trust sector  
-  'trust': '#90EE90', 'admiration': '#DA70D6', 'acceptance': '#98FB98',
-  // Fear sector
-  'fear': '#8B0000', 'terror': '#8B0000', 'apprehension': '#CD5C5C',
-  // Surprise sector
-  'surprise': '#FFA500', 'amazement': '#FF4500', 'distraction': '#FFDAB9',
-  // Sadness sector
-  'sadness': '#00008B', 'grief': '#2F4F4F', 'pensiveness': '#4682B4',
-  // Disgust sector
-  'disgust': '#006400', 'loathing': '#8B4513', 'boredom': '#556B2F',
-  // Anger sector
-  'anger': '#DC143C', 'rage': '#B22222', 'annoyance': '#DC143C',
-  // Anticipation sector
-  'anticipation': '#9370DB', 'vigilance': '#556B2F', 'interest': '#DDA0DD',
-  // Dyadic emotions
-  'optimism': '#FFB6C1', 'love': '#FF69B4', 'submission': '#D8BFD8',
-  'awe': '#9400D3', 'disapproval': '#8B7D6B', 'remorse': '#483D8B',
-  'contempt': '#8B4513', 'aggressiveness': '#B22222'
-};
-
-// Intensity ring colors
-const INTENSITY_COLORS = {
-  'mild': '#4A90D9',      // Blue
-  'primary': '#50C878',   // Green  
-  'intense': '#DC143C'    // Red
-};
-
-// Model state (lazy loaded)
-let model = null;
-let tokenizer = null;
-
-/**
- * Initialize the on-device model
- * In production, this would load ONNX model via WebGPU
- */
-async function initializeModel() {
-  if (model) return model;
+// Create context menu items on install
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'plutchik-analyze',
+    title: 'Analyze with Plutchik',
+    contexts: ['selection']
+  });
   
-  console.log('[Plutchik] Loading on-device model...');
-  
-  // TODO: Load ONNX model from extension storage
-  // For now, we use a mock that simulates the API response structure
-  
-  model = {
-    predict: async (text, context = []) => {
-      // Mock prediction - in production this runs WASM/WebGPU inference
-      const response = await fetch('http://localhost:8000/predict', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, context })
-      }).then(r => r.json());
-      
-      return response;
+  console.log('[Plutchik] Extension installed. Ready for on-demand activation.');
+});
+
+// Handle context menu clicks
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === 'plutchik-analyze' && info.selectionText) {
+    // Send message to content script to analyze selected text
+    chrome.tabs.sendMessage(tab.id, {
+      action: 'analyze',
+      text: info.selectionText
+    }, (response) => {
+      if (chrome.runtime.lastError || response?.status === 'not_active') {
+        // Extension not activated yet, show notification
+        showActivationNotification(tab.id);
+      }
+    });
+  }
+});
+
+// Handle extension icon click (activation)
+chrome.action.onClicked.addListener((tab) => {
+  // Activate content script on current tab
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['content_script.js']
+  }, () => {
+    // Send activation message
+    chrome.tabs.sendMessage(tab.id, { action: 'activate' }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.error('[Plutchik] Activation failed:', chrome.runtime.lastError);
+      } else {
+        console.log('[Plutchik] Activated in tab:', tab.id);
+      }
+    });
+  });
+});
+
+// Handle keyboard commands
+chrome.commands.onCommand.addListener((command) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0]) {
+      if (command === '_execute_action') {
+        // Activate extension
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          files: ['content_script.js']
+        }, () => {
+          chrome.tabs.sendMessage(tabs[0].id, { action: 'activate' });
+        });
+      } else if (command === 'analyze-selection') {
+        // Analyze selected text
+        chrome.tabs.sendMessage(tabs[0].id, { 
+          action: 'trigger-selection-analysis' 
+        });
+      }
     }
-  };
-  
-  console.log('[Plutchik] Model loaded');
-  return model;
-}
-
-/**
- * Get emotion color based on primary emotion and intensity
- */
-function getEmotionIndicator(emotion, intensity) {
-  const baseColor = EMOTION_COLORS[emotion] || '#808080';
-  const ringColor = INTENSITY_COLORS[intensity] || INTENSITY_COLORS['primary'];
-  
-  return {
-    dotColor: ringColor,  // Ring color indicates intensity
-    hoverColor: baseColor, // Hover shows emotion-specific color
-    emotion: emotion,
-    intensity: intensity
-  };
-}
-
-/**
- * Analyze text and return emotion data
- */
-async function analyzeText(text, context = []) {
-  try {
-    await initializeModel();
-    const result = await model.predict(text, context);
-    return {
-      success: true,
-      ...result,
-      indicator: getEmotionIndicator(result.emotion, result.intensity)
-    };
-  } catch (error) {
-    console.error('[Plutchik] Analysis error:', error);
-    return { success: false, error: error.message };
-  }
-}
-
-// Message handler for content scripts
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === 'ANALYZE_TEXT') {
-    analyzeText(message.text, message.context || [])
-      .then(result => sendResponse(result))
-      .catch(error => sendResponse({ success: false, error: error.message }));
-    return true; // Keep channel open for async response
-  }
-  
-  if (message.type === 'GET_EMOTION_COLORS') {
-    sendResponse({ colors: EMOTION_COLORS, intensityColors: INTENSITY_COLORS });
-    return true;
-  }
-  
-  if (message.type === 'MODEL_READY') {
-    initializeModel().then(() => sendResponse({ ready: true }));
-    return true;
-  }
+  });
 });
 
-// Listen for tab updates to inject on supported sites
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === 'complete' && tab.url) {
-    // Could trigger initial analysis here if needed
+// Show notification when user tries to use extension before activation
+function showActivationNotification(tabId) {
+  chrome.tabs.sendMessage(tabId, {
+    action: 'show-activation-prompt'
+  });
+}
+
+// Handle messages from content scripts
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'register-session') {
+    // Register a new analysis session
+    const sessionId = `session_${Date.now()}_${++requestIdCounter}`;
+    activeSessions.set(sessionId, {
+      id: sessionId,
+      tabId: sender.tab?.id,
+      createdAt: Date.now(),
+      status: 'active'
+    });
+    
+    console.log(`[Plutchik] Session registered: ${sessionId}`);
+    sendResponse({ sessionId });
+  } 
+  else if (request.action === 'complete-session') {
+    // Mark session as complete
+    const session = activeSessions.get(request.sessionId);
+    if (session) {
+      session.status = 'completed';
+      session.completedAt = Date.now();
+    }
+    sendResponse({ success: true });
   }
+  else if (request.action === 'get-active-sessions') {
+    // Return count of active sessions (for debugging)
+    const activeCount = Array.from(activeSessions.values())
+      .filter(s => s.status === 'active').length;
+    sendResponse({ count: activeCount });
+  }
+  
+  return true; // Keep channel open for async response
 });
+
+// Cleanup old sessions periodically
+setInterval(() => {
+  const now = Date.now();
+  const maxAge = 5 * 60 * 1000; // 5 minutes
+  
+  for (const [id, session] of activeSessions.entries()) {
+    if (now - session.createdAt > maxAge) {
+      activeSessions.delete(id);
+      console.log(`[Plutchik] Cleaned up stale session: ${id}`);
+    }
+  }
+}, 60 * 1000); // Run every minute
 
 console.log('[Plutchik] Background service worker initialized');

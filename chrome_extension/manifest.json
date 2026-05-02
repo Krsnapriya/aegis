@@ -1,52 +1,53 @@
 {
   "manifest_version": 3,
-  "name": "Plutchik Emotion Detector",
-  "version": "1.0.0",
-  "description": "Real-time emotion detection for online conversations. Shows 32-class Plutchik emotions, sarcasm detection, and intensity rings.",
+  "name": "Plutchik Dynamic Coach",
+  "version": "3.0.0",
+  "description": "On-demand emotional intelligence coach. Activates only when you request it.",
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "scripting",
+    "contextMenus",
+    "commands"
   ],
   "host_permissions": [
     "https://www.reddit.com/*",
     "https://mail.google.com/*",
-    "https://www.linkedin.com/*"
+    "https://www.linkedin.com/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_title": "Activate Plutchik Coach",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["https://www.reddit.com/*"],
-      "js": ["reddit-overlay.js"],
-      "css": ["styles.css"],
-      "run_at": "document_idle"
-    },
-    {
-      "matches": ["https://mail.google.com/*"],
-      "js": ["gmail-overlay.js"],
-      "css": ["styles.css"],
-      "run_at": "document_idle"
-    },
-    {
-      "matches": ["https://www.linkedin.com/*"],
-      "js": ["linkedin-overlay.js"],
-      "css": ["styles.css"],
-      "run_at": "document_idle"
-    }
-  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Activate Plutchik Coach"
+    },
+    "analyze-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "Analyze selected text"
+    }
+  },
   "web_accessible_resources": [
     {
-      "resources": ["emotion-wheel.html", "icons/*"],
+      "resources": ["emotion-wheel.html", "icons/*", "styles.css", "model/*", "ondevice-inference.js"],
       "matches": ["<all_urls>"]
     }
   ],
