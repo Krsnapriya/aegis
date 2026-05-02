@@ -1,0 +1,1505 @@
+text,emotion_code,scenario,speaker_role,sarcasm,ring_level,iaa_score,emotion_cause,conversation_id,turn_number,timestamp
+This is amazing!,inte,friendship,partner,0,1,0.617,Reaction to online_debate,conv_5744,4,2026-05-02T06:19:00.032060
+This is amazing!,anno,friendship,user,0,1,0.6,Reaction to romance,conv_7772,8,2026-05-02T06:19:00.032685
+Best day ever!,cont,family,agent,0,1,0.688,Reaction to customer_service,conv_9164,9,2026-05-02T06:19:00.050906
+Best day ever!,appr,online_debate,user,0,2,0.788,Reaction to family,conv_4040,7,2026-05-02T06:19:00.046257
+HEARTBROKEN.,grie,online_debate,stranger,0,3,0.77,Reaction to friendship,conv_2935,8,2026-05-02T06:19:00.047822
+Overwhelmed.,awe,family,agent,0,1,0.763,Reaction to healthcare,conv_9713,7,2026-05-02T06:19:00.049853
+HEARTBROKEN.,grie,online_debate,user,0,3,0.731,Reaction to education,conv_6263,5,2026-05-02T06:19:00.047804
+Best day ever!,cont,family,friend,0,1,0.75,Reaction to online_debate,conv_3042,8,2026-05-02T06:19:00.050797
+So happy about this!,opti,customer_service,stranger,0,1,0.656,Reaction to education,conv_9808,12,2026-05-02T06:19:00.043182
+HATE EVERY FIBER!,loat,healthcare,user,0,3,0.723,Reaction to workplace,conv_6582,8,2026-05-02T06:19:00.048276
+I'm worried something might go wrong.,fear,workplace,friend,0,2,0.77,Reaction to friendship,conv_3906,11,2026-05-02T06:19:00.044495
+ABSOLUTELY THRILLED!,ecst,friendship,stranger,0,3,0.697,Reaction to friendship,conv_4494,2,2026-05-02T06:19:00.046442
+Best day ever!,subm,friendship,stranger,0,1,0.778,Reaction to workplace,conv_8499,10,2026-05-02T06:19:00.049405
+ABSOLUTELY THRILLED!,ecst,workplace,stranger,0,3,0.849,Reaction to healthcare,conv_9425,5,2026-05-02T06:19:00.046641
+So happy about this!,ange,workplace,partner,0,2,0.939,Reaction to education,conv_6919,10,2026-05-02T06:19:00.045970
+So happy about this!,sadn,workplace,partner,0,2,0.716,Reaction to family,conv_9887,2,2026-05-02T06:19:00.045308
+ABSOLUTELY THRILLED!,ecst,romance,agent,0,3,0.831,Reaction to workplace,conv_3667,8,2026-05-02T06:19:00.046454
+HEARTBROKEN.,grie,online_debate,agent,0,3,0.922,Reaction to family,conv_7819,7,2026-05-02T06:19:00.047927
+SEEING RED!,rage,customer_service,agent,0,3,0.8,Reaction to education,conv_8035,6,2026-05-02T06:19:00.048696
+HEARTBROKEN.,grie,healthcare,partner,0,3,0.669,Reaction to customer_service,conv_7604,1,2026-05-02T06:19:00.047956
+This is amazing!,subm,romance,user,0,1,0.666,Reaction to healthcare,conv_5784,8,2026-05-02T06:19:00.049717
+So happy about this!,aggr,romance,partner,0,1,0.758,Reaction to family,conv_5715,3,2026-05-02T06:19:00.051183
+Best day ever!,bore,online_debate,friend,0,1,0.664,Reaction to customer_service,conv_5141,4,2026-05-02T06:19:00.031928
+Drowning in sorrow.,grie,education,partner,0,3,0.679,Reaction to online_debate,conv_2710,12,2026-05-02T06:19:00.047871
+So happy about this!,ange,online_debate,friend,0,2,0.763,Reaction to online_debate,conv_6350,7,2026-05-02T06:19:00.045957
+So happy about this!,aggr,education,agent,0,1,0.625,Reaction to family,conv_7446,10,2026-05-02T06:19:00.051378
+This is amazing!,pens,romance,user,0,1,0.61,Reaction to romance,conv_4207,12,2026-05-02T06:19:00.031328
+ABSOLUTELY TERRIFIED!,terr,customer_service,friend,0,3,0.925,Reaction to friendship,conv_5679,7,2026-05-02T06:19:00.047111
+This is amazing!,remo,romance,partner,0,1,0.583,Reaction to online_debate,conv_4457,12,2026-05-02T06:19:00.050724
+So happy about this!,sere,customer_service,friend,0,1,0.564,Reaction to romance,conv_2867,1,2026-05-02T06:19:00.030436
+This is amazing!,inte,workplace,agent,0,1,0.778,Reaction to family,conv_1076,2,2026-05-02T06:19:00.032240
+Afraid of consequences.,fear,healthcare,stranger,0,2,0.734,Reaction to friendship,conv_9059,3,2026-05-02T06:19:00.044633
+This is amazing!,subm,customer_service,agent,0,1,0.641,Reaction to workplace,conv_8866,5,2026-05-02T06:19:00.049544
+Drowning in sorrow.,grie,friendship,agent,0,3,0.936,Reaction to friendship,conv_7519,7,2026-05-02T06:19:00.047729
+This is amazing!,admi,workplace,agent,0,3,0.664,Reaction to family,conv_9912,6,2026-05-02T06:19:00.046928
+Best day ever!,disa,friendship,partner,0,1,0.631,Reaction to friendship,conv_9482,11,2026-05-02T06:19:00.050177
+So happy about this!,inte,education,user,0,1,0.762,Reaction to customer_service,conv_4551,3,2026-05-02T06:19:00.032126
+MIND-BLOWING!,amaz,healthcare,friend,0,3,0.859,Reaction to romance,conv_6546,5,2026-05-02T06:19:00.047463
+Best day ever!,subm,friendship,partner,0,1,0.762,Reaction to online_debate,conv_6055,4,2026-05-02T06:19:00.049686
+Best day ever!,acce,customer_service,agent,0,1,0.612,Reaction to romance,conv_5090,3,2026-05-02T06:19:00.030888
+COMPLETELY STUNNED!,amaz,family,stranger,0,3,0.686,Reaction to family,conv_8504,9,2026-05-02T06:19:00.047375
+So happy about this!,sere,friendship,friend,0,1,0.763,Reaction to customer_service,conv_9269,3,2026-05-02T06:19:00.030328
+What a surprise!,supr,friendship,user,0,2,0.729,Reaction to education,conv_7392,12,2026-05-02T06:19:00.051782
+SEEING RED!,rage,online_debate,partner,0,3,0.685,Reaction to romance,conv_7980,4,2026-05-02T06:19:00.048555
+Overwhelmed.,awe,education,partner,0,1,0.717,Reaction to friendship,conv_7985,1,2026-05-02T06:19:00.050006
+OVER THE MOON!,ecst,education,stranger,0,3,0.848,Reaction to friendship,conv_1342,3,2026-05-02T06:19:00.046647
+Best day ever!,admi,romance,agent,0,3,0.92,Reaction to friendship,conv_8688,7,2026-05-02T06:19:00.046770
+COMPLETELY STUNNED!,amaz,education,agent,0,3,0.898,Reaction to workplace,conv_4097,11,2026-05-02T06:19:00.047556
+So happy about this!,surp,healthcare,partner,0,2,0.756,Reaction to friendship,conv_4762,9,2026-05-02T06:19:00.044855
+Best day ever!,surp,family,user,0,2,0.933,Reaction to family,conv_7747,4,2026-05-02T06:19:00.044965
+This is amazing!,appr,healthcare,stranger,0,2,0.832,Reaction to workplace,conv_2275,10,2026-05-02T06:19:00.046286
+This is amazing!,bore,customer_service,friend,0,1,0.61,Reaction to customer_service,conv_9661,5,2026-05-02T06:19:00.031780
+This is amazing!,sadn,online_debate,stranger,0,2,0.915,Reaction to customer_service,conv_8359,7,2026-05-02T06:19:00.045110
+OVER THE MOON!,ecst,friendship,stranger,0,3,0.852,Reaction to customer_service,conv_2886,8,2026-05-02T06:19:00.046494
+This is amazing!,acce,customer_service,stranger,0,1,0.727,Reaction to workplace,conv_5889,11,2026-05-02T06:19:00.030756
+ABSOLUTELY FURIOUS!,rage,customer_service,agent,0,3,0.764,Reaction to education,conv_3792,10,2026-05-02T06:19:00.048625
+This is amazing!,disa,workplace,stranger,0,1,0.769,Reaction to family,conv_8188,1,2026-05-02T06:19:00.050267
+Best day ever!,trus,friendship,partner,0,2,0.94,Reaction to workplace,conv_8396,10,2026-05-02T06:19:00.043931
+This is amazing!,anno,family,user,0,1,0.56,Reaction to online_debate,conv_5394,4,2026-05-02T06:19:00.032508
+So happy about this!,cont,romance,agent,0,1,0.716,Reaction to online_debate,conv_5523,12,2026-05-02T06:19:00.050984
+Best day ever!,aggr,healthcare,agent,0,1,0.655,Reaction to online_debate,conv_1005,12,2026-05-02T06:19:00.051402
+Care deeply.,love,customer_service,agent,0,1,0.643,Reaction to family,conv_6298,12,2026-05-02T06:19:00.049247
+Best day ever!,opti,customer_service,partner,0,1,0.633,Reaction to education,conv_4668,3,2026-05-02T06:19:00.043395
+This is amazing!,admi,friendship,user,0,3,0.811,Reaction to education,conv_4980,5,2026-05-02T06:19:00.046985
+Best day ever!,pens,workplace,partner,0,1,0.615,Reaction to healthcare,conv_9470,12,2026-05-02T06:19:00.031393
+This makes me nervous.,fear,healthcare,friend,0,2,0.789,Reaction to education,conv_5737,12,2026-05-02T06:19:00.044289
+I'm worried something might go wrong.,fear,romance,user,0,2,0.745,Reaction to customer_service,conv_4913,9,2026-05-02T06:19:00.044428
+NIGHTMARE COME TRUE!,terr,healthcare,friend,0,3,0.726,Reaction to online_debate,conv_5876,1,2026-05-02T06:19:00.047346
+Best day ever!,sadn,workplace,partner,0,2,0.884,Reaction to friendship,conv_8489,5,2026-05-02T06:19:00.045095
+This is amazing!,appr,family,partner,0,2,0.892,Reaction to customer_service,conv_9006,1,2026-05-02T06:19:00.046190
+"Oh great, another meeting.",joy,romance,stranger,1,2,0.727,Reaction to family,conv_3648,5,2026-05-02T06:19:00.043699
+HEARTBROKEN.,grie,customer_service,stranger,0,3,0.875,Reaction to family,conv_2195,2,2026-05-02T06:19:00.047921
+So happy about this!,joy,workplace,friend,0,2,0.87,Reaction to online_debate,conv_1584,10,2026-05-02T06:19:00.043579
+So happy about this!,disa,workplace,stranger,0,1,0.646,Reaction to online_debate,conv_5028,7,2026-05-02T06:19:00.050232
+What a surprise!,supr,friendship,friend,0,2,0.72,Reaction to friendship,conv_4092,9,2026-05-02T06:19:00.051711
+Best day ever!,sadn,customer_service,stranger,0,2,0.939,Reaction to friendship,conv_5445,2,2026-05-02T06:19:00.045015
+Best day ever!,trus,family,user,0,2,0.856,Reaction to friendship,conv_8131,5,2026-05-02T06:19:00.043967
+So happy about this!,subm,family,friend,0,1,0.707,Reaction to online_debate,conv_5835,9,2026-05-02T06:19:00.049412
+Best day ever!,bore,healthcare,stranger,0,1,0.608,Reaction to family,conv_4892,5,2026-05-02T06:19:00.031904
+This is amazing!,pens,education,stranger,0,1,0.582,Reaction to family,conv_6662,5,2026-05-02T06:19:00.031399
+This is amazing!,inte,workplace,agent,0,1,0.694,Reaction to workplace,conv_3481,5,2026-05-02T06:19:00.032153
+BLIND RAGE!,rage,workplace,user,0,3,0.919,Reaction to friendship,conv_5972,3,2026-05-02T06:19:00.048631
+Best day ever!,sere,online_debate,stranger,0,1,0.774,Reaction to romance,conv_6382,7,2026-05-02T06:19:00.030578
+This is amazing!,dist,friendship,agent,0,1,0.734,Reaction to romance,conv_6787,6,2026-05-02T06:19:00.031045
+This is amazing!,opti,healthcare,agent,0,1,0.634,Reaction to workplace,conv_7298,5,2026-05-02T06:19:00.043401
+HEARTBROKEN.,grie,romance,friend,0,3,0.878,Reaction to family,conv_3049,12,2026-05-02T06:19:00.047799
+Best day ever!,appr,workplace,partner,0,2,0.736,Reaction to romance,conv_5970,2,2026-05-02T06:19:00.046119
+Best day ever!,admi,friendship,partner,0,3,0.916,Reaction to healthcare,conv_1937,12,2026-05-02T06:19:00.046933
+So happy about this!,inte,customer_service,friend,0,1,0.599,Reaction to friendship,conv_8749,2,2026-05-02T06:19:00.032252
+BLIND RAGE!,rage,family,stranger,0,3,0.898,Reaction to healthcare,conv_7190,10,2026-05-02T06:19:00.048414
+So happy about this!,sadn,healthcare,agent,0,2,0.915,Reaction to healthcare,conv_8932,3,2026-05-02T06:19:00.045230
+Best day ever!,appr,friendship,agent,0,2,0.891,Reaction to family,conv_1939,6,2026-05-02T06:19:00.046070
+Afraid of consequences.,fear,education,friend,0,2,0.917,Reaction to customer_service,conv_1882,5,2026-05-02T06:19:00.044507
+BLIND RAGE!,rage,education,friend,0,3,0.683,Reaction to friendship,conv_2370,10,2026-05-02T06:19:00.048483
+HYPERVIGILANT.,vigi,online_debate,partner,0,3,0.942,Reaction to online_debate,conv_2143,10,2026-05-02T06:19:00.048790
+So happy about this!,cont,customer_service,partner,0,1,0.562,Reaction to online_debate,conv_3383,5,2026-05-02T06:19:00.050954
+OVER THE MOON!,ecst,friendship,partner,0,3,0.799,Reaction to friendship,conv_2348,7,2026-05-02T06:19:00.046425
+HEARTBROKEN.,grie,online_debate,stranger,0,3,0.871,Reaction to online_debate,conv_2813,12,2026-05-02T06:19:00.047735
+This is amazing!,sere,workplace,agent,0,1,0.563,Reaction to online_debate,conv_8141,7,2026-05-02T06:19:00.030366
+Best day ever!,dist,healthcare,friend,0,1,0.616,Reaction to education,conv_3781,6,2026-05-02T06:19:00.031057
+ABSOLUTELY TERRIFIED!,terr,workplace,user,0,3,0.835,Reaction to online_debate,conv_8922,9,2026-05-02T06:19:00.047175
+This is amazing!,disg,customer_service,partner,0,2,0.931,Reaction to healthcare,conv_9608,8,2026-05-02T06:19:00.045572
+This is amazing!,surp,online_debate,partner,0,2,0.8,Reaction to healthcare,conv_6351,12,2026-05-02T06:19:00.044934
+So happy about this!,appr,customer_service,partner,0,2,0.898,Reaction to online_debate,conv_9006,7,2026-05-02T06:19:00.046298
+Best day ever!,dist,education,partner,0,1,0.784,Reaction to friendship,conv_1198,1,2026-05-02T06:19:00.031244
+"Oh great, another meeting.",joy,family,agent,1,2,0.858,Reaction to family,conv_3165,11,2026-05-02T06:19:00.043753
+Unexpected!,supr,customer_service,stranger,0,2,0.858,Reaction to online_debate,conv_6645,5,2026-05-02T06:19:00.051529
+This is amazing!,aggr,healthcare,friend,0,1,0.615,Reaction to workplace,conv_1020,6,2026-05-02T06:19:00.051365
+So happy about this!,subm,friendship,partner,0,1,0.635,Reaction to customer_service,conv_8302,11,2026-05-02T06:19:00.049503
+Scanning for threats.,vigi,customer_service,stranger,0,3,0.693,Reaction to customer_service,conv_6601,3,2026-05-02T06:19:00.048998
+So happy about this!,acce,romance,stranger,0,1,0.789,Reaction to workplace,conv_9986,1,2026-05-02T06:19:00.030666
+So happy about this!,bore,friendship,agent,0,1,0.659,Reaction to workplace,conv_8200,12,2026-05-02T06:19:00.031792
+Best day ever!,sadn,education,partner,0,2,0.752,Reaction to romance,conv_1731,3,2026-05-02T06:19:00.044996
+Scanning for threats.,vigi,family,stranger,0,3,0.815,Reaction to education,conv_6529,3,2026-05-02T06:19:00.048929
+Best day ever!,pens,family,user,0,1,0.726,Reaction to online_debate,conv_4732,10,2026-05-02T06:19:00.031583
+So happy about this!,sere,friendship,stranger,0,1,0.656,Reaction to online_debate,conv_1130,2,2026-05-02T06:19:00.030322
+So happy about this!,bore,romance,stranger,0,1,0.596,Reaction to education,conv_8298,4,2026-05-02T06:19:00.031951
+This is amazing!,trus,online_debate,agent,0,2,0.691,Reaction to online_debate,conv_8543,1,2026-05-02T06:19:00.044092
+So happy about this!,remo,workplace,friend,0,1,0.745,Reaction to romance,conv_6694,2,2026-05-02T06:19:00.050461
+HEARTBROKEN.,grie,healthcare,agent,0,3,0.924,Reaction to healthcare,conv_4692,2,2026-05-02T06:19:00.048001
+So happy about this!,subm,family,friend,0,1,0.592,Reaction to workplace,conv_9929,11,2026-05-02T06:19:00.049680
+Best day ever!,admi,online_debate,agent,0,3,0.854,Reaction to healthcare,conv_7344,6,2026-05-02T06:19:00.046911
+So happy about this!,surp,education,user,0,2,0.744,Reaction to friendship,conv_5511,9,2026-05-02T06:19:00.044743
+So happy about this!,trus,workplace,user,0,2,0.685,Reaction to healthcare,conv_4794,9,2026-05-02T06:19:00.044015
+So happy about this!,remo,friendship,agent,0,1,0.63,Reaction to workplace,conv_8164,9,2026-05-02T06:19:00.050592
+This is amazing!,dist,family,stranger,0,1,0.706,Reaction to romance,conv_3376,7,2026-05-02T06:19:00.031068
+Best day ever!,disg,family,agent,0,2,0.751,Reaction to education,conv_9091,6,2026-05-02T06:19:00.045483
+Best day ever!,opti,family,partner,0,1,0.734,Reaction to education,conv_7394,9,2026-05-02T06:19:00.043330
+Best day ever!,subm,friendship,partner,0,1,0.778,Reaction to online_debate,conv_4371,11,2026-05-02T06:19:00.049393
+So happy about this!,aggr,workplace,stranger,0,1,0.733,Reaction to customer_service,conv_5092,6,2026-05-02T06:19:00.051371
+HATE EVERY FIBER!,loat,education,partner,0,3,0.783,Reaction to family,conv_8018,2,2026-05-02T06:19:00.048191
+This makes me nervous.,fear,education,user,0,2,0.737,Reaction to healthcare,conv_4965,12,2026-05-02T06:19:00.044602
+Best day ever!,aggr,family,friend,0,1,0.795,Reaction to romance,conv_3686,5,2026-05-02T06:19:00.051189
+This is amazing!,sere,workplace,partner,0,1,0.757,Reaction to healthcare,conv_6149,4,2026-05-02T06:19:00.030372
+Best day ever!,disa,friendship,user,0,1,0.725,Reaction to customer_service,conv_3844,6,2026-05-02T06:19:00.050285
+Best day ever!,dist,customer_service,agent,0,1,0.702,Reaction to romance,conv_9552,5,2026-05-02T06:19:00.031238
+ABSOLUTELY DESPISE THIS!,loat,family,stranger,0,3,0.747,Reaction to education,conv_6481,12,2026-05-02T06:19:00.048264
+Overwhelmed.,awe,family,stranger,0,1,0.599,Reaction to family,conv_3974,12,2026-05-02T06:19:00.049900
+REVOLTED!,loat,romance,agent,0,3,0.86,Reaction to romance,conv_4092,2,2026-05-02T06:19:00.048163
+So happy about this!,joy,online_debate,stranger,0,2,0.721,Reaction to education,conv_7826,5,2026-05-02T06:19:00.043668
+ABSOLUTELY FURIOUS!,rage,customer_service,agent,0,3,0.837,Reaction to healthcare,conv_8590,12,2026-05-02T06:19:00.048660
+What a surprise!,supr,friendship,friend,0,2,0.883,Reaction to family,conv_4549,11,2026-05-02T06:19:00.051620
+On high alert.,vigi,family,partner,0,3,0.917,Reaction to romance,conv_8515,7,2026-05-02T06:19:00.048784
+This is amazing!,surp,education,user,0,2,0.705,Reaction to family,conv_5310,9,2026-05-02T06:19:00.044874
+Best day ever!,trus,online_debate,user,0,2,0.832,Reaction to customer_service,conv_6001,2,2026-05-02T06:19:00.043937
+This is amazing!,ange,education,agent,0,2,0.701,Reaction to customer_service,conv_6066,10,2026-05-02T06:19:00.045779
+So happy about this!,disg,online_debate,agent,0,2,0.933,Reaction to family,conv_1414,12,2026-05-02T06:19:00.045405
+Best day ever!,sadn,family,user,0,2,0.772,Reaction to healthcare,conv_5479,2,2026-05-02T06:19:00.045224
+This is amazing!,opti,healthcare,stranger,0,1,0.678,Reaction to education,conv_1822,4,2026-05-02T06:19:00.032785
+This is amazing!,cont,family,friend,0,1,0.571,Reaction to education,conv_8814,1,2026-05-02T06:19:00.050919
+Best day ever!,ange,friendship,agent,0,2,0.7,Reaction to healthcare,conv_6493,12,2026-05-02T06:19:00.046022
+So happy about this!,remo,online_debate,agent,0,1,0.699,Reaction to friendship,conv_2650,11,2026-05-02T06:19:00.050737
+This is amazing!,disa,customer_service,user,0,1,0.598,Reaction to family,conv_7089,11,2026-05-02T06:19:00.050066
+Best day ever!,cont,education,partner,0,1,0.658,Reaction to friendship,conv_4373,1,2026-05-02T06:19:00.050875
+Best day ever!,inte,friendship,stranger,0,1,0.746,Reaction to education,conv_1047,5,2026-05-02T06:19:00.032101
+This is amazing!,disg,family,stranger,0,2,0.904,Reaction to healthcare,conv_9778,6,2026-05-02T06:19:00.045434
+ABSOLUTELY DESPISE THIS!,loat,online_debate,user,0,3,0.825,Reaction to romance,conv_8489,8,2026-05-02T06:19:00.048352
+This is amazing!,anno,friendship,user,0,1,0.558,Reaction to healthcare,conv_5127,3,2026-05-02T06:19:00.032459
+So happy about this!,anno,romance,user,0,1,0.606,Reaction to healthcare,conv_1590,2,2026-05-02T06:19:00.032429
+REVOLTED!,loat,customer_service,friend,0,3,0.821,Reaction to family,conv_4036,11,2026-05-02T06:19:00.048300
+Best day ever!,remo,family,user,0,1,0.664,Reaction to customer_service,conv_4776,5,2026-05-02T06:19:00.050620
+This is amazing!,subm,workplace,stranger,0,1,0.562,Reaction to workplace,conv_9594,11,2026-05-02T06:19:00.049479
+Best day ever!,acce,romance,partner,0,1,0.64,Reaction to education,conv_5675,7,2026-05-02T06:19:00.030920
+So happy about this!,disg,family,agent,0,2,0.845,Reaction to online_debate,conv_3500,9,2026-05-02T06:19:00.045589
+On high alert.,vigi,workplace,stranger,0,3,0.941,Reaction to workplace,conv_8442,12,2026-05-02T06:19:00.048824
+So happy about this!,pens,friendship,partner,0,1,0.566,Reaction to customer_service,conv_8913,8,2026-05-02T06:19:00.031614
+This is amazing!,dist,online_debate,partner,0,1,0.792,Reaction to romance,conv_9572,1,2026-05-02T06:19:00.030975
+Best day ever!,admi,healthcare,user,0,3,0.823,Reaction to workplace,conv_6296,11,2026-05-02T06:19:00.046996
+This is amazing!,disg,workplace,stranger,0,2,0.656,Reaction to education,conv_3685,11,2026-05-02T06:19:00.045554
+I'm worried something might go wrong.,fear,healthcare,partner,0,2,0.731,Reaction to family,conv_2503,8,2026-05-02T06:19:00.044350
+So happy about this!,disg,education,agent,0,2,0.778,Reaction to education,conv_5668,8,2026-05-02T06:19:00.045393
+This is amazing!,ange,education,friend,0,2,0.659,Reaction to friendship,conv_1822,12,2026-05-02T06:19:00.045742
+So happy about this!,pens,online_debate,partner,0,1,0.71,Reaction to romance,conv_2881,10,2026-05-02T06:19:00.031500
+So happy about this!,trus,healthcare,agent,0,2,0.67,Reaction to online_debate,conv_1052,10,2026-05-02T06:19:00.043918
+So happy about this!,remo,online_debate,partner,0,1,0.604,Reaction to healthcare,conv_6910,5,2026-05-02T06:19:00.050432
+This is amazing!,anno,customer_service,user,0,1,0.623,Reaction to friendship,conv_7035,2,2026-05-02T06:19:00.032442
+Best day ever!,dist,romance,user,0,1,0.696,Reaction to online_debate,conv_2953,6,2026-05-02T06:19:00.030980
+HYPERVIGILANT.,vigi,education,agent,0,3,0.94,Reaction to healthcare,conv_3474,2,2026-05-02T06:19:00.048737
+Scanning for threats.,vigi,healthcare,agent,0,3,0.899,Reaction to workplace,conv_6694,5,2026-05-02T06:19:00.048905
+This is amazing!,bore,healthcare,friend,0,1,0.67,Reaction to romance,conv_4970,3,2026-05-02T06:19:00.031815
+So happy about this!,dist,friendship,agent,0,1,0.568,Reaction to customer_service,conv_8474,4,2026-05-02T06:19:00.031219
+So happy about this!,disg,customer_service,user,0,2,0.85,Reaction to family,conv_8962,6,2026-05-02T06:19:00.045618
+Best day ever!,ange,healthcare,partner,0,2,0.716,Reaction to romance,conv_7042,8,2026-05-02T06:19:00.046028
+Drowning in sorrow.,grie,customer_service,partner,0,3,0.788,Reaction to education,conv_8846,3,2026-05-02T06:19:00.047781
+Best day ever!,surp,friendship,agent,0,2,0.708,Reaction to workplace,conv_9693,8,2026-05-02T06:19:00.044787
+So happy about this!,sadn,healthcare,user,0,2,0.887,Reaction to workplace,conv_8895,3,2026-05-02T06:19:00.045068
+Best day ever!,aggr,online_debate,stranger,0,1,0.803,Reaction to friendship,conv_1028,6,2026-05-02T06:19:00.051309
+Best day ever!,ange,romance,agent,0,2,0.661,Reaction to healthcare,conv_2307,8,2026-05-02T06:19:00.045922
+Filled with wonder.,awe,customer_service,partner,0,1,0.577,Reaction to healthcare,conv_3944,1,2026-05-02T06:19:00.049752
+Best day ever!,remo,education,user,0,1,0.662,Reaction to healthcare,conv_1521,8,2026-05-02T06:19:00.050656
+Best day ever!,aggr,family,agent,0,1,0.572,Reaction to romance,conv_9392,11,2026-05-02T06:19:00.051322
+This is amazing!,trus,workplace,friend,0,2,0.767,Reaction to workplace,conv_4656,4,2026-05-02T06:19:00.044117
+Care deeply.,love,online_debate,agent,0,1,0.796,Reaction to customer_service,conv_1465,5,2026-05-02T06:19:00.049145
+Best day ever!,bore,online_debate,agent,0,1,0.719,Reaction to education,conv_2507,12,2026-05-02T06:19:00.031704
+Best day ever!,anno,online_debate,user,0,1,0.787,Reaction to romance,conv_8094,8,2026-05-02T06:19:00.032550
+"Oh great, another meeting.",joy,healthcare,stranger,1,2,0.947,Reaction to romance,conv_7491,6,2026-05-02T06:19:00.043827
+ASTONISHING!,amaz,friendship,user,0,3,0.669,Reaction to family,conv_7793,2,2026-05-02T06:19:00.047393
+So happy about this!,pens,romance,user,0,1,0.758,Reaction to family,conv_9817,3,2026-05-02T06:19:00.031531
+Didn't see that coming!,supr,romance,agent,0,2,0.78,Reaction to online_debate,conv_5327,1,2026-05-02T06:19:00.051734
+Best day ever!,pens,online_debate,user,0,1,0.807,Reaction to customer_service,conv_8590,11,2026-05-02T06:19:00.031322
+So happy about this!,disa,romance,stranger,0,1,0.674,Reaction to family,conv_2806,1,2026-05-02T06:19:00.050146
+This is amazing!,opti,online_debate,partner,0,1,0.625,Reaction to healthcare,conv_1512,1,2026-05-02T06:19:00.043479
+So happy about this!,dist,education,agent,0,1,0.64,Reaction to workplace,conv_9562,6,2026-05-02T06:19:00.031202
+Profoundly moving.,awe,romance,stranger,0,1,0.706,Reaction to education,conv_1010,8,2026-05-02T06:19:00.049918
+NIGHTMARE COME TRUE!,terr,workplace,friend,0,3,0.808,Reaction to romance,conv_4007,12,2026-05-02T06:19:00.047306
+Best day ever!,disa,online_debate,partner,0,1,0.717,Reaction to healthcare,conv_7743,1,2026-05-02T06:19:00.050279
+ABSOLUTELY TERRIFIED!,terr,family,user,0,3,0.781,Reaction to workplace,conv_4854,8,2026-05-02T06:19:00.047187
+Filled with wonder.,awe,customer_service,agent,0,1,0.57,Reaction to family,conv_5947,3,2026-05-02T06:19:00.049765
+Best day ever!,subm,online_debate,agent,0,1,0.708,Reaction to online_debate,conv_7081,8,2026-05-02T06:19:00.049430
+PARALYZED WITH FEAR!,terr,education,agent,0,3,0.76,Reaction to romance,conv_3972,1,2026-05-02T06:19:00.047065
+Best day ever!,subm,friendship,agent,0,1,0.634,Reaction to friendship,conv_1185,11,2026-05-02T06:19:00.049568
+Filled with wonder.,awe,family,partner,0,1,0.769,Reaction to customer_service,conv_7166,6,2026-05-02T06:19:00.049876
+This is amazing!,bore,healthcare,partner,0,1,0.565,Reaction to workplace,conv_1545,3,2026-05-02T06:19:00.031969
+Best day ever!,opti,online_debate,user,0,1,0.709,Reaction to family,conv_5973,10,2026-05-02T06:19:00.032834
+ABSOLUTELY TERRIFIED!,terr,romance,partner,0,3,0.697,Reaction to friendship,conv_7335,5,2026-05-02T06:19:00.047181
+So happy about this!,disg,online_debate,user,0,2,0.789,Reaction to workplace,conv_6409,5,2026-05-02T06:19:00.045675
+Best day ever!,inte,customer_service,stranger,0,1,0.576,Reaction to romance,conv_9494,8,2026-05-02T06:19:00.032107
+This is amazing!,bore,online_debate,agent,0,1,0.806,Reaction to healthcare,conv_5979,4,2026-05-02T06:19:00.031650
+Best day ever!,ange,workplace,friend,0,2,0.86,Reaction to education,conv_8753,11,2026-05-02T06:19:00.045785
+ABSOLUTELY TERRIFIED!,terr,romance,stranger,0,3,0.653,Reaction to friendship,conv_4483,6,2026-05-02T06:19:00.047088
+So happy about this!,ange,workplace,friend,0,2,0.903,Reaction to family,conv_9284,12,2026-05-02T06:19:00.045755
+So happy about this!,appr,romance,partner,0,2,0.897,Reaction to customer_service,conv_1237,1,2026-05-02T06:19:00.046334
+BEST DAY OF MY LIFE!,ecst,family,stranger,0,3,0.854,Reaction to online_debate,conv_5727,5,2026-05-02T06:19:00.046624
+So happy about this!,aggr,friendship,agent,0,1,0.639,Reaction to education,conv_9832,2,2026-05-02T06:19:00.051209
+Best day ever!,sere,healthcare,partner,0,1,0.562,Reaction to family,conv_9222,5,2026-05-02T06:19:00.030590
+This is amazing!,sere,online_debate,friend,0,1,0.661,Reaction to online_debate,conv_6765,4,2026-05-02T06:19:00.030239
+ABSOLUTELY TERRIFIED!,terr,workplace,partner,0,3,0.914,Reaction to family,conv_9281,4,2026-05-02T06:19:00.047094
+So happy about this!,disa,family,agent,0,1,0.672,Reaction to online_debate,conv_8004,1,2026-05-02T06:19:00.050353
+On high alert.,vigi,family,stranger,0,3,0.908,Reaction to healthcare,conv_2810,1,2026-05-02T06:19:00.049004
+So happy about this!,disg,online_debate,partner,0,2,0.682,Reaction to family,conv_3808,4,2026-05-02T06:19:00.045411
+Best day ever!,appr,friendship,agent,0,2,0.826,Reaction to customer_service,conv_9162,12,2026-05-02T06:19:00.046196
+Best day ever!,acce,family,partner,0,1,0.613,Reaction to online_debate,conv_5528,5,2026-05-02T06:19:00.030786
+This is amazing!,ange,friendship,stranger,0,2,0.919,Reaction to customer_service,conv_2596,10,2026-05-02T06:19:00.045761
+This is amazing!,surp,online_debate,stranger,0,2,0.827,Reaction to workplace,conv_9564,8,2026-05-02T06:19:00.044689
+So happy about this!,joy,workplace,partner,0,2,0.722,Reaction to online_debate,conv_6641,12,2026-05-02T06:19:00.043746
+So happy about this!,appr,workplace,friend,0,2,0.926,Reaction to education,conv_3124,8,2026-05-02T06:19:00.046346
+Best day ever!,trus,education,stranger,0,2,0.84,Reaction to customer_service,conv_2399,2,2026-05-02T06:19:00.044228
+This is amazing!,bore,friendship,friend,0,1,0.7,Reaction to healthcare,conv_3254,11,2026-05-02T06:19:00.031775
+This makes me nervous.,fear,family,partner,0,2,0.812,Reaction to healthcare,conv_7232,12,2026-05-02T06:19:00.044416
+On high alert.,vigi,family,agent,0,3,0.782,Reaction to family,conv_6029,2,2026-05-02T06:19:00.048778
+So happy about this!,admi,healthcare,agent,0,3,0.894,Reaction to online_debate,conv_6191,1,2026-05-02T06:19:00.046887
+Best day ever!,surp,healthcare,friend,0,2,0.676,Reaction to healthcare,conv_2221,6,2026-05-02T06:19:00.044892
+Afraid of consequences.,fear,workplace,partner,0,2,0.942,Reaction to family,conv_7617,1,2026-05-02T06:19:00.044338
+This is amazing!,disg,friendship,friend,0,2,0.65,Reaction to family,conv_5612,4,2026-05-02T06:19:00.045637
+HEARTBROKEN.,grie,workplace,friend,0,3,0.775,Reaction to friendship,conv_7795,1,2026-05-02T06:19:00.047865
+So happy about this!,sadn,family,partner,0,2,0.81,Reaction to customer_service,conv_1945,11,2026-05-02T06:19:00.045128
+Overwhelmed.,awe,friendship,friend,0,1,0.661,Reaction to customer_service,conv_7864,12,2026-05-02T06:19:00.049817
+Didn't see that coming!,supr,online_debate,partner,0,2,0.928,Reaction to family,conv_6464,6,2026-05-02T06:19:00.051459
+This is amazing!,cont,healthcare,agent,0,1,0.741,Reaction to family,conv_9164,11,2026-05-02T06:19:00.050815
+So happy about this!,appr,customer_service,stranger,0,2,0.886,Reaction to customer_service,conv_3789,11,2026-05-02T06:19:00.046101
+This is amazing!,subm,family,stranger,0,1,0.581,Reaction to family,conv_7077,4,2026-05-02T06:19:00.049710
+Afraid of consequences.,fear,friendship,user,0,2,0.785,Reaction to romance,conv_1524,9,2026-05-02T06:19:00.044440
+Profoundly moving.,awe,workplace,user,0,1,0.701,Reaction to family,conv_1891,9,2026-05-02T06:19:00.049729
+ABSOLUTELY THRILLED!,ecst,romance,stranger,0,3,0.745,Reaction to education,conv_2349,9,2026-05-02T06:19:00.046529
+This is amazing!,bore,online_debate,stranger,0,1,0.574,Reaction to family,conv_8056,6,2026-05-02T06:19:00.031940
+This is amazing!,pens,friendship,partner,0,1,0.579,Reaction to workplace,conv_4410,11,2026-05-02T06:19:00.031549
+So happy about this!,inte,online_debate,friend,0,1,0.705,Reaction to family,conv_6150,2,2026-05-02T06:19:00.032233
+Profoundly moving.,awe,family,user,0,1,0.748,Reaction to family,conv_3091,9,2026-05-02T06:19:00.049965
+Filled with wonder.,awe,healthcare,partner,0,1,0.713,Reaction to healthcare,conv_7849,2,2026-05-02T06:19:00.049989
+HEARTBROKEN.,grie,online_debate,partner,0,3,0.721,Reaction to education,conv_8656,10,2026-05-02T06:19:00.047893
+So happy about this!,dist,online_debate,stranger,0,1,0.777,Reaction to workplace,conv_4442,7,2026-05-02T06:19:00.031280
+This is amazing!,aggr,customer_service,friend,0,1,0.751,Reaction to customer_service,conv_4073,5,2026-05-02T06:19:00.051328
+So happy about this!,bore,workplace,agent,0,1,0.711,Reaction to friendship,conv_8310,1,2026-05-02T06:19:00.031833
+MIND-BLOWING!,amaz,friendship,stranger,0,3,0.905,Reaction to online_debate,conv_9252,3,2026-05-02T06:19:00.047670
+Overwhelmed.,awe,customer_service,friend,0,1,0.684,Reaction to education,conv_1495,4,2026-05-02T06:19:00.049930
+Afraid of consequences.,fear,workplace,partner,0,2,0.676,Reaction to friendship,conv_2166,3,2026-05-02T06:19:00.044391
+Full of affection.,love,family,partner,0,1,0.615,Reaction to romance,conv_1324,6,2026-05-02T06:19:00.049235
+ASTONISHING!,amaz,education,friend,0,3,0.679,Reaction to romance,conv_2951,2,2026-05-02T06:19:00.047567
+So happy about this!,cont,education,agent,0,1,0.778,Reaction to family,conv_5966,10,2026-05-02T06:19:00.050996
+SEEING RED!,rage,romance,agent,0,3,0.785,Reaction to family,conv_3525,7,2026-05-02T06:19:00.048529
+Best day ever!,trus,online_debate,partner,0,2,0.72,Reaction to family,conv_4238,11,2026-05-02T06:19:00.044180
+Best day ever!,aggr,family,agent,0,1,0.675,Reaction to friendship,conv_5480,6,2026-05-02T06:19:00.051439
+Afraid of consequences.,fear,romance,partner,0,2,0.667,Reaction to workplace,conv_8445,3,2026-05-02T06:19:00.044458
+Didn't see that coming!,supr,family,user,0,2,0.8,Reaction to healthcare,conv_1514,1,2026-05-02T06:19:00.051633
+This is amazing!,appr,customer_service,stranger,0,2,0.933,Reaction to romance,conv_1933,12,2026-05-02T06:19:00.046245
+This is amazing!,acce,friendship,partner,0,1,0.799,Reaction to friendship,conv_6418,6,2026-05-02T06:19:00.030702
+This is amazing!,subm,workplace,stranger,0,1,0.618,Reaction to friendship,conv_9784,2,2026-05-02T06:19:00.049520
+So happy about this!,inte,healthcare,agent,0,1,0.802,Reaction to romance,conv_8372,1,2026-05-02T06:19:00.032203
+This is amazing!,admi,romance,partner,0,3,0.888,Reaction to family,conv_6512,6,2026-05-02T06:19:00.046905
+DEVASTATED by this loss.,grie,workplace,partner,0,3,0.839,Reaction to romance,conv_7496,10,2026-05-02T06:19:00.047792
+Scanning for threats.,vigi,education,user,0,3,0.845,Reaction to romance,conv_2497,5,2026-05-02T06:19:00.048887
+So happy about this!,dist,romance,partner,0,1,0.747,Reaction to friendship,conv_2398,1,2026-05-02T06:19:00.031286
+Best day ever!,joy,healthcare,friend,0,2,0.847,Reaction to family,conv_6430,7,2026-05-02T06:19:00.043802
+So happy about this!,joy,workplace,agent,0,2,0.804,Reaction to healthcare,conv_5743,1,2026-05-02T06:19:00.043585
+So happy about this!,disg,romance,agent,0,2,0.852,Reaction to education,conv_8089,8,2026-05-02T06:19:00.045500
+PARALYZED WITH FEAR!,terr,romance,partner,0,3,0.871,Reaction to online_debate,conv_5900,12,2026-05-02T06:19:00.047205
+So happy about this!,subm,workplace,agent,0,1,0.554,Reaction to workplace,conv_8460,7,2026-05-02T06:19:00.049424
+So happy about this!,acce,workplace,agent,0,1,0.729,Reaction to family,conv_5755,11,2026-05-02T06:19:00.030602
+So happy about this!,sadn,family,friend,0,2,0.676,Reaction to customer_service,conv_2049,1,2026-05-02T06:19:00.045180
+REVOLTED!,loat,education,friend,0,3,0.704,Reaction to online_debate,conv_8815,3,2026-05-02T06:19:00.048037
+Best day ever!,disa,family,friend,0,1,0.68,Reaction to education,conv_4583,5,2026-05-02T06:19:00.050316
+Unexpected!,supr,workplace,stranger,0,2,0.75,Reaction to education,conv_4622,4,2026-05-02T06:19:00.051466
+This is amazing!,aggr,workplace,friend,0,1,0.749,Reaction to family,conv_6440,5,2026-05-02T06:19:00.051268
+Didn't see that coming!,supr,friendship,stranger,0,2,0.908,Reaction to family,conv_4830,3,2026-05-02T06:19:00.051484
+So happy about this!,sere,friendship,partner,0,1,0.662,Reaction to customer_service,conv_2952,7,2026-05-02T06:19:00.030430
+PARALYZED WITH FEAR!,terr,friendship,stranger,0,3,0.811,Reaction to romance,conv_2029,11,2026-05-02T06:19:00.047245
+So happy about this!,remo,workplace,agent,0,1,0.656,Reaction to customer_service,conv_1948,6,2026-05-02T06:19:00.050644
+ABSOLUTELY DESPISE THIS!,loat,customer_service,stranger,0,3,0.849,Reaction to education,conv_7009,8,2026-05-02T06:19:00.048288
+This is amazing!,bore,online_debate,stranger,0,1,0.707,Reaction to online_debate,conv_3539,5,2026-05-02T06:19:00.031644
+Best day ever!,subm,education,user,0,1,0.596,Reaction to romance,conv_7184,9,2026-05-02T06:19:00.049497
+This is amazing!,cont,online_debate,user,0,1,0.645,Reaction to friendship,conv_5884,9,2026-05-02T06:19:00.050772
+So happy about this!,inte,workplace,user,0,1,0.605,Reaction to healthcare,conv_2029,5,2026-05-02T06:19:00.032089
+Best day ever!,sadn,online_debate,user,0,2,0.822,Reaction to romance,conv_6768,6,2026-05-02T06:19:00.044990
+SEEING RED!,rage,workplace,friend,0,3,0.793,Reaction to workplace,conv_3528,2,2026-05-02T06:19:00.048589
+Best day ever!,aggr,workplace,user,0,1,0.73,Reaction to education,conv_5198,9,2026-05-02T06:19:00.051158
+So happy about this!,ange,friendship,agent,0,2,0.916,Reaction to education,conv_5733,1,2026-05-02T06:19:00.045927
+So happy about this!,dist,romance,stranger,0,1,0.624,Reaction to romance,conv_4818,5,2026-05-02T06:19:00.031138
+This is amazing!,joy,friendship,friend,0,2,0.738,Reaction to education,conv_1636,2,2026-05-02T06:19:00.043814
+This is amazing!,bore,romance,agent,0,1,0.699,Reaction to online_debate,conv_1395,8,2026-05-02T06:19:00.031910
+Best day ever!,disa,romance,user,0,1,0.794,Reaction to online_debate,conv_9030,12,2026-05-02T06:19:00.050195
+So happy about this!,disg,online_debate,friend,0,2,0.875,Reaction to customer_service,conv_9122,1,2026-05-02T06:19:00.045465
+This is amazing!,dist,friendship,partner,0,1,0.586,Reaction to friendship,conv_2055,8,2026-05-02T06:19:00.031102
+Best day ever!,bore,workplace,stranger,0,1,0.646,Reaction to online_debate,conv_3102,4,2026-05-02T06:19:00.031656
+Best day ever!,disa,romance,stranger,0,1,0.625,Reaction to customer_service,conv_4530,2,2026-05-02T06:19:00.050115
+ABSOLUTELY THRILLED!,ecst,romance,agent,0,3,0.81,Reaction to workplace,conv_5660,3,2026-05-02T06:19:00.046482
+So happy about this!,aggr,education,stranger,0,1,0.618,Reaction to romance,conv_2140,11,2026-05-02T06:19:00.051133
+This is amazing!,opti,workplace,friend,0,1,0.721,Reaction to education,conv_3535,2,2026-05-02T06:19:00.043288
+Best day ever!,disg,education,agent,0,2,0.829,Reaction to online_debate,conv_8444,7,2026-05-02T06:19:00.045363
+Overwhelmed.,awe,customer_service,agent,0,1,0.556,Reaction to customer_service,conv_8816,10,2026-05-02T06:19:00.049777
+Filled with wonder.,awe,online_debate,user,0,1,0.775,Reaction to friendship,conv_3945,8,2026-05-02T06:19:00.050024
+Best day ever!,admi,friendship,partner,0,3,0.721,Reaction to workplace,conv_2996,6,2026-05-02T06:19:00.046944
+Profoundly moving.,awe,healthcare,friend,0,1,0.769,Reaction to customer_service,conv_6135,12,2026-05-02T06:19:00.049995
+Best day ever!,sadn,friendship,user,0,2,0.703,Reaction to workplace,conv_2954,5,2026-05-02T06:19:00.045333
+Best day ever!,pens,healthcare,user,0,1,0.732,Reaction to friendship,conv_8296,10,2026-05-02T06:19:00.031620
+This is amazing!,inte,online_debate,stranger,0,1,0.612,Reaction to online_debate,conv_4281,12,2026-05-02T06:19:00.032171
+Best day ever!,admi,workplace,agent,0,3,0.711,Reaction to friendship,conv_2952,1,2026-05-02T06:19:00.047036
+This is amazing!,cont,online_debate,user,0,1,0.65,Reaction to friendship,conv_6973,10,2026-05-02T06:19:00.051003
+So happy about this!,disg,education,partner,0,2,0.72,Reaction to healthcare,conv_7425,12,2026-05-02T06:19:00.045596
+This is amazing!,opti,family,stranger,0,1,0.8,Reaction to online_debate,conv_1684,3,2026-05-02T06:19:00.043365
+Filled with wonder.,awe,healthcare,partner,0,1,0.65,Reaction to romance,conv_1971,4,2026-05-02T06:19:00.050048
+Full of affection.,love,online_debate,user,0,1,0.737,Reaction to education,conv_9590,10,2026-05-02T06:19:00.049283
+Best day ever!,subm,customer_service,stranger,0,1,0.75,Reaction to customer_service,conv_9931,5,2026-05-02T06:19:00.049467
+So happy about this!,anno,online_debate,agent,0,1,0.719,Reaction to online_debate,conv_1889,10,2026-05-02T06:19:00.032418
+Unexpected!,supr,friendship,friend,0,2,0.843,Reaction to online_debate,conv_5268,11,2026-05-02T06:19:00.051681
+This is amazing!,acce,friendship,partner,0,1,0.673,Reaction to workplace,conv_7469,2,2026-05-02T06:19:00.030809
+Best day ever!,subm,workplace,stranger,0,1,0.663,Reaction to family,conv_5581,3,2026-05-02T06:19:00.049526
+So happy about this!,pens,romance,friend,0,1,0.68,Reaction to workplace,conv_4774,6,2026-05-02T06:19:00.031495
+So happy about this!,bore,workplace,stranger,0,1,0.732,Reaction to online_debate,conv_9693,10,2026-05-02T06:19:00.031957
+This is amazing!,dist,online_debate,agent,0,1,0.626,Reaction to education,conv_3593,12,2026-05-02T06:19:00.031017
+Best day ever!,cont,family,agent,0,1,0.762,Reaction to customer_service,conv_7917,5,2026-05-02T06:19:00.050785
+So happy about this!,cont,online_debate,agent,0,1,0.724,Reaction to healthcare,conv_3259,9,2026-05-02T06:19:00.051027
+So happy about this!,disg,workplace,user,0,2,0.772,Reaction to healthcare,conv_8954,10,2026-05-02T06:19:00.045530
+Best day ever!,subm,customer_service,friend,0,1,0.768,Reaction to workplace,conv_3506,3,2026-05-02T06:19:00.049574
+REVOLTED!,loat,online_debate,user,0,3,0.86,Reaction to romance,conv_7510,6,2026-05-02T06:19:00.048252
+This is amazing!,appr,customer_service,stranger,0,2,0.718,Reaction to family,conv_4836,6,2026-05-02T06:19:00.046376
+This is amazing!,opti,healthcare,user,0,1,0.579,Reaction to customer_service,conv_1764,11,2026-05-02T06:19:00.043306
+Unexpected!,supr,customer_service,agent,0,2,0.672,Reaction to customer_service,conv_2370,8,2026-05-02T06:19:00.051687
+So happy about this!,surp,education,agent,0,2,0.788,Reaction to online_debate,conv_9757,6,2026-05-02T06:19:00.044781
+So happy about this!,admi,customer_service,partner,0,3,0.723,Reaction to healthcare,conv_5849,12,2026-05-02T06:19:00.047031
+SEEING RED!,rage,friendship,partner,0,3,0.885,Reaction to friendship,conv_5175,12,2026-05-02T06:19:00.048390
+So happy about this!,sere,online_debate,partner,0,1,0.674,Reaction to friendship,conv_6750,1,2026-05-02T06:19:00.030275
+Best day ever!,dist,education,friend,0,1,0.647,Reaction to online_debate,conv_2421,5,2026-05-02T06:19:00.031063
+This is amazing!,inte,family,friend,0,1,0.655,Reaction to romance,conv_6799,8,2026-05-02T06:19:00.032095
+DEVASTATED by this loss.,grie,friendship,friend,0,3,0.864,Reaction to friendship,conv_2576,10,2026-05-02T06:19:00.047881
+Best day ever!,sadn,healthcare,stranger,0,2,0.773,Reaction to workplace,conv_3691,5,2026-05-02T06:19:00.045218
+This is amazing!,acce,family,friend,0,1,0.765,Reaction to education,conv_1875,3,2026-05-02T06:19:00.030696
+What a surprise!,supr,romance,stranger,0,2,0.778,Reaction to workplace,conv_2587,8,2026-05-02T06:19:00.051517
+Didn't see that coming!,supr,education,stranger,0,2,0.828,Reaction to education,conv_3148,12,2026-05-02T06:19:00.051535
+I'm worried something might go wrong.,fear,family,agent,0,2,0.801,Reaction to family,conv_5559,4,2026-05-02T06:19:00.044344
+REVOLTED!,loat,online_debate,agent,0,3,0.831,Reaction to customer_service,conv_7590,9,2026-05-02T06:19:00.048324
+Best day ever!,appr,healthcare,user,0,2,0.721,Reaction to romance,conv_2525,11,2026-05-02T06:19:00.046202
+Filled with wonder.,awe,romance,partner,0,1,0.75,Reaction to healthcare,conv_7255,3,2026-05-02T06:19:00.049758
+DEVASTATED by this loss.,grie,workplace,user,0,3,0.69,Reaction to online_debate,conv_6334,8,2026-05-02T06:19:00.047972
+I'm worried something might go wrong.,fear,healthcare,stranger,0,2,0.697,Reaction to online_debate,conv_8131,9,2026-05-02T06:19:00.044482
+This is amazing!,remo,online_debate,partner,0,1,0.73,Reaction to family,conv_1910,4,2026-05-02T06:19:00.050438
+Best day ever!,ange,workplace,stranger,0,2,0.886,Reaction to customer_service,conv_1124,7,2026-05-02T06:19:00.046001
+PARALYZED WITH FEAR!,terr,romance,agent,0,3,0.675,Reaction to romance,conv_5203,5,2026-05-02T06:19:00.047140
+I'm worried something might go wrong.,fear,romance,user,0,2,0.932,Reaction to friendship,conv_4663,12,2026-05-02T06:19:00.044521
+Best day ever!,ange,friendship,agent,0,2,0.791,Reaction to family,conv_4935,8,2026-05-02T06:19:00.045830
+So happy about this!,bore,education,user,0,1,0.656,Reaction to romance,conv_9948,7,2026-05-02T06:19:00.031710
+Best day ever!,sadn,workplace,partner,0,2,0.85,Reaction to online_debate,conv_5898,4,2026-05-02T06:19:00.045104
+This is amazing!,disg,workplace,user,0,2,0.662,Reaction to education,conv_5966,6,2026-05-02T06:19:00.045663
+This is amazing!,sere,education,stranger,0,1,0.749,Reaction to online_debate,conv_4114,7,2026-05-02T06:19:00.030478
+Best day ever!,joy,workplace,user,0,2,0.861,Reaction to family,conv_7798,8,2026-05-02T06:19:00.043573
+Best day ever!,anno,family,friend,0,1,0.723,Reaction to romance,conv_6363,7,2026-05-02T06:19:00.032721
+This makes me nervous.,fear,customer_service,agent,0,2,0.677,Reaction to family,conv_5711,10,2026-05-02T06:19:00.044446
+This is amazing!,opti,customer_service,stranger,0,1,0.627,Reaction to customer_service,conv_5977,9,2026-05-02T06:19:00.043281
+Best day ever!,aggr,family,user,0,1,0.687,Reaction to friendship,conv_5684,5,2026-05-02T06:19:00.051384
+So happy about this!,opti,friendship,agent,0,1,0.701,Reaction to online_debate,conv_9854,6,2026-05-02T06:19:00.043522
+This is amazing!,aggr,online_debate,user,0,1,0.733,Reaction to family,conv_1761,4,2026-05-02T06:19:00.051446
+Didn't see that coming!,supr,healthcare,agent,0,2,0.884,Reaction to family,conv_7134,4,2026-05-02T06:19:00.051675
+So happy about this!,ange,healthcare,partner,0,2,0.81,Reaction to education,conv_6139,3,2026-05-02T06:19:00.045823
+So happy about this!,acce,online_debate,agent,0,1,0.794,Reaction to education,conv_8069,1,2026-05-02T06:19:00.030968
+ABSOLUTELY DESPISE THIS!,loat,education,stranger,0,3,0.917,Reaction to family,conv_5789,5,2026-05-02T06:19:00.048282
+ASTONISHING!,amaz,romance,friend,0,3,0.83,Reaction to online_debate,conv_9121,10,2026-05-02T06:19:00.047416
+Best day ever!,acce,customer_service,agent,0,1,0.639,Reaction to education,conv_6054,8,2026-05-02T06:19:00.030955
+Best day ever!,bore,romance,friend,0,1,0.629,Reaction to online_debate,conv_9966,3,2026-05-02T06:19:00.031739
+Filled with wonder.,awe,workplace,agent,0,1,0.683,Reaction to education,conv_5878,9,2026-05-02T06:19:00.049936
+Best day ever!,remo,workplace,partner,0,1,0.77,Reaction to education,conv_6844,3,2026-05-02T06:19:00.050545
+This is amazing!,bore,romance,user,0,1,0.645,Reaction to family,conv_4015,12,2026-05-02T06:19:00.031809
+On high alert.,vigi,education,stranger,0,3,0.759,Reaction to online_debate,conv_7658,1,2026-05-02T06:19:00.048767
+This is amazing!,joy,family,agent,0,2,0.728,Reaction to romance,conv_4710,12,2026-05-02T06:19:00.043597
+Unexpected!,supr,online_debate,friend,0,2,0.715,Reaction to friendship,conv_1935,5,2026-05-02T06:19:00.051751
+So happy about this!,remo,friendship,stranger,0,1,0.629,Reaction to customer_service,conv_3878,3,2026-05-02T06:19:00.050688
+COMPLETELY STUNNED!,amaz,customer_service,friend,0,3,0.83,Reaction to education,conv_5315,3,2026-05-02T06:19:00.047635
+This is amazing!,aggr,healthcare,user,0,1,0.633,Reaction to healthcare,conv_5339,3,2026-05-02T06:19:00.051414
+Best day ever!,aggr,online_debate,user,0,1,0.581,Reaction to workplace,conv_4352,4,2026-05-02T06:19:00.051146
+This is amazing!,disa,customer_service,agent,0,1,0.664,Reaction to customer_service,conv_1445,2,2026-05-02T06:19:00.050122
+Profoundly moving.,awe,friendship,stranger,0,1,0.672,Reaction to education,conv_7037,9,2026-05-02T06:19:00.049800
+On high alert.,vigi,romance,partner,0,3,0.828,Reaction to healthcare,conv_2521,7,2026-05-02T06:19:00.048917
+So happy about this!,ange,education,friend,0,2,0.879,Reaction to friendship,conv_8510,7,2026-05-02T06:19:00.045799
+ABSOLUTELY FURIOUS!,rage,friendship,user,0,3,0.805,Reaction to family,conv_4598,5,2026-05-02T06:19:00.048517
+DEVASTATED by this loss.,grie,online_debate,friend,0,3,0.887,Reaction to family,conv_4107,11,2026-05-02T06:19:00.047746
+Filled with wonder.,awe,family,friend,0,1,0.779,Reaction to romance,conv_6266,5,2026-05-02T06:19:00.049983
+This is amazing!,cont,customer_service,stranger,0,1,0.648,Reaction to romance,conv_8046,3,2026-05-02T06:19:00.050930
+Best day ever!,inte,family,partner,0,1,0.684,Reaction to romance,conv_8878,12,2026-05-02T06:19:00.032264
+This is amazing!,aggr,education,user,0,1,0.804,Reaction to education,conv_6993,10,2026-05-02T06:19:00.051346
+HATE EVERY FIBER!,loat,family,user,0,3,0.755,Reaction to workplace,conv_9992,8,2026-05-02T06:19:00.048197
+Best day ever!,dist,family,agent,0,1,0.562,Reaction to family,conv_5713,11,2026-05-02T06:19:00.031269
+So happy about this!,ange,romance,friend,0,2,0.685,Reaction to romance,conv_4754,4,2026-05-02T06:19:00.045805
+ABSOLUTELY TERRIFIED!,terr,romance,agent,0,3,0.882,Reaction to family,conv_8964,5,2026-05-02T06:19:00.047228
+SEEING RED!,rage,romance,partner,0,3,0.738,Reaction to online_debate,conv_4271,1,2026-05-02T06:19:00.048535
+Best day ever!,inte,workplace,agent,0,1,0.805,Reaction to online_debate,conv_5629,5,2026-05-02T06:19:00.032215
+REVOLTED!,loat,workplace,friend,0,3,0.852,Reaction to friendship,conv_9694,3,2026-05-02T06:19:00.048312
+Profoundly moving.,awe,healthcare,user,0,1,0.717,Reaction to romance,conv_3113,3,2026-05-02T06:19:00.049794
+Scanning for threats.,vigi,workplace,friend,0,3,0.798,Reaction to workplace,conv_2346,11,2026-05-02T06:19:00.048743
+This is amazing!,aggr,family,friend,0,1,0.616,Reaction to family,conv_6041,8,2026-05-02T06:19:00.051304
+Drowning in sorrow.,grie,romance,user,0,3,0.791,Reaction to online_debate,conv_1003,9,2026-05-02T06:19:00.047944
+So happy about this!,pens,education,agent,0,1,0.556,Reaction to online_debate,conv_1357,1,2026-05-02T06:19:00.031454
+Best day ever!,subm,education,user,0,1,0.612,Reaction to workplace,conv_6829,6,2026-05-02T06:19:00.049621
+ASTONISHING!,amaz,romance,friend,0,3,0.691,Reaction to healthcare,conv_6521,3,2026-05-02T06:19:00.047664
+This is amazing!,admi,friendship,friend,0,3,0.683,Reaction to romance,conv_6730,3,2026-05-02T06:19:00.046747
+Best day ever!,acce,customer_service,stranger,0,1,0.795,Reaction to romance,conv_4499,3,2026-05-02T06:19:00.030635
+ABSOLUTELY TERRIFIED!,terr,education,partner,0,3,0.724,Reaction to workplace,conv_5445,1,2026-05-02T06:19:00.047256
+This is amazing!,anno,romance,agent,0,1,0.776,Reaction to family,conv_8354,6,2026-05-02T06:19:00.032598
+This is amazing!,remo,online_debate,partner,0,1,0.788,Reaction to customer_service,conv_7769,7,2026-05-02T06:19:00.050632
+Best day ever!,cont,customer_service,user,0,1,0.588,Reaction to romance,conv_9316,12,2026-05-02T06:19:00.050942
+REVOLTED!,loat,education,user,0,3,0.897,Reaction to friendship,conv_3434,4,2026-05-02T06:19:00.048094
+Best day ever!,cont,workplace,user,0,1,0.577,Reaction to online_debate,conv_8275,10,2026-05-02T06:19:00.051097
+Best day ever!,remo,family,friend,0,1,0.595,Reaction to friendship,conv_2954,1,2026-05-02T06:19:00.050586
+So happy about this!,sadn,family,stranger,0,2,0.825,Reaction to friendship,conv_8487,1,2026-05-02T06:19:00.045086
+Best day ever!,ange,family,stranger,0,2,0.664,Reaction to online_debate,conv_6955,10,2026-05-02T06:19:00.045892
+So happy about this!,cont,education,user,0,1,0.686,Reaction to friendship,conv_7295,3,2026-05-02T06:19:00.051103
+So happy about this!,anno,online_debate,agent,0,1,0.721,Reaction to education,conv_6919,7,2026-05-02T06:19:00.032405
+Best day ever!,appr,education,partner,0,2,0.674,Reaction to workplace,conv_6616,9,2026-05-02T06:19:00.046317
+This is amazing!,sadn,education,agent,0,2,0.906,Reaction to friendship,conv_4366,2,2026-05-02T06:19:00.045116
+Best day ever!,trus,online_debate,agent,0,2,0.943,Reaction to online_debate,conv_3507,8,2026-05-02T06:19:00.044039
+This is amazing!,trus,customer_service,user,0,2,0.891,Reaction to workplace,conv_9642,3,2026-05-02T06:19:00.044204
+NIGHTMARE COME TRUE!,terr,family,agent,0,3,0.898,Reaction to customer_service,conv_8710,3,2026-05-02T06:19:00.047211
+So happy about this!,cont,romance,stranger,0,1,0.792,Reaction to family,conv_4271,7,2026-05-02T06:19:00.051088
+This is amazing!,inte,workplace,friend,0,1,0.569,Reaction to family,conv_5001,9,2026-05-02T06:19:00.032042
+NIGHTMARE COME TRUE!,terr,customer_service,partner,0,3,0.758,Reaction to romance,conv_9916,4,2026-05-02T06:19:00.047277
+Best day ever!,trus,romance,partner,0,2,0.7,Reaction to healthcare,conv_1488,6,2026-05-02T06:19:00.044045
+This is amazing!,surp,healthcare,stranger,0,2,0.679,Reaction to customer_service,conv_1526,9,2026-05-02T06:19:00.044762
+This is amazing!,disg,friendship,friend,0,2,0.864,Reaction to workplace,conv_6512,4,2026-05-02T06:19:00.045452
+Mean so much.,love,healthcare,user,0,1,0.701,Reaction to family,conv_3099,12,2026-05-02T06:19:00.049063
+So happy about this!,surp,online_debate,stranger,0,2,0.898,Reaction to education,conv_1297,8,2026-05-02T06:19:00.044731
+Best day ever!,ange,friendship,friend,0,2,0.835,Reaction to family,conv_6496,12,2026-05-02T06:19:00.045748
+This is amazing!,opti,education,user,0,1,0.757,Reaction to family,conv_7159,2,2026-05-02T06:19:00.043299
+So happy about this!,opti,customer_service,stranger,0,1,0.754,Reaction to romance,conv_6577,6,2026-05-02T06:19:00.032827
+Best day ever!,opti,healthcare,agent,0,1,0.657,Reaction to friendship,conv_2865,2,2026-05-02T06:19:00.043463
+What a surprise!,supr,workplace,stranger,0,2,0.937,Reaction to romance,conv_5886,12,2026-05-02T06:19:00.051740
+PARALYZED WITH FEAR!,terr,healthcare,friend,0,3,0.916,Reaction to healthcare,conv_6961,10,2026-05-02T06:19:00.047222
+This is amazing!,bore,customer_service,user,0,1,0.629,Reaction to education,conv_6320,12,2026-05-02T06:19:00.031727
+So happy about this!,aggr,education,agent,0,1,0.77,Reaction to customer_service,conv_7965,12,2026-05-02T06:19:00.051171
+This is amazing!,opti,healthcare,stranger,0,1,0.594,Reaction to romance,conv_7662,7,2026-05-02T06:19:00.043498
+Best day ever!,surp,romance,partner,0,2,0.81,Reaction to romance,conv_9744,11,2026-05-02T06:19:00.044828
+Best day ever!,opti,education,partner,0,1,0.751,Reaction to education,conv_7849,10,2026-05-02T06:19:00.043318
+What a surprise!,supr,workplace,user,0,2,0.707,Reaction to workplace,conv_2853,2,2026-05-02T06:19:00.051651
+So happy about this!,sadn,romance,agent,0,2,0.927,Reaction to healthcare,conv_8236,6,2026-05-02T06:19:00.045242
+So happy about this!,disg,romance,friend,0,2,0.928,Reaction to customer_service,conv_4338,10,2026-05-02T06:19:00.045548
+This is amazing!,pens,healthcare,friend,0,1,0.574,Reaction to family,conv_1995,5,2026-05-02T06:19:00.031560
+ABSOLUTELY FURIOUS!,rage,family,friend,0,3,0.675,Reaction to online_debate,conv_1339,11,2026-05-02T06:19:00.048684
+Best day ever!,sere,education,agent,0,1,0.753,Reaction to education,conv_6787,2,2026-05-02T06:19:00.030455
+So happy about this!,cont,customer_service,stranger,0,1,0.777,Reaction to family,conv_7545,6,2026-05-02T06:19:00.050803
+Best day ever!,acce,workplace,partner,0,1,0.643,Reaction to customer_service,conv_8630,5,2026-05-02T06:19:00.030881
+PARALYZED WITH FEAR!,terr,family,stranger,0,3,0.758,Reaction to healthcare,conv_2414,9,2026-05-02T06:19:00.047071
+This is amazing!,cont,education,stranger,0,1,0.602,Reaction to online_debate,conv_3368,11,2026-05-02T06:19:00.051109
+On high alert.,vigi,education,friend,0,3,0.703,Reaction to healthcare,conv_8714,5,2026-05-02T06:19:00.048911
+This is amazing!,sere,healthcare,partner,0,1,0.651,Reaction to education,conv_3716,11,2026-05-02T06:19:00.030390
+COMPLETELY STUNNED!,amaz,education,stranger,0,3,0.788,Reaction to family,conv_5138,12,2026-05-02T06:19:00.047641
+Best day ever!,dist,romance,partner,0,1,0.794,Reaction to customer_service,conv_9336,2,2026-05-02T06:19:00.031004
+SEEING RED!,rage,family,friend,0,3,0.817,Reaction to customer_service,conv_2111,4,2026-05-02T06:19:00.048465
+HEARTBROKEN.,grie,workplace,stranger,0,3,0.895,Reaction to workplace,conv_9732,6,2026-05-02T06:19:00.047990
+I'm worried something might go wrong.,fear,education,stranger,0,2,0.905,Reaction to education,conv_5824,3,2026-05-02T06:19:00.044398
+Best day ever!,anno,romance,stranger,0,1,0.658,Reaction to friendship,conv_3813,10,2026-05-02T06:19:00.032544
+Best day ever!,opti,customer_service,user,0,1,0.585,Reaction to romance,conv_2832,7,2026-05-02T06:19:00.043425
+This makes me nervous.,fear,online_debate,user,0,2,0.755,Reaction to workplace,conv_7616,2,2026-05-02T06:19:00.044476
+COMPLETELY STUNNED!,amaz,romance,stranger,0,3,0.882,Reaction to customer_service,conv_3313,7,2026-05-02T06:19:00.047526
+This is amazing!,sadn,customer_service,agent,0,2,0.753,Reaction to friendship,conv_2576,9,2026-05-02T06:19:00.045302
+This is amazing!,cont,friendship,partner,0,1,0.766,Reaction to family,conv_6671,12,2026-05-02T06:19:00.051067
+This is amazing!,acce,online_debate,friend,0,1,0.654,Reaction to friendship,conv_4133,9,2026-05-02T06:19:00.030780
+Best day ever!,aggr,education,partner,0,1,0.659,Reaction to online_debate,conv_6672,8,2026-05-02T06:19:00.051121
+Overwhelmed.,awe,customer_service,friend,0,1,0.773,Reaction to healthcare,conv_4183,7,2026-05-02T06:19:00.049912
+Best day ever!,anno,family,stranger,0,1,0.776,Reaction to healthcare,conv_8919,2,2026-05-02T06:19:00.032562
+Best day ever!,sere,customer_service,partner,0,1,0.563,Reaction to education,conv_5717,1,2026-05-02T06:19:00.030384
+This is amazing!,sadn,online_debate,user,0,2,0.941,Reaction to workplace,conv_2688,1,2026-05-02T06:19:00.045062
+So happy about this!,sere,workplace,partner,0,1,0.8,Reaction to friendship,conv_7497,10,2026-05-02T06:19:00.030519
+This is amazing!,dist,romance,friend,0,1,0.759,Reaction to romance,conv_3891,9,2026-05-02T06:19:00.030986
+This is amazing!,opti,online_debate,partner,0,1,0.6,Reaction to healthcare,conv_7691,1,2026-05-02T06:19:00.043312
+So happy about this!,acce,online_debate,user,0,1,0.689,Reaction to education,conv_8059,11,2026-05-02T06:19:00.030926
+This is amazing!,subm,family,user,0,1,0.66,Reaction to online_debate,conv_2511,9,2026-05-02T06:19:00.049485
+What a surprise!,supr,family,partner,0,2,0.83,Reaction to romance,conv_6501,3,2026-05-02T06:19:00.051626
+ABSOLUTELY THRILLED!,ecst,customer_service,friend,0,3,0.874,Reaction to healthcare,conv_6214,1,2026-05-02T06:19:00.046579
+So happy about this!,disa,customer_service,user,0,1,0.74,Reaction to online_debate,conv_1636,8,2026-05-02T06:19:00.050260
+SEEING RED!,rage,workplace,partner,0,3,0.667,Reaction to healthcare,conv_7100,6,2026-05-02T06:19:00.048459
+Didn't see that coming!,supr,friendship,friend,0,2,0.921,Reaction to online_debate,conv_4110,8,2026-05-02T06:19:00.051478
+Best day ever!,sere,healthcare,agent,0,1,0.693,Reaction to education,conv_6491,5,2026-05-02T06:19:00.030443
+This makes me nervous.,fear,workplace,agent,0,2,0.739,Reaction to family,conv_8185,8,2026-05-02T06:19:00.044564
+This makes me nervous.,fear,workplace,user,0,2,0.95,Reaction to customer_service,conv_5170,11,2026-05-02T06:19:00.044302
+PARALYZED WITH FEAR!,terr,family,friend,0,3,0.681,Reaction to friendship,conv_8257,2,2026-05-02T06:19:00.047169
+So happy about this!,admi,family,user,0,3,0.856,Reaction to education,conv_8828,9,2026-05-02T06:19:00.046793
+ABSOLUTELY THRILLED!,ecst,customer_service,partner,0,3,0.783,Reaction to customer_service,conv_4323,4,2026-05-02T06:19:00.046506
+This is amazing!,acce,online_debate,friend,0,1,0.704,Reaction to healthcare,conv_3629,9,2026-05-02T06:19:00.030720
+So happy about this!,aggr,education,friend,0,1,0.639,Reaction to healthcare,conv_3111,8,2026-05-02T06:19:00.051298
+This is amazing!,opti,online_debate,partner,0,1,0.795,Reaction to romance,conv_2513,4,2026-05-02T06:19:00.043457
+REVOLTED!,loat,healthcare,user,0,3,0.922,Reaction to workplace,conv_6845,4,2026-05-02T06:19:00.048235
+So happy about this!,admi,romance,partner,0,3,0.817,Reaction to customer_service,conv_9501,3,2026-05-02T06:19:00.046962
+"Fantastic, more work.",joy,healthcare,user,1,2,0.68,Reaction to family,conv_7015,7,2026-05-02T06:19:00.043567
+This is amazing!,admi,friendship,agent,0,3,0.793,Reaction to education,conv_2646,8,2026-05-02T06:19:00.046775
+Best day ever!,acce,family,user,0,1,0.805,Reaction to workplace,conv_9488,8,2026-05-02T06:19:00.030868
+So happy about this!,sere,family,friend,0,1,0.558,Reaction to romance,conv_7405,1,2026-05-02T06:19:00.030584
+Best day ever!,sere,healthcare,partner,0,1,0.771,Reaction to friendship,conv_9437,12,2026-05-02T06:19:00.030531
+Unexpected!,supr,workplace,partner,0,2,0.82,Reaction to customer_service,conv_5087,9,2026-05-02T06:19:00.051723
+MIND-BLOWING!,amaz,friendship,partner,0,3,0.891,Reaction to family,conv_5359,2,2026-05-02T06:19:00.047590
+Best day ever!,remo,education,agent,0,1,0.706,Reaction to education,conv_4774,12,2026-05-02T06:19:00.050480
+Best day ever!,opti,workplace,stranger,0,1,0.667,Reaction to online_debate,conv_4194,12,2026-05-02T06:19:00.043238
+So happy about this!,dist,family,agent,0,1,0.762,Reaction to friendship,conv_1418,2,2026-05-02T06:19:00.031095
+DEVASTATED by this loss.,grie,friendship,friend,0,3,0.781,Reaction to workplace,conv_3846,2,2026-05-02T06:19:00.047828
+So happy about this!,sadn,online_debate,user,0,2,0.833,Reaction to online_debate,conv_8062,6,2026-05-02T06:19:00.045134
+Best day ever!,subm,customer_service,friend,0,1,0.594,Reaction to workplace,conv_3046,9,2026-05-02T06:19:00.049473
+This is amazing!,bore,healthcare,stranger,0,1,0.738,Reaction to healthcare,conv_5727,9,2026-05-02T06:19:00.031716
+So happy about this!,pens,healthcare,agent,0,1,0.775,Reaction to healthcare,conv_7913,6,2026-05-02T06:19:00.031465
+So happy about this!,anno,education,friend,0,1,0.579,Reaction to family,conv_7699,10,2026-05-02T06:19:00.032709
+This is amazing!,joy,romance,stranger,0,2,0.674,Reaction to friendship,conv_8729,9,2026-05-02T06:19:00.043887
+On high alert.,vigi,online_debate,friend,0,3,0.846,Reaction to romance,conv_4623,3,2026-05-02T06:19:00.048975
+Drowning in sorrow.,grie,family,partner,0,3,0.891,Reaction to family,conv_5137,4,2026-05-02T06:19:00.047712
+This is amazing!,trus,customer_service,user,0,2,0.81,Reaction to healthcare,conv_4332,8,2026-05-02T06:19:00.044276
+This makes me nervous.,fear,education,stranger,0,2,0.941,Reaction to customer_service,conv_5863,6,2026-05-02T06:19:00.044470
+Best day ever!,anno,online_debate,friend,0,1,0.705,Reaction to online_debate,conv_4014,8,2026-05-02T06:19:00.032502
+This is amazing!,opti,online_debate,partner,0,1,0.599,Reaction to customer_service,conv_4362,10,2026-05-02T06:19:00.043324
+Best day ever!,aggr,customer_service,user,0,1,0.586,Reaction to romance,conv_7206,8,2026-05-02T06:19:00.051165
+What a surprise!,supr,workplace,partner,0,2,0.716,Reaction to healthcare,conv_6837,11,2026-05-02T06:19:00.051584
+SEEING RED!,rage,healthcare,friend,0,3,0.794,Reaction to healthcare,conv_6647,12,2026-05-02T06:19:00.048447
+REVOLTED!,loat,romance,user,0,3,0.745,Reaction to customer_service,conv_6593,3,2026-05-02T06:19:00.048346
+So happy about this!,surp,customer_service,stranger,0,2,0.696,Reaction to education,conv_1039,8,2026-05-02T06:19:00.044646
+This is amazing!,opti,friendship,agent,0,1,0.722,Reaction to family,conv_4496,6,2026-05-02T06:19:00.043528
+So happy about this!,inte,online_debate,user,0,1,0.803,Reaction to healthcare,conv_4539,5,2026-05-02T06:19:00.032159
+This is amazing!,joy,education,user,0,2,0.665,Reaction to online_debate,conv_4794,11,2026-05-02T06:19:00.043905
+Best day ever!,remo,workplace,agent,0,1,0.77,Reaction to romance,conv_8973,12,2026-05-02T06:19:00.050718
+So happy about this!,inte,friendship,friend,0,1,0.776,Reaction to online_debate,conv_7025,12,2026-05-02T06:19:00.032197
+So happy about this!,bore,customer_service,agent,0,1,0.779,Reaction to education,conv_3242,2,2026-05-02T06:19:00.031638
+So happy about this!,pens,family,agent,0,1,0.757,Reaction to healthcare,conv_6836,7,2026-05-02T06:19:00.031471
+So happy about this!,bore,education,agent,0,1,0.575,Reaction to education,conv_2392,7,2026-05-02T06:19:00.031886
+This is amazing!,disa,healthcare,agent,0,1,0.709,Reaction to healthcare,conv_4712,12,2026-05-02T06:19:00.050365
+So happy about this!,aggr,family,user,0,1,0.796,Reaction to online_debate,conv_1741,11,2026-05-02T06:19:00.051408
+COMPLETELY STUNNED!,amaz,healthcare,stranger,0,3,0.666,Reaction to education,conv_1163,8,2026-05-02T06:19:00.047630
+So happy about this!,acce,online_debate,partner,0,1,0.792,Reaction to healthcare,conv_1015,9,2026-05-02T06:19:00.030678
+Best day ever!,cont,education,agent,0,1,0.71,Reaction to online_debate,conv_8274,7,2026-05-02T06:19:00.050850
+So happy about this!,disa,friendship,friend,0,1,0.638,Reaction to customer_service,conv_9253,8,2026-05-02T06:19:00.050134
+BEST DAY OF MY LIFE!,ecst,healthcare,friend,0,3,0.853,Reaction to customer_service,conv_1851,4,2026-05-02T06:19:00.046670
+Best day ever!,dist,healthcare,friend,0,1,0.758,Reaction to online_debate,conv_3523,2,2026-05-02T06:19:00.031196
+So happy about this!,disg,online_debate,user,0,2,0.866,Reaction to romance,conv_8194,10,2026-05-02T06:19:00.045536
+This is amazing!,aggr,customer_service,user,0,1,0.651,Reaction to education,conv_4873,1,2026-05-02T06:19:00.051127
+Unexpected!,supr,education,partner,0,2,0.898,Reaction to customer_service,conv_1365,12,2026-05-02T06:19:00.051717
+NIGHTMARE COME TRUE!,terr,healthcare,friend,0,3,0.739,Reaction to education,conv_4260,6,2026-05-02T06:19:00.047324
+Afraid of consequences.,fear,customer_service,stranger,0,2,0.7,Reaction to workplace,conv_8542,12,2026-05-02T06:19:00.044373
+This is amazing!,sere,family,partner,0,1,0.761,Reaction to online_debate,conv_2201,1,2026-05-02T06:19:00.030449
+This is amazing!,disg,healthcare,user,0,2,0.809,Reaction to friendship,conv_4813,3,2026-05-02T06:19:00.045519
+This is amazing!,trus,education,friend,0,2,0.816,Reaction to customer_service,conv_6820,7,2026-05-02T06:19:00.043925
+So happy about this!,aggr,online_debate,agent,0,1,0.567,Reaction to romance,conv_9589,1,2026-05-02T06:19:00.051316
+So happy about this!,ange,romance,stranger,0,2,0.702,Reaction to customer_service,conv_3435,4,2026-05-02T06:19:00.045718
+This makes me nervous.,fear,customer_service,friend,0,2,0.656,Reaction to romance,conv_6702,3,2026-05-02T06:19:00.044313
+DEVASTATED by this loss.,grie,workplace,friend,0,3,0.682,Reaction to education,conv_4430,3,2026-05-02T06:19:00.047887
+Drowning in sorrow.,grie,online_debate,agent,0,3,0.939,Reaction to online_debate,conv_7558,10,2026-05-02T06:19:00.047853
+Best day ever!,subm,family,agent,0,1,0.802,Reaction to customer_service,conv_2599,4,2026-05-02T06:19:00.049692
+Best day ever!,bore,family,stranger,0,1,0.781,Reaction to customer_service,conv_9580,5,2026-05-02T06:19:00.031769
+Mean so much.,love,family,user,0,1,0.659,Reaction to friendship,conv_1350,3,2026-05-02T06:19:00.049115
+So happy about this!,ange,family,user,0,2,0.804,Reaction to healthcare,conv_1213,11,2026-05-02T06:19:00.045736
+Best day ever!,inte,online_debate,friend,0,1,0.776,Reaction to customer_service,conv_9771,12,2026-05-02T06:19:00.032072
+So happy about this!,ange,family,stranger,0,2,0.726,Reaction to customer_service,conv_7960,7,2026-05-02T06:19:00.045694
+This is amazing!,sadn,workplace,stranger,0,2,0.757,Reaction to education,conv_6289,11,2026-05-02T06:19:00.045044
+This is amazing!,surp,healthcare,friend,0,2,0.8,Reaction to workplace,conv_5345,12,2026-05-02T06:19:00.044868
+REVOLTED!,loat,family,friend,0,3,0.759,Reaction to healthcare,conv_9515,12,2026-05-02T06:19:00.048203
+So happy about this!,acce,friendship,friend,0,1,0.76,Reaction to healthcare,conv_6964,10,2026-05-02T06:19:00.030641
+Best day ever!,subm,family,partner,0,1,0.707,Reaction to education,conv_9991,8,2026-05-02T06:19:00.049627
+MIND-BLOWING!,amaz,workplace,friend,0,3,0.822,Reaction to workplace,conv_1546,9,2026-05-02T06:19:00.047474
+Best day ever!,appr,family,friend,0,2,0.901,Reaction to family,conv_7147,9,2026-05-02T06:19:00.046232
+So happy about this!,pens,family,stranger,0,1,0.775,Reaction to family,conv_4110,2,2026-05-02T06:19:00.031430
+So happy about this!,acce,healthcare,agent,0,1,0.63,Reaction to family,conv_9523,3,2026-05-02T06:19:00.030647
+Full of affection.,love,romance,partner,0,1,0.796,Reaction to friendship,conv_6392,2,2026-05-02T06:19:00.049218
+This is amazing!,sere,romance,user,0,1,0.56,Reaction to family,conv_4439,9,2026-05-02T06:19:00.030290
+So happy about this!,aggr,healthcare,agent,0,1,0.606,Reaction to workplace,conv_5799,4,2026-05-02T06:19:00.051221
+Best day ever!,inte,online_debate,partner,0,1,0.722,Reaction to workplace,conv_1289,2,2026-05-02T06:19:00.032006
+"Fantastic, more work.",joy,friendship,stranger,1,2,0.893,Reaction to romance,conv_3764,2,2026-05-02T06:19:00.043790
+This is amazing!,subm,customer_service,friend,0,1,0.747,Reaction to family,conv_2746,11,2026-05-02T06:19:00.049592
+This is amazing!,sere,family,user,0,1,0.605,Reaction to online_debate,conv_7074,2,2026-05-02T06:19:00.030525
+BLIND RAGE!,rage,online_debate,stranger,0,3,0.917,Reaction to family,conv_4158,1,2026-05-02T06:19:00.048648
+Best day ever!,admi,family,partner,0,3,0.878,Reaction to online_debate,conv_4995,6,2026-05-02T06:19:00.047002
+This is amazing!,dist,customer_service,friend,0,1,0.565,Reaction to online_debate,conv_9907,7,2026-05-02T06:19:00.031167
+"Oh great, another meeting.",joy,workplace,stranger,1,2,0.859,Reaction to romance,conv_3324,4,2026-05-02T06:19:00.043854
+COMPLETELY STUNNED!,amaz,workplace,agent,0,3,0.837,Reaction to customer_service,conv_5326,12,2026-05-02T06:19:00.047515
+So happy about this!,bore,education,stranger,0,1,0.689,Reaction to customer_service,conv_6395,8,2026-05-02T06:19:00.031922
+Mean so much.,love,education,agent,0,1,0.62,Reaction to customer_service,conv_3650,8,2026-05-02T06:19:00.049289
+On high alert.,vigi,friendship,agent,0,3,0.715,Reaction to healthcare,conv_4322,5,2026-05-02T06:19:00.048864
+So happy about this!,pens,education,stranger,0,1,0.636,Reaction to romance,conv_3610,10,2026-05-02T06:19:00.031368
+Overwhelmed.,awe,healthcare,friend,0,1,0.64,Reaction to friendship,conv_6969,9,2026-05-02T06:19:00.049835
+What a surprise!,supr,education,partner,0,2,0.877,Reaction to romance,conv_6659,7,2026-05-02T06:19:00.051693
+So happy about this!,pens,healthcare,agent,0,1,0.619,Reaction to family,conv_8076,4,2026-05-02T06:19:00.031405
+Best day ever!,dist,friendship,agent,0,1,0.735,Reaction to friendship,conv_1344,2,2026-05-02T06:19:00.031126
+Best day ever!,cont,workplace,partner,0,1,0.807,Reaction to customer_service,conv_7863,8,2026-05-02T06:19:00.050881
+BLIND RAGE!,rage,healthcare,partner,0,3,0.749,Reaction to family,conv_1272,5,2026-05-02T06:19:00.048636
+Best day ever!,anno,customer_service,agent,0,1,0.59,Reaction to healthcare,conv_6093,8,2026-05-02T06:19:00.032734
+Best day ever!,aggr,romance,partner,0,1,0.797,Reaction to education,conv_2100,7,2026-05-02T06:19:00.051334
+OVER THE MOON!,ecst,workplace,friend,0,3,0.811,Reaction to romance,conv_1950,7,2026-05-02T06:19:00.046448
+NIGHTMARE COME TRUE!,terr,workplace,agent,0,3,0.69,Reaction to education,conv_5273,3,2026-05-02T06:19:00.047129
+This is amazing!,acce,healthcare,friend,0,1,0.642,Reaction to workplace,conv_7175,1,2026-05-02T06:19:00.030768
+This is amazing!,pens,customer_service,friend,0,1,0.679,Reaction to romance,conv_7462,7,2026-05-02T06:19:00.031340
+Best day ever!,trus,family,partner,0,2,0.857,Reaction to customer_service,conv_8108,2,2026-05-02T06:19:00.044270
+Profoundly moving.,awe,education,friend,0,1,0.79,Reaction to workplace,conv_3691,3,2026-05-02T06:19:00.049906
+This is amazing!,disg,workplace,friend,0,2,0.656,Reaction to romance,conv_7568,12,2026-05-02T06:19:00.045381
+Best day ever!,dist,workplace,friend,0,1,0.682,Reaction to family,conv_5254,3,2026-05-02T06:19:00.031297
+This is amazing!,inte,family,stranger,0,1,0.747,Reaction to workplace,conv_6278,8,2026-05-02T06:19:00.032380
+Profoundly moving.,awe,education,partner,0,1,0.735,Reaction to online_debate,conv_7976,3,2026-05-02T06:19:00.049788
+MIND-BLOWING!,amaz,friendship,stranger,0,3,0.717,Reaction to online_debate,conv_3260,4,2026-05-02T06:19:00.047399
+So happy about this!,sere,workplace,partner,0,1,0.725,Reaction to online_debate,conv_4102,11,2026-05-02T06:19:00.030310
+This makes me nervous.,fear,education,stranger,0,2,0.828,Reaction to online_debate,conv_9465,2,2026-05-02T06:19:00.044361
+Best day ever!,disa,online_debate,partner,0,1,0.694,Reaction to online_debate,conv_3169,4,2026-05-02T06:19:00.050226
+Best day ever!,aggr,family,partner,0,1,0.636,Reaction to workplace,conv_7946,10,2026-05-02T06:19:00.051233
+Care deeply.,love,romance,user,0,1,0.737,Reaction to education,conv_1610,11,2026-05-02T06:19:00.049139
+Full of affection.,love,family,stranger,0,1,0.666,Reaction to workplace,conv_6708,12,2026-05-02T06:19:00.049205
+So happy about this!,remo,online_debate,agent,0,1,0.717,Reaction to friendship,conv_6853,9,2026-05-02T06:19:00.050504
+DEVASTATED by this loss.,grie,romance,user,0,3,0.772,Reaction to education,conv_3738,4,2026-05-02T06:19:00.048014
+This is amazing!,remo,healthcare,stranger,0,1,0.676,Reaction to friendship,conv_1699,4,2026-05-02T06:19:00.050510
+Best day ever!,admi,education,partner,0,3,0.853,Reaction to friendship,conv_4069,11,2026-05-02T06:19:00.046956
+Best day ever!,disa,education,stranger,0,1,0.801,Reaction to education,conv_1320,5,2026-05-02T06:19:00.050183
+This is amazing!,subm,customer_service,agent,0,1,0.606,Reaction to family,conv_1116,5,2026-05-02T06:19:00.049550
+This is amazing!,sere,romance,partner,0,1,0.807,Reaction to friendship,conv_5787,12,2026-05-02T06:19:00.030316
+So happy about this!,subm,romance,friend,0,1,0.717,Reaction to friendship,conv_7865,7,2026-05-02T06:19:00.049650
+This is amazing!,remo,friendship,stranger,0,1,0.76,Reaction to romance,conv_6558,10,2026-05-02T06:19:00.050746
+This is amazing!,joy,friendship,stranger,0,2,0.87,Reaction to friendship,conv_8045,1,2026-05-02T06:19:00.043777
+Best day ever!,surp,friendship,friend,0,2,0.933,Reaction to education,conv_6216,8,2026-05-02T06:19:00.044886
+So happy about this!,sadn,family,friend,0,2,0.865,Reaction to healthcare,conv_5926,8,2026-05-02T06:19:00.045327
+Best day ever!,disa,family,user,0,1,0.788,Reaction to friendship,conv_2755,2,2026-05-02T06:19:00.050201
+So happy about this!,sadn,online_debate,friend,0,2,0.698,Reaction to healthcare,conv_7401,12,2026-05-02T06:19:00.045009
+Best day ever!,anno,romance,partner,0,1,0.661,Reaction to workplace,conv_4483,7,2026-05-02T06:19:00.032632
+Best day ever!,cont,online_debate,user,0,1,0.567,Reaction to romance,conv_9854,9,2026-05-02T06:19:00.050960
+HYPERVIGILANT.,vigi,family,stranger,0,3,0.714,Reaction to healthcare,conv_5987,9,2026-05-02T06:19:00.048963
+HYPERVIGILANT.,vigi,friendship,user,0,3,0.652,Reaction to family,conv_1953,7,2026-05-02T06:19:00.048935
+So happy about this!,anno,family,user,0,1,0.602,Reaction to workplace,conv_6992,11,2026-05-02T06:19:00.032520
+This is amazing!,admi,friendship,user,0,3,0.89,Reaction to friendship,conv_3511,5,2026-05-02T06:19:00.046939
+This is amazing!,cont,customer_service,partner,0,1,0.637,Reaction to healthcare,conv_1742,1,2026-05-02T06:19:00.050791
+ABSOLUTELY TERRIFIED!,terr,online_debate,stranger,0,3,0.768,Reaction to online_debate,conv_9586,1,2026-05-02T06:19:00.047152
+Best day ever!,appr,family,partner,0,2,0.67,Reaction to customer_service,conv_2621,1,2026-05-02T06:19:00.046268
+Full of affection.,love,workplace,partner,0,1,0.803,Reaction to customer_service,conv_3866,7,2026-05-02T06:19:00.049330
+ABSOLUTELY TERRIFIED!,terr,healthcare,friend,0,3,0.861,Reaction to healthcare,conv_7837,7,2026-05-02T06:19:00.047251
+Best day ever!,anno,online_debate,partner,0,1,0.641,Reaction to customer_service,conv_7118,12,2026-05-02T06:19:00.032514
+Best day ever!,surp,online_debate,user,0,2,0.736,Reaction to workplace,conv_4491,5,2026-05-02T06:19:00.044817
+Best day ever!,dist,customer_service,user,0,1,0.656,Reaction to romance,conv_3902,9,2026-05-02T06:19:00.031011
+Best day ever!,acce,romance,user,0,1,0.574,Reaction to romance,conv_1578,2,2026-05-02T06:19:00.030740
+So happy about this!,anno,healthcare,agent,0,1,0.625,Reaction to healthcare,conv_2792,1,2026-05-02T06:19:00.032692
+Best day ever!,sere,online_debate,stranger,0,1,0.733,Reaction to healthcare,conv_5787,2,2026-05-02T06:19:00.030572
+So happy about this!,bore,online_debate,stranger,0,1,0.807,Reaction to education,conv_9802,6,2026-05-02T06:19:00.031875
+OVER THE MOON!,ecst,family,agent,0,3,0.66,Reaction to friendship,conv_9450,7,2026-05-02T06:19:00.046523
+So happy about this!,opti,education,friend,0,1,0.759,Reaction to friendship,conv_5360,5,2026-05-02T06:19:00.043469
+So happy about this!,disa,friendship,agent,0,1,0.719,Reaction to healthcare,conv_7418,10,2026-05-02T06:19:00.050347
+Best day ever!,sere,family,user,0,1,0.763,Reaction to customer_service,conv_4836,2,2026-05-02T06:19:00.030502
+Best day ever!,appr,friendship,partner,0,2,0.864,Reaction to customer_service,conv_7262,2,2026-05-02T06:19:00.046292
+Best day ever!,inte,family,agent,0,1,0.595,Reaction to healthcare,conv_3213,5,2026-05-02T06:19:00.032024
+This is amazing!,dist,online_debate,friend,0,1,0.665,Reaction to friendship,conv_6701,1,2026-05-02T06:19:00.031120
+HATE EVERY FIBER!,loat,romance,stranger,0,3,0.765,Reaction to customer_service,conv_7429,5,2026-05-02T06:19:00.048116
+This is amazing!,aggr,friendship,stranger,0,1,0.562,Reaction to romance,conv_5952,11,2026-05-02T06:19:00.051280
+ABSOLUTELY DESPISE THIS!,loat,romance,user,0,3,0.816,Reaction to customer_service,conv_2595,2,2026-05-02T06:19:00.048318
+This is amazing!,inte,workplace,stranger,0,1,0.583,Reaction to friendship,conv_2644,9,2026-05-02T06:19:00.031987
+This is amazing!,disg,romance,partner,0,2,0.696,Reaction to friendship,conv_7365,4,2026-05-02T06:19:00.045669
+So happy about this!,trus,friendship,partner,0,2,0.924,Reaction to education,conv_1699,8,2026-05-02T06:19:00.043955
+OVER THE MOON!,ecst,friendship,friend,0,3,0.884,Reaction to family,conv_5148,2,2026-05-02T06:19:00.046419
+OVER THE MOON!,ecst,healthcare,agent,0,3,0.675,Reaction to romance,conv_8305,4,2026-05-02T06:19:00.046400
+ABSOLUTELY DESPISE THIS!,loat,healthcare,stranger,0,3,0.948,Reaction to romance,conv_8592,9,2026-05-02T06:19:00.048067
+Care deeply.,love,education,friend,0,1,0.555,Reaction to family,conv_2489,4,2026-05-02T06:19:00.049092
+This is amazing!,subm,online_debate,partner,0,1,0.647,Reaction to education,conv_4671,7,2026-05-02T06:19:00.049491
+Mean so much.,love,online_debate,agent,0,1,0.574,Reaction to family,conv_6953,8,2026-05-02T06:19:00.049342
+So happy about this!,aggr,workplace,user,0,1,0.557,Reaction to education,conv_4381,4,2026-05-02T06:19:00.051340
+So happy about this!,bore,workplace,friend,0,1,0.572,Reaction to friendship,conv_7428,3,2026-05-02T06:19:00.031892
+Mean so much.,love,customer_service,user,0,1,0.561,Reaction to online_debate,conv_3162,11,2026-05-02T06:19:00.049052
+So happy about this!,pens,customer_service,agent,0,1,0.659,Reaction to workplace,conv_9396,8,2026-05-02T06:19:00.031489
+So happy about this!,bore,customer_service,partner,0,1,0.776,Reaction to customer_service,conv_6147,5,2026-05-02T06:19:00.031786
+Didn't see that coming!,supr,online_debate,stranger,0,2,0.912,Reaction to online_debate,conv_9552,7,2026-05-02T06:19:00.051490
+So happy about this!,ange,family,partner,0,2,0.674,Reaction to online_debate,conv_7615,2,2026-05-02T06:19:00.045767
+This is amazing!,surp,friendship,stranger,0,2,0.677,Reaction to romance,conv_7630,11,2026-05-02T06:19:00.044947
+So happy about this!,aggr,workplace,agent,0,1,0.598,Reaction to customer_service,conv_8272,12,2026-05-02T06:19:00.051256
+COMPLETELY STUNNED!,amaz,friendship,agent,0,3,0.821,Reaction to customer_service,conv_4105,11,2026-05-02T06:19:00.047491
+Best day ever!,aggr,workplace,user,0,1,0.76,Reaction to friendship,conv_9417,10,2026-05-02T06:19:00.051152
+So happy about this!,dist,online_debate,stranger,0,1,0.645,Reaction to education,conv_1173,3,2026-05-02T06:19:00.031155
+Best day ever!,inte,family,agent,0,1,0.565,Reaction to workplace,conv_6629,12,2026-05-02T06:19:00.032066
+So happy about this!,subm,healthcare,friend,0,1,0.592,Reaction to friendship,conv_3054,5,2026-05-02T06:19:00.049514
+This is amazing!,disg,education,agent,0,2,0.865,Reaction to family,conv_9457,2,2026-05-02T06:19:00.045345
+This is amazing!,subm,romance,agent,0,1,0.656,Reaction to healthcare,conv_6307,11,2026-05-02T06:19:00.049418
+HEARTBROKEN.,grie,education,agent,0,3,0.717,Reaction to workplace,conv_5154,9,2026-05-02T06:19:00.047699
+Best day ever!,cont,friendship,user,0,1,0.739,Reaction to romance,conv_4673,8,2026-05-02T06:19:00.050857
+BLIND RAGE!,rage,friendship,user,0,3,0.75,Reaction to education,conv_6490,8,2026-05-02T06:19:00.048523
+COMPLETELY STUNNED!,amaz,romance,friend,0,3,0.763,Reaction to healthcare,conv_2373,8,2026-05-02T06:19:00.047434
+Best day ever!,sere,healthcare,agent,0,1,0.794,Reaction to workplace,conv_1654,8,2026-05-02T06:19:00.030467
+Best day ever!,surp,workplace,partner,0,2,0.652,Reaction to online_debate,conv_8944,3,2026-05-02T06:19:00.044768
+This makes me nervous.,fear,healthcare,agent,0,2,0.934,Reaction to healthcare,conv_7658,6,2026-05-02T06:19:00.044464
+This is amazing!,disa,family,friend,0,1,0.752,Reaction to online_debate,conv_1482,1,2026-05-02T06:19:00.050074
+Best day ever!,bore,education,user,0,1,0.656,Reaction to friendship,conv_6807,10,2026-05-02T06:19:00.031974
+This is amazing!,sere,romance,friend,0,1,0.693,Reaction to workplace,conv_6738,4,2026-05-02T06:19:00.030346
+Best day ever!,disg,online_debate,friend,0,2,0.855,Reaction to romance,conv_8010,9,2026-05-02T06:19:00.045459
+Filled with wonder.,awe,family,partner,0,1,0.647,Reaction to friendship,conv_5348,7,2026-05-02T06:19:00.049894
+"Oh great, another meeting.",joy,romance,friend,1,2,0.689,Reaction to workplace,conv_3678,9,2026-05-02T06:19:00.043554
+So happy about this!,anno,friendship,stranger,0,1,0.654,Reaction to education,conv_6127,3,2026-05-02T06:19:00.032567
+This makes me nervous.,fear,healthcare,stranger,0,2,0.676,Reaction to education,conv_7653,4,2026-05-02T06:19:00.044570
+So happy about this!,opti,online_debate,agent,0,1,0.613,Reaction to customer_service,conv_5841,8,2026-05-02T06:19:00.032746
+MIND-BLOWING!,amaz,friendship,partner,0,3,0.867,Reaction to workplace,conv_5429,8,2026-05-02T06:19:00.047520
+Unexpected!,supr,education,agent,0,2,0.795,Reaction to family,conv_9681,10,2026-05-02T06:19:00.051548
+PARALYZED WITH FEAR!,terr,romance,user,0,3,0.72,Reaction to education,conv_3030,10,2026-05-02T06:19:00.047329
+On high alert.,vigi,friendship,partner,0,3,0.715,Reaction to customer_service,conv_9919,10,2026-05-02T06:19:00.049039
+This is amazing!,pens,online_debate,partner,0,1,0.554,Reaction to friendship,conv_1784,4,2026-05-02T06:19:00.031442
+Best day ever!,disa,romance,friend,0,1,0.703,Reaction to education,conv_3835,12,2026-05-02T06:19:00.050091
+COMPLETELY STUNNED!,amaz,family,user,0,3,0.892,Reaction to online_debate,conv_1078,12,2026-05-02T06:19:00.047428
+Best day ever!,aggr,customer_service,partner,0,1,0.608,Reaction to healthcare,conv_3580,11,2026-05-02T06:19:00.051390
+Overwhelmed.,awe,friendship,agent,0,1,0.591,Reaction to workplace,conv_5559,10,2026-05-02T06:19:00.049847
+This is amazing!,anno,customer_service,agent,0,1,0.689,Reaction to customer_service,conv_5921,2,2026-05-02T06:19:00.032490
+Full of affection.,love,family,user,0,1,0.589,Reaction to healthcare,conv_6160,3,2026-05-02T06:19:00.049370
+Best day ever!,sere,online_debate,friend,0,1,0.705,Reaction to healthcare,conv_8526,5,2026-05-02T06:19:00.030413
+OVER THE MOON!,ecst,healthcare,stranger,0,3,0.732,Reaction to healthcare,conv_6239,5,2026-05-02T06:19:00.046569
+So happy about this!,bore,family,stranger,0,1,0.665,Reaction to customer_service,conv_9248,4,2026-05-02T06:19:00.031751
+So happy about this!,anno,healthcare,stranger,0,1,0.776,Reaction to friendship,conv_3547,3,2026-05-02T06:19:00.032674
+Drowning in sorrow.,grie,friendship,friend,0,3,0.714,Reaction to online_debate,conv_9668,7,2026-05-02T06:19:00.047996
+This is amazing!,opti,online_debate,friend,0,1,0.557,Reaction to family,conv_1519,3,2026-05-02T06:19:00.043451
+What a surprise!,supr,workplace,user,0,2,0.829,Reaction to customer_service,conv_2869,11,2026-05-02T06:19:00.051560
+HATE EVERY FIBER!,loat,online_debate,user,0,3,0.895,Reaction to romance,conv_8926,5,2026-05-02T06:19:00.048088
+Best day ever!,admi,friendship,partner,0,3,0.871,Reaction to friendship,conv_8754,9,2026-05-02T06:19:00.046764
+This is amazing!,surp,customer_service,partner,0,2,0.914,Reaction to healthcare,conv_5752,5,2026-05-02T06:19:00.044834
+This is amazing!,trus,education,friend,0,2,0.947,Reaction to family,conv_2359,8,2026-05-02T06:19:00.044008
+This is amazing!,subm,customer_service,agent,0,1,0.649,Reaction to romance,conv_3395,1,2026-05-02T06:19:00.049723
+This is amazing!,acce,education,stranger,0,1,0.595,Reaction to education,conv_6995,11,2026-05-02T06:19:00.030908
+HEARTBROKEN.,grie,online_debate,agent,0,3,0.797,Reaction to healthcare,conv_5817,11,2026-05-02T06:19:00.047764
+This is amazing!,disg,family,user,0,2,0.936,Reaction to education,conv_1527,11,2026-05-02T06:19:00.045631
+Best day ever!,inte,friendship,partner,0,1,0.571,Reaction to healthcare,conv_4822,4,2026-05-02T06:19:00.032012
+I'm worried something might go wrong.,fear,friendship,friend,0,2,0.679,Reaction to friendship,conv_9176,12,2026-05-02T06:19:00.044434
+REVOLTED!,loat,online_debate,user,0,3,0.858,Reaction to online_debate,conv_8617,4,2026-05-02T06:19:00.048241
+So happy about this!,bore,friendship,friend,0,1,0.685,Reaction to friendship,conv_3648,1,2026-05-02T06:19:00.031851
+So happy about this!,appr,education,agent,0,2,0.666,Reaction to healthcare,conv_5668,9,2026-05-02T06:19:00.046274
+SEEING RED!,rage,healthcare,friend,0,3,0.871,Reaction to friendship,conv_9076,11,2026-05-02T06:19:00.048619
+Best day ever!,joy,family,stranger,0,2,0.713,Reaction to family,conv_2042,10,2026-05-02T06:19:00.043693
+Best day ever!,surp,online_debate,friend,0,2,0.73,Reaction to family,conv_2502,5,2026-05-02T06:19:00.044677
+This is amazing!,anno,family,friend,0,1,0.578,Reaction to healthcare,conv_5512,7,2026-05-02T06:19:00.032668
+Best day ever!,sadn,customer_service,partner,0,2,0.822,Reaction to workplace,conv_5042,6,2026-05-02T06:19:00.045172
+NIGHTMARE COME TRUE!,terr,customer_service,agent,0,3,0.853,Reaction to healthcare,conv_7006,6,2026-05-02T06:19:00.047049
+Best day ever!,anno,online_debate,agent,0,1,0.752,Reaction to workplace,conv_3224,5,2026-05-02T06:19:00.032478
+NIGHTMARE COME TRUE!,terr,education,friend,0,3,0.838,Reaction to friendship,conv_2720,3,2026-05-02T06:19:00.047043
+So happy about this!,disa,family,stranger,0,1,0.703,Reaction to friendship,conv_1745,6,2026-05-02T06:19:00.050297
+This is amazing!,ange,workplace,stranger,0,2,0.741,Reaction to friendship,conv_7716,7,2026-05-02T06:19:00.045982
+Best day ever!,appr,family,friend,0,2,0.85,Reaction to online_debate,conv_6597,10,2026-05-02T06:19:00.046064
+ABSOLUTELY DESPISE THIS!,loat,healthcare,user,0,3,0.757,Reaction to workplace,conv_5359,9,2026-05-02T06:19:00.048122
+So happy about this!,acce,workplace,partner,0,1,0.699,Reaction to family,conv_1733,7,2026-05-02T06:19:00.030628
+Unexpected!,supr,romance,user,0,2,0.873,Reaction to workplace,conv_9678,2,2026-05-02T06:19:00.051541
+This is amazing!,cont,workplace,user,0,1,0.591,Reaction to healthcare,conv_6829,11,2026-05-02T06:19:00.051033
+Best day ever!,remo,customer_service,user,0,1,0.588,Reaction to healthcare,conv_9200,5,2026-05-02T06:19:00.050408
+So happy about this!,anno,customer_service,user,0,1,0.766,Reaction to customer_service,conv_3863,2,2026-05-02T06:19:00.032625
+So happy about this!,dist,customer_service,partner,0,1,0.701,Reaction to education,conv_6937,11,2026-05-02T06:19:00.031114
+So happy about this!,joy,education,partner,0,2,0.918,Reaction to customer_service,conv_2842,11,2026-05-02T06:19:00.043638
+So happy about this!,ange,education,partner,0,2,0.82,Reaction to workplace,conv_3837,9,2026-05-02T06:19:00.045885
+This is amazing!,subm,education,agent,0,1,0.578,Reaction to workplace,conv_2891,4,2026-05-02T06:19:00.049633
+This is amazing!,joy,friendship,user,0,2,0.725,Reaction to family,conv_5237,4,2026-05-02T06:19:00.043783
+This is amazing!,appr,education,friend,0,2,0.812,Reaction to online_debate,conv_7441,8,2026-05-02T06:19:00.046322
+Overwhelmed.,awe,friendship,stranger,0,1,0.65,Reaction to family,conv_6999,3,2026-05-02T06:19:00.049924
+So happy about this!,acce,healthcare,user,0,1,0.804,Reaction to online_debate,conv_6698,2,2026-05-02T06:19:00.030750
+This is amazing!,appr,family,friend,0,2,0.816,Reaction to customer_service,conv_7804,8,2026-05-02T06:19:00.046304
+So happy about this!,opti,customer_service,agent,0,1,0.782,Reaction to customer_service,conv_1577,12,2026-05-02T06:19:00.043492
+This is amazing!,dist,education,friend,0,1,0.767,Reaction to online_debate,conv_4480,1,2026-05-02T06:19:00.031149
+This is amazing!,subm,online_debate,agent,0,1,0.785,Reaction to romance,conv_1929,6,2026-05-02T06:19:00.049562
+So happy about this!,aggr,family,partner,0,1,0.608,Reaction to healthcare,conv_5250,6,2026-05-02T06:19:00.051250
+OVER THE MOON!,ecst,education,friend,0,3,0.764,Reaction to online_debate,conv_9038,11,2026-05-02T06:19:00.046546
+So happy about this!,pens,education,user,0,1,0.641,Reaction to online_debate,conv_6445,3,2026-05-02T06:19:00.031483
+Mean so much.,love,workplace,partner,0,1,0.583,Reaction to healthcare,conv_4582,1,2026-05-02T06:19:00.049353
+Best day ever!,inte,education,stranger,0,1,0.599,Reaction to family,conv_2465,5,2026-05-02T06:19:00.032165
+ABSOLUTELY DESPISE THIS!,loat,romance,user,0,3,0.763,Reaction to education,conv_4072,6,2026-05-02T06:19:00.048258
+So happy about this!,disg,online_debate,agent,0,2,0.775,Reaction to online_debate,conv_5219,2,2026-05-02T06:19:00.045566
+Best day ever!,surp,online_debate,stranger,0,2,0.672,Reaction to education,conv_7847,7,2026-05-02T06:19:00.044916
+So happy about this!,sere,workplace,friend,0,1,0.756,Reaction to online_debate,conv_1499,6,2026-05-02T06:19:00.030265
+Best day ever!,sadn,education,partner,0,2,0.776,Reaction to romance,conv_3806,8,2026-05-02T06:19:00.045248
+Best day ever!,surp,workplace,friend,0,2,0.836,Reaction to education,conv_1871,5,2026-05-02T06:19:00.044737
+HYPERVIGILANT.,vigi,romance,user,0,3,0.714,Reaction to romance,conv_2081,9,2026-05-02T06:19:00.048893
+This is amazing!,dist,customer_service,agent,0,1,0.748,Reaction to customer_service,conv_5990,11,2026-05-02T06:19:00.031263
+So happy about this!,trus,healthcare,stranger,0,2,0.94,Reaction to healthcare,conv_1990,6,2026-05-02T06:19:00.044021
+ABSOLUTELY FURIOUS!,rage,online_debate,friend,0,3,0.934,Reaction to customer_service,conv_3544,10,2026-05-02T06:19:00.048583
+Best day ever!,acce,family,friend,0,1,0.647,Reaction to customer_service,conv_2915,8,2026-05-02T06:19:00.030849
+This is amazing!,acce,customer_service,agent,0,1,0.56,Reaction to online_debate,conv_9187,12,2026-05-02T06:19:00.030803
+So happy about this!,subm,customer_service,partner,0,1,0.613,Reaction to family,conv_7201,2,2026-05-02T06:19:00.049698
+Mean so much.,love,online_debate,stranger,0,1,0.729,Reaction to friendship,conv_2341,4,2026-05-02T06:19:00.049069
+Drowning in sorrow.,grie,romance,user,0,3,0.786,Reaction to online_debate,conv_1933,1,2026-05-02T06:19:00.047847
+Mean so much.,love,family,stranger,0,1,0.563,Reaction to customer_service,conv_9422,4,2026-05-02T06:19:00.049336
+MIND-BLOWING!,amaz,workplace,friend,0,3,0.945,Reaction to friendship,conv_1571,6,2026-05-02T06:19:00.047585
+So happy about this!,surp,friendship,stranger,0,2,0.92,Reaction to healthcare,conv_3233,9,2026-05-02T06:19:00.044880
+Best day ever!,inte,romance,user,0,1,0.756,Reaction to family,conv_7127,5,2026-05-02T06:19:00.032209
+This is amazing!,opti,healthcare,stranger,0,1,0.712,Reaction to friendship,conv_1677,8,2026-05-02T06:19:00.032779
+SEEING RED!,rage,customer_service,stranger,0,3,0.671,Reaction to online_debate,conv_9150,3,2026-05-02T06:19:00.048666
+This is amazing!,acce,romance,partner,0,1,0.744,Reaction to online_debate,conv_6030,6,2026-05-02T06:19:00.030861
+MIND-BLOWING!,amaz,online_debate,user,0,3,0.907,Reaction to friendship,conv_5760,5,2026-05-02T06:19:00.047486
+This is amazing!,remo,family,friend,0,1,0.8,Reaction to romance,conv_1712,7,2026-05-02T06:19:00.050498
+So happy about this!,inte,customer_service,agent,0,1,0.635,Reaction to friendship,conv_6292,2,2026-05-02T06:19:00.032029
+Afraid of consequences.,fear,workplace,stranger,0,2,0.877,Reaction to workplace,conv_8269,7,2026-05-02T06:19:00.044501
+Best day ever!,appr,customer_service,stranger,0,2,0.86,Reaction to online_debate,conv_3750,2,2026-05-02T06:19:00.046149
+HATE EVERY FIBER!,loat,education,agent,0,3,0.775,Reaction to online_debate,conv_4661,1,2026-05-02T06:19:00.048334
+DEVASTATED by this loss.,grie,friendship,partner,0,3,0.865,Reaction to family,conv_9541,5,2026-05-02T06:19:00.047752
+This is amazing!,surp,online_debate,agent,0,2,0.861,Reaction to workplace,conv_1168,12,2026-05-02T06:19:00.044701
+So happy about this!,disa,healthcare,stranger,0,1,0.801,Reaction to education,conv_4696,7,2026-05-02T06:19:00.050171
+HYPERVIGILANT.,vigi,healthcare,user,0,3,0.938,Reaction to family,conv_7343,11,2026-05-02T06:19:00.048720
+This is amazing!,remo,online_debate,partner,0,1,0.556,Reaction to customer_service,conv_3575,9,2026-05-02T06:19:00.050527
+On high alert.,vigi,family,agent,0,3,0.8,Reaction to friendship,conv_1800,9,2026-05-02T06:19:00.049021
+BLIND RAGE!,rage,friendship,partner,0,3,0.919,Reaction to online_debate,conv_8533,10,2026-05-02T06:19:00.048489
+This is amazing!,disa,education,agent,0,1,0.703,Reaction to workplace,conv_4572,2,2026-05-02T06:19:00.050249
+This is amazing!,ange,customer_service,partner,0,2,0.781,Reaction to education,conv_7323,2,2026-05-02T06:19:00.045994
+Best day ever!,remo,customer_service,friend,0,1,0.804,Reaction to family,conv_7590,3,2026-05-02T06:19:00.050662
+On high alert.,vigi,family,stranger,0,3,0.733,Reaction to education,conv_4587,2,2026-05-02T06:19:00.049027
+So happy about this!,aggr,workplace,partner,0,1,0.708,Reaction to family,conv_5317,11,2026-05-02T06:19:00.051420
+This makes me nervous.,fear,customer_service,agent,0,2,0.728,Reaction to healthcare,conv_3619,1,2026-05-02T06:19:00.044583
+This is amazing!,sere,friendship,agent,0,1,0.703,Reaction to friendship,conv_5489,6,2026-05-02T06:19:00.030395
+SEEING RED!,rage,workplace,stranger,0,3,0.666,Reaction to workplace,conv_3192,11,2026-05-02T06:19:00.048678
+This is amazing!,appr,friendship,user,0,2,0.78,Reaction to education,conv_5953,2,2026-05-02T06:19:00.046184
+This is amazing!,surp,friendship,partner,0,2,0.722,Reaction to education,conv_9519,4,2026-05-02T06:19:00.044714
+So happy about this!,sadn,customer_service,stranger,0,2,0.676,Reaction to romance,conv_7752,3,2026-05-02T06:19:00.045146
+Best day ever!,appr,family,friend,0,2,0.842,Reaction to romance,conv_5838,9,2026-05-02T06:19:00.046113
+This is amazing!,appr,friendship,partner,0,2,0.903,Reaction to education,conv_9070,7,2026-05-02T06:19:00.046340
+This is amazing!,subm,friendship,partner,0,1,0.664,Reaction to workplace,conv_6663,2,2026-05-02T06:19:00.049662
+I'm worried something might go wrong.,fear,healthcare,partner,0,2,0.937,Reaction to family,conv_4922,10,2026-05-02T06:19:00.044379
+So happy about this!,disg,romance,friend,0,2,0.938,Reaction to romance,conv_1331,2,2026-05-02T06:19:00.045681
+So happy about this!,aggr,friendship,stranger,0,1,0.728,Reaction to online_debate,conv_6579,2,2026-05-02T06:19:00.051432
+ABSOLUTELY DESPISE THIS!,loat,education,user,0,3,0.845,Reaction to friendship,conv_1685,9,2026-05-02T06:19:00.048223
+So happy about this!,pens,family,agent,0,1,0.678,Reaction to online_debate,conv_4960,3,2026-05-02T06:19:00.031351
+Full of affection.,love,family,user,0,1,0.633,Reaction to family,conv_3124,5,2026-05-02T06:19:00.049241
+Best day ever!,subm,family,agent,0,1,0.72,Reaction to healthcare,conv_3376,11,2026-05-02T06:19:00.049586
+Best day ever!,aggr,healthcare,friend,0,1,0.729,Reaction to healthcare,conv_6876,9,2026-05-02T06:19:00.051244
+Best day ever!,subm,customer_service,agent,0,1,0.646,Reaction to family,conv_8853,9,2026-05-02T06:19:00.049455
+So happy about this!,anno,healthcare,partner,0,1,0.757,Reaction to romance,conv_4237,10,2026-05-02T06:19:00.032580
+COMPLETELY STUNNED!,amaz,romance,friend,0,3,0.777,Reaction to romance,conv_8435,12,2026-05-02T06:19:00.047624
+Best day ever!,cont,online_debate,user,0,1,0.565,Reaction to family,conv_6890,3,2026-05-02T06:19:00.051015
+Best day ever!,disa,healthcare,stranger,0,1,0.637,Reaction to online_debate,conv_5628,9,2026-05-02T06:19:00.050109
+So happy about this!,inte,online_debate,user,0,1,0.59,Reaction to education,conv_5724,12,2026-05-02T06:19:00.032140
+PARALYZED WITH FEAR!,terr,family,friend,0,3,0.802,Reaction to healthcare,conv_3200,12,2026-05-02T06:19:00.047193
+This is amazing!,opti,customer_service,partner,0,1,0.685,Reaction to healthcare,conv_1485,12,2026-05-02T06:19:00.032792
+So happy about this!,trus,healthcare,agent,0,2,0.931,Reaction to workplace,conv_3212,4,2026-05-02T06:19:00.044123
+Afraid of consequences.,fear,family,agent,0,2,0.85,Reaction to online_debate,conv_7154,1,2026-05-02T06:19:00.044627
+So happy about this!,admi,friendship,partner,0,3,0.882,Reaction to friendship,conv_4442,9,2026-05-02T06:19:00.046787
+This is amazing!,sere,online_debate,user,0,1,0.656,Reaction to customer_service,conv_4367,6,2026-05-02T06:19:00.030297
+Filled with wonder.,awe,workplace,stranger,0,1,0.636,Reaction to education,conv_4187,8,2026-05-02T06:19:00.049783
+So happy about this!,disa,education,partner,0,1,0.636,Reaction to healthcare,conv_3590,4,2026-05-02T06:19:00.050395
+This is amazing!,disg,online_debate,agent,0,2,0.736,Reaction to friendship,conv_5420,11,2026-05-02T06:19:00.045440
+So happy about this!,bore,healthcare,partner,0,1,0.783,Reaction to friendship,conv_4610,8,2026-05-02T06:19:00.031827
+So happy about this!,trus,friendship,stranger,0,2,0.653,Reaction to friendship,conv_6971,1,2026-05-02T06:19:00.044173
+Unexpected!,supr,workplace,friend,0,2,0.835,Reaction to friendship,conv_9429,5,2026-05-02T06:19:00.051603
+This is amazing!,trus,family,friend,0,2,0.941,Reaction to customer_service,conv_4867,6,2026-05-02T06:19:00.044027
+Best day ever!,surp,education,agent,0,2,0.928,Reaction to workplace,conv_2130,12,2026-05-02T06:19:00.044849
+OVER THE MOON!,ecst,friendship,friend,0,3,0.947,Reaction to family,conv_2475,1,2026-05-02T06:19:00.046476
+ABSOLUTELY THRILLED!,ecst,healthcare,stranger,0,3,0.904,Reaction to online_debate,conv_7436,4,2026-05-02T06:19:00.046471
+DEVASTATED by this loss.,grie,healthcare,agent,0,3,0.758,Reaction to customer_service,conv_4952,9,2026-05-02T06:19:00.047718
+Best day ever!,pens,healthcare,user,0,1,0.555,Reaction to education,conv_8390,9,2026-05-02T06:19:00.031506
+Full of affection.,love,friendship,stranger,0,1,0.718,Reaction to online_debate,conv_1318,10,2026-05-02T06:19:00.049271
+So happy about this!,subm,customer_service,user,0,1,0.622,Reaction to customer_service,conv_2786,2,2026-05-02T06:19:00.049436
+HYPERVIGILANT.,vigi,education,partner,0,3,0.905,Reaction to workplace,conv_6099,3,2026-05-02T06:19:00.048714
+So happy about this!,admi,romance,partner,0,3,0.894,Reaction to education,conv_7772,4,2026-05-02T06:19:00.046973
+So happy about this!,joy,friendship,agent,0,2,0.886,Reaction to family,conv_4317,12,2026-05-02T06:19:00.043644
+This is amazing!,sadn,family,agent,0,2,0.686,Reaction to healthcare,conv_8252,2,2026-05-02T06:19:00.045266
+This is amazing!,disg,online_debate,stranger,0,2,0.772,Reaction to family,conv_9728,12,2026-05-02T06:19:00.045578
+So happy about this!,disg,family,stranger,0,2,0.837,Reaction to romance,conv_1334,5,2026-05-02T06:19:00.045356
+HATE EVERY FIBER!,loat,friendship,user,0,3,0.808,Reaction to customer_service,conv_8487,12,2026-05-02T06:19:00.048247
+Best day ever!,sadn,friendship,partner,0,2,0.804,Reaction to education,conv_3533,2,2026-05-02T06:19:00.045026
+Best day ever!,disg,friendship,friend,0,2,0.76,Reaction to healthcare,conv_7529,12,2026-05-02T06:19:00.045339
+This is amazing!,admi,romance,stranger,0,3,0.874,Reaction to education,conv_5812,1,2026-05-02T06:19:00.046753
+BEST DAY OF MY LIFE!,ecst,online_debate,stranger,0,3,0.727,Reaction to healthcare,conv_1162,4,2026-05-02T06:19:00.046540
+This is amazing!,sadn,workplace,user,0,2,0.906,Reaction to online_debate,conv_5133,8,2026-05-02T06:19:00.045055
+Best day ever!,ange,family,agent,0,2,0.699,Reaction to online_debate,conv_6202,3,2026-05-02T06:19:00.045873
+SEEING RED!,rage,friendship,friend,0,3,0.933,Reaction to education,conv_5419,11,2026-05-02T06:19:00.048419
+ABSOLUTELY THRILLED!,ecst,romance,stranger,0,3,0.819,Reaction to online_debate,conv_2557,3,2026-05-02T06:19:00.046681
+Profoundly moving.,awe,customer_service,user,0,1,0.57,Reaction to online_debate,conv_6641,11,2026-05-02T06:19:00.049888
+Best day ever!,inte,customer_service,user,0,1,0.673,Reaction to healthcare,conv_1031,9,2026-05-02T06:19:00.032270
+So happy about this!,sadn,romance,partner,0,2,0.824,Reaction to online_debate,conv_3060,2,2026-05-02T06:19:00.045193
+This is amazing!,opti,family,stranger,0,1,0.654,Reaction to customer_service,conv_2524,2,2026-05-02T06:19:00.043353
+Best day ever!,inte,online_debate,agent,0,1,0.696,Reaction to healthcare,conv_2991,9,2026-05-02T06:19:00.032177
+Best day ever!,inte,customer_service,friend,0,1,0.803,Reaction to romance,conv_2652,7,2026-05-02T06:19:00.032133
+Full of affection.,love,healthcare,partner,0,1,0.73,Reaction to workplace,conv_8449,1,2026-05-02T06:19:00.049194
+This is amazing!,joy,healthcare,friend,0,2,0.694,Reaction to workplace,conv_1791,6,2026-05-02T06:19:00.043632
+This is amazing!,remo,online_debate,agent,0,1,0.622,Reaction to workplace,conv_4771,7,2026-05-02T06:19:00.050706
+Best day ever!,acce,workplace,partner,0,1,0.768,Reaction to customer_service,conv_8349,9,2026-05-02T06:19:00.030901
+This is amazing!,appr,friendship,agent,0,2,0.732,Reaction to family,conv_5110,2,2026-05-02T06:19:00.046143
+So happy about this!,acce,workplace,stranger,0,1,0.764,Reaction to online_debate,conv_9071,1,2026-05-02T06:19:00.030708
+This is amazing!,ange,family,user,0,2,0.888,Reaction to family,conv_9547,9,2026-05-02T06:19:00.045861
+So happy about this!,trus,romance,partner,0,2,0.678,Reaction to friendship,conv_8626,10,2026-05-02T06:19:00.044101
+Filled with wonder.,awe,online_debate,agent,0,1,0.561,Reaction to online_debate,conv_1186,2,2026-05-02T06:19:00.049959
+So happy about this!,dist,customer_service,partner,0,1,0.783,Reaction to friendship,conv_4634,10,2026-05-02T06:19:00.031184
+SEEING RED!,rage,online_debate,user,0,3,0.808,Reaction to friendship,conv_8106,2,2026-05-02T06:19:00.048549
+PARALYZED WITH FEAR!,terr,romance,friend,0,3,0.774,Reaction to healthcare,conv_2406,1,2026-05-02T06:19:00.047341
+SEEING RED!,rage,workplace,partner,0,3,0.898,Reaction to workplace,conv_4583,3,2026-05-02T06:19:00.048495
+So happy about this!,disa,customer_service,user,0,1,0.651,Reaction to healthcare,conv_7632,2,2026-05-02T06:19:00.050152
+This is amazing!,appr,customer_service,agent,0,2,0.703,Reaction to customer_service,conv_1929,2,2026-05-02T06:19:00.046217
+So happy about this!,cont,online_debate,agent,0,1,0.717,Reaction to workplace,conv_9330,10,2026-05-02T06:19:00.050869
+Scanning for threats.,vigi,customer_service,user,0,3,0.827,Reaction to workplace,conv_5902,6,2026-05-02T06:19:00.048761
+So happy about this!,disg,workplace,agent,0,2,0.91,Reaction to friendship,conv_2109,5,2026-05-02T06:19:00.045494
+NIGHTMARE COME TRUE!,terr,romance,stranger,0,3,0.783,Reaction to customer_service,conv_8596,5,2026-05-02T06:19:00.047123
+BEST DAY OF MY LIFE!,ecst,workplace,agent,0,3,0.857,Reaction to romance,conv_7060,9,2026-05-02T06:19:00.046652
+So happy about this!,trus,family,agent,0,2,0.676,Reaction to workplace,conv_4244,10,2026-05-02T06:19:00.044264
+I'm worried something might go wrong.,fear,romance,user,0,2,0.756,Reaction to workplace,conv_2998,8,2026-05-02T06:19:00.044546
+I'm worried something might go wrong.,fear,family,partner,0,2,0.912,Reaction to family,conv_3246,4,2026-05-02T06:19:00.044558
+Best day ever!,opti,workplace,friend,0,1,0.748,Reaction to healthcare,conv_3124,12,2026-05-02T06:19:00.032740
+What a surprise!,supr,romance,user,0,2,0.883,Reaction to education,conv_4809,8,2026-05-02T06:19:00.051572
+Didn't see that coming!,supr,family,stranger,0,2,0.784,Reaction to healthcare,conv_5329,10,2026-05-02T06:19:00.051591
+COMPLETELY STUNNED!,amaz,online_debate,friend,0,3,0.89,Reaction to family,conv_3171,10,2026-05-02T06:19:00.047469
+Mean so much.,love,friendship,user,0,1,0.564,Reaction to customer_service,conv_4847,3,2026-05-02T06:19:00.049212
+"Fantastic, more work.",joy,friendship,agent,1,2,0.737,Reaction to online_debate,conv_8471,12,2026-05-02T06:19:00.043740
+Best day ever!,dist,romance,user,0,1,0.682,Reaction to online_debate,conv_8890,11,2026-05-02T06:19:00.030998
+This is amazing!,bore,healthcare,stranger,0,1,0.605,Reaction to family,conv_9440,6,2026-05-02T06:19:00.031945
+NIGHTMARE COME TRUE!,terr,friendship,agent,0,3,0.805,Reaction to online_debate,conv_6568,6,2026-05-02T06:19:00.047295
+"Fantastic, more work.",joy,romance,friend,1,2,0.752,Reaction to workplace,conv_4484,5,2026-05-02T06:19:00.043687
+HATE EVERY FIBER!,loat,family,stranger,0,3,0.752,Reaction to healthcare,conv_7148,8,2026-05-02T06:19:00.048179
+Care deeply.,love,friendship,partner,0,1,0.599,Reaction to family,conv_9460,2,2026-05-02T06:19:00.049057
+Best day ever!,subm,online_debate,agent,0,1,0.574,Reaction to customer_service,conv_5715,12,2026-05-02T06:19:00.049461
+Best day ever!,anno,online_debate,stranger,0,1,0.603,Reaction to online_debate,conv_6572,9,2026-05-02T06:19:00.032556
+This is amazing!,disg,online_debate,stranger,0,2,0.779,Reaction to family,conv_1347,8,2026-05-02T06:19:00.045428
+So happy about this!,surp,healthcare,agent,0,2,0.696,Reaction to friendship,conv_8567,3,2026-05-02T06:19:00.044922
+Full of affection.,love,romance,friend,0,1,0.782,Reaction to workplace,conv_4079,5,2026-05-02T06:19:00.049170
+ABSOLUTELY FURIOUS!,rage,friendship,stranger,0,3,0.884,Reaction to education,conv_3111,6,2026-05-02T06:19:00.048601
+So happy about this!,joy,healthcare,user,0,2,0.711,Reaction to romance,conv_7242,2,2026-05-02T06:19:00.043848
+Mean so much.,love,online_debate,partner,0,1,0.638,Reaction to romance,conv_4453,5,2026-05-02T06:19:00.049133
+"Fantastic, more work.",joy,romance,partner,1,2,0.76,Reaction to online_debate,conv_9046,12,2026-05-02T06:19:00.043662
+What a surprise!,supr,education,agent,0,2,0.711,Reaction to healthcare,conv_8097,9,2026-05-02T06:19:00.051699
+This is amazing!,dist,education,user,0,1,0.58,Reaction to online_debate,conv_4058,10,2026-05-02T06:19:00.031051
+Best day ever!,disa,education,friend,0,1,0.573,Reaction to family,conv_9400,1,2026-05-02T06:19:00.050219
+Filled with wonder.,awe,workplace,agent,0,1,0.693,Reaction to friendship,conv_1619,5,2026-05-02T06:19:00.050042
+This is amazing!,subm,romance,partner,0,1,0.593,Reaction to friendship,conv_3512,12,2026-05-02T06:19:00.049644
+Best day ever!,anno,customer_service,stranger,0,1,0.577,Reaction to family,conv_4838,7,2026-05-02T06:19:00.032453
+BLIND RAGE!,rage,education,user,0,3,0.901,Reaction to online_debate,conv_9710,6,2026-05-02T06:19:00.048501
+Best day ever!,subm,romance,agent,0,1,0.696,Reaction to online_debate,conv_1731,1,2026-05-02T06:19:00.049532
+Overwhelmed.,awe,workplace,user,0,1,0.718,Reaction to education,conv_4149,3,2026-05-02T06:19:00.049823
+Care deeply.,love,online_debate,user,0,1,0.666,Reaction to online_debate,conv_2752,10,2026-05-02T06:19:00.049151
+Unexpected!,supr,romance,agent,0,2,0.76,Reaction to family,conv_6370,2,2026-05-02T06:19:00.051764
+So happy about this!,inte,romance,stranger,0,1,0.562,Reaction to healthcare,conv_5779,9,2026-05-02T06:19:00.032362
+Best day ever!,anno,romance,agent,0,1,0.771,Reaction to healthcare,conv_2812,1,2026-05-02T06:19:00.032727
+Best day ever!,bore,customer_service,agent,0,1,0.629,Reaction to customer_service,conv_3659,6,2026-05-02T06:19:00.031733
+So happy about this!,inte,healthcare,user,0,1,0.642,Reaction to family,conv_3368,2,2026-05-02T06:19:00.032287
+So happy about this!,appr,workplace,stranger,0,2,0.664,Reaction to workplace,conv_7252,5,2026-05-02T06:19:00.046125
+Care deeply.,love,education,stranger,0,1,0.791,Reaction to education,conv_4191,2,2026-05-02T06:19:00.049312
+So happy about this!,sadn,healthcare,user,0,2,0.765,Reaction to education,conv_5755,9,2026-05-02T06:19:00.045187
+This is amazing!,cont,friendship,user,0,1,0.598,Reaction to romance,conv_2803,3,2026-05-02T06:19:00.050809
+ASTONISHING!,amaz,healthcare,stranger,0,3,0.914,Reaction to education,conv_8867,5,2026-05-02T06:19:00.047693
+BEST DAY OF MY LIFE!,ecst,family,user,0,3,0.75,Reaction to healthcare,conv_4054,3,2026-05-02T06:19:00.046406
+This makes me nervous.,fear,family,user,0,2,0.676,Reaction to education,conv_2085,1,2026-05-02T06:19:00.044552
+Best day ever!,appr,online_debate,user,0,2,0.739,Reaction to family,conv_3031,8,2026-05-02T06:19:00.046280
+This is amazing!,cont,romance,friend,0,1,0.685,Reaction to workplace,conv_9363,1,2026-05-02T06:19:00.051115
+Best day ever!,opti,romance,partner,0,1,0.752,Reaction to online_debate,conv_8736,11,2026-05-02T06:19:00.043359
+HATE EVERY FIBER!,loat,education,agent,0,3,0.785,Reaction to customer_service,conv_9807,7,2026-05-02T06:19:00.048186
+Best day ever!,surp,family,partner,0,2,0.857,Reaction to romance,conv_9231,2,2026-05-02T06:19:00.044774
+On high alert.,vigi,healthcare,user,0,3,0.789,Reaction to online_debate,conv_6621,5,2026-05-02T06:19:00.048813
+Filled with wonder.,awe,customer_service,partner,0,1,0.696,Reaction to romance,conv_9463,9,2026-05-02T06:19:00.049859
+Best day ever!,trus,online_debate,stranger,0,2,0.737,Reaction to online_debate,conv_1055,9,2026-05-02T06:19:00.044211
+This is amazing!,pens,healthcare,user,0,1,0.567,Reaction to education,conv_2859,10,2026-05-02T06:19:00.031334
+This is amazing!,dist,healthcare,friend,0,1,0.586,Reaction to online_debate,conv_1465,6,2026-05-02T06:19:00.031089
+This is amazing!,disg,education,agent,0,2,0.745,Reaction to romance,conv_9866,11,2026-05-02T06:19:00.045399
+This is amazing!,surp,education,partner,0,2,0.843,Reaction to romance,conv_8568,7,2026-05-02T06:19:00.044640
+ABSOLUTELY TERRIFIED!,terr,family,partner,0,3,0.946,Reaction to workplace,conv_7226,12,2026-05-02T06:19:00.047312
+"Fantastic, more work.",joy,healthcare,stranger,1,2,0.923,Reaction to education,conv_7771,4,2026-05-02T06:19:00.043733
+So happy about this!,sadn,workplace,agent,0,2,0.869,Reaction to friendship,conv_7434,4,2026-05-02T06:19:00.045074
+So happy about this!,anno,romance,friend,0,1,0.58,Reaction to friendship,conv_3091,3,2026-05-02T06:19:00.032679
+This is amazing!,pens,healthcare,friend,0,1,0.734,Reaction to customer_service,conv_6646,11,2026-05-02T06:19:00.031423
+This is amazing!,remo,friendship,user,0,1,0.778,Reaction to education,conv_8960,3,2026-05-02T06:19:00.050448
+Full of affection.,love,friendship,stranger,0,1,0.655,Reaction to online_debate,conv_2663,3,2026-05-02T06:19:00.049121
+This is amazing!,sere,healthcare,agent,0,1,0.653,Reaction to workplace,conv_2608,10,2026-05-02T06:19:00.030401
+I'm worried something might go wrong.,fear,online_debate,user,0,2,0.786,Reaction to romance,conv_8374,5,2026-05-02T06:19:00.044621
+HATE EVERY FIBER!,loat,romance,partner,0,3,0.77,Reaction to family,conv_1978,5,2026-05-02T06:19:00.048128
+Overwhelmed.,awe,romance,partner,0,1,0.678,Reaction to romance,conv_9847,2,2026-05-02T06:19:00.049865
+This is amazing!,ange,friendship,friend,0,2,0.757,Reaction to education,conv_4488,2,2026-05-02T06:19:00.045848
+This is amazing!,remo,workplace,partner,0,1,0.785,Reaction to friendship,conv_5870,9,2026-05-02T06:19:00.050467
+Best day ever!,ange,romance,partner,0,2,0.806,Reaction to friendship,conv_8709,5,2026-05-02T06:19:00.045976
+This is amazing!,disa,romance,friend,0,1,0.649,Reaction to workplace,conv_1170,5,2026-05-02T06:19:00.050213
+This is amazing!,opti,friendship,user,0,1,0.614,Reaction to education,conv_6785,11,2026-05-02T06:19:00.032766
+SEEING RED!,rage,friendship,stranger,0,3,0.823,Reaction to romance,conv_4269,2,2026-05-02T06:19:00.048643
+"Oh great, another meeting.",joy,healthcare,partner,1,2,0.904,Reaction to family,conv_2635,1,2026-05-02T06:19:00.043874
+This is amazing!,disg,workplace,agent,0,2,0.731,Reaction to customer_service,conv_1393,10,2026-05-02T06:19:00.045417
+So happy about this!,acce,education,friend,0,1,0.767,Reaction to education,conv_8111,1,2026-05-02T06:19:00.030690
+So happy about this!,trus,family,stranger,0,2,0.949,Reaction to workplace,conv_6656,12,2026-05-02T06:19:00.044143
+Best day ever!,subm,workplace,stranger,0,1,0.705,Reaction to customer_service,conv_8292,5,2026-05-02T06:19:00.049639
+Best day ever!,opti,education,stranger,0,1,0.789,Reaction to romance,conv_4335,11,2026-05-02T06:19:00.032821
+So happy about this!,remo,education,friend,0,1,0.598,Reaction to workplace,conv_1347,4,2026-05-02T06:19:00.050674
+So happy about this!,remo,family,friend,0,1,0.794,Reaction to friendship,conv_5645,8,2026-05-02T06:19:00.050730
+This is amazing!,remo,online_debate,partner,0,1,0.742,Reaction to education,conv_2250,7,2026-05-02T06:19:00.050574
+Full of affection.,love,customer_service,agent,0,1,0.626,Reaction to healthcare,conv_6236,12,2026-05-02T06:19:00.049253
+Best day ever!,anno,customer_service,stranger,0,1,0.56,Reaction to friendship,conv_8372,9,2026-05-02T06:19:00.032662
+HEARTBROKEN.,grie,education,stranger,0,3,0.886,Reaction to friendship,conv_8077,6,2026-05-02T06:19:00.047961
+This is amazing!,disa,healthcare,friend,0,1,0.654,Reaction to online_debate,conv_7531,8,2026-05-02T06:19:00.050158
+Best day ever!,ange,customer_service,partner,0,2,0.753,Reaction to workplace,conv_5116,1,2026-05-02T06:19:00.045817
+NIGHTMARE COME TRUE!,terr,family,stranger,0,3,0.844,Reaction to romance,conv_3962,10,2026-05-02T06:19:00.047134
+This is amazing!,aggr,family,agent,0,1,0.739,Reaction to romance,conv_7009,2,2026-05-02T06:19:00.051452
+So happy about this!,opti,friendship,user,0,1,0.581,Reaction to education,conv_3293,5,2026-05-02T06:19:00.032753
+Mean so much.,love,romance,agent,0,1,0.771,Reaction to customer_service,conv_1830,11,2026-05-02T06:19:00.049259
+This is amazing!,disg,online_debate,partner,0,2,0.862,Reaction to education,conv_7805,10,2026-05-02T06:19:00.045656
+Best day ever!,dist,friendship,stranger,0,1,0.678,Reaction to customer_service,conv_6227,12,2026-05-02T06:19:00.031132
+So happy about this!,disg,workplace,stranger,0,2,0.888,Reaction to friendship,conv_7463,9,2026-05-02T06:19:00.045476
+This is amazing!,sadn,family,stranger,0,2,0.875,Reaction to workplace,conv_8557,10,2026-05-02T06:19:00.045002
+This is amazing!,acce,customer_service,stranger,0,1,0.759,Reaction to romance,conv_3924,10,2026-05-02T06:19:00.030815
+This is amazing!,anno,online_debate,user,0,1,0.715,Reaction to online_debate,conv_8194,7,2026-05-02T06:19:00.032527
+ASTONISHING!,amaz,romance,user,0,3,0.68,Reaction to friendship,conv_9465,12,2026-05-02T06:19:00.047544
+Best day ever!,pens,education,agent,0,1,0.553,Reaction to romance,conv_5795,1,2026-05-02T06:19:00.031542
+HEARTBROKEN.,grie,romance,agent,0,3,0.683,Reaction to education,conv_7413,9,2026-05-02T06:19:00.047810
+So happy about this!,anno,workplace,user,0,1,0.774,Reaction to workplace,conv_4709,2,2026-05-02T06:19:00.032412
+ABSOLUTELY FURIOUS!,rage,online_debate,agent,0,3,0.907,Reaction to family,conv_6344,1,2026-05-02T06:19:00.048573
+Best day ever!,sere,friendship,user,0,1,0.804,Reaction to romance,conv_4288,11,2026-05-02T06:19:00.030548
+This is amazing!,inte,customer_service,friend,0,1,0.635,Reaction to family,conv_5498,9,2026-05-02T06:19:00.031994
+Best day ever!,pens,romance,stranger,0,1,0.609,Reaction to family,conv_7685,10,2026-05-02T06:19:00.031512
+Scanning for threats.,vigi,healthcare,user,0,3,0.768,Reaction to friendship,conv_6405,4,2026-05-02T06:19:00.048951
+Care deeply.,love,education,user,0,1,0.778,Reaction to romance,conv_9116,2,2026-05-02T06:19:00.049306
+Afraid of consequences.,fear,family,user,0,2,0.688,Reaction to romance,conv_1768,5,2026-05-02T06:19:00.044320
+NIGHTMARE COME TRUE!,terr,healthcare,friend,0,3,0.894,Reaction to workplace,conv_2604,5,2026-05-02T06:19:00.047335
+So happy about this!,inte,romance,stranger,0,1,0.777,Reaction to online_debate,conv_9718,4,2026-05-02T06:19:00.032054
+This is amazing!,acce,online_debate,stranger,0,1,0.714,Reaction to friendship,conv_3177,7,2026-05-02T06:19:00.030943
+So happy about this!,anno,online_debate,user,0,1,0.72,Reaction to friendship,conv_8623,2,2026-05-02T06:19:00.032592
+So happy about this!,pens,customer_service,agent,0,1,0.616,Reaction to workplace,conv_9682,4,2026-05-02T06:19:00.031589
+This is amazing!,disa,customer_service,stranger,0,1,0.663,Reaction to customer_service,conv_1268,3,2026-05-02T06:19:00.050103
+Scanning for threats.,vigi,customer_service,agent,0,3,0.821,Reaction to family,conv_9879,10,2026-05-02T06:19:00.048870
+I'm worried something might go wrong.,fear,friendship,agent,0,2,0.729,Reaction to workplace,conv_9069,4,2026-05-02T06:19:00.044331
+NIGHTMARE COME TRUE!,terr,education,partner,0,3,0.83,Reaction to customer_service,conv_4526,8,2026-05-02T06:19:00.047363
+So happy about this!,disa,romance,stranger,0,1,0.802,Reaction to family,conv_2363,1,2026-05-02T06:19:00.050359
+This is amazing!,admi,friendship,stranger,0,3,0.771,Reaction to workplace,conv_4787,6,2026-05-02T06:19:00.046833
+Best day ever!,dist,romance,stranger,0,1,0.717,Reaction to workplace,conv_9776,12,2026-05-02T06:19:00.031023
+PARALYZED WITH FEAR!,terr,education,user,0,3,0.892,Reaction to friendship,conv_6199,8,2026-05-02T06:19:00.047318
+PARALYZED WITH FEAR!,terr,family,partner,0,3,0.702,Reaction to healthcare,conv_3999,2,2026-05-02T06:19:00.047284
+So happy about this!,cont,education,stranger,0,1,0.625,Reaction to romance,conv_5093,12,2026-05-02T06:19:00.050978
+Best day ever!,pens,family,user,0,1,0.637,Reaction to friendship,conv_7425,4,2026-05-02T06:19:00.031345
+This is amazing!,dist,workplace,user,0,1,0.557,Reaction to online_debate,conv_1992,3,2026-05-02T06:19:00.031079
+ABSOLUTELY DESPISE THIS!,loat,family,friend,0,3,0.709,Reaction to online_debate,conv_9947,5,2026-05-02T06:19:00.048073
+Best day ever!,acce,education,stranger,0,1,0.559,Reaction to romance,conv_8326,11,2026-05-02T06:19:00.030731
+ABSOLUTELY DESPISE THIS!,loat,friendship,friend,0,3,0.927,Reaction to healthcare,conv_8871,7,2026-05-02T06:19:00.048043
+Scanning for threats.,vigi,romance,stranger,0,3,0.815,Reaction to family,conv_7625,7,2026-05-02T06:19:00.048807
+This is amazing!,ange,friendship,stranger,0,2,0.834,Reaction to workplace,conv_2244,7,2026-05-02T06:19:00.045963
+ABSOLUTELY FURIOUS!,rage,family,stranger,0,3,0.818,Reaction to workplace,conv_7300,8,2026-05-02T06:19:00.048672
+BLIND RAGE!,rage,online_debate,friend,0,3,0.752,Reaction to customer_service,conv_4265,11,2026-05-02T06:19:00.048561
+HYPERVIGILANT.,vigi,family,partner,0,3,0.836,Reaction to romance,conv_7136,11,2026-05-02T06:19:00.048986
+Best day ever!,remo,workplace,stranger,0,1,0.693,Reaction to education,conv_7611,3,2026-05-02T06:19:00.050650
+Profoundly moving.,awe,education,stranger,0,1,0.64,Reaction to romance,conv_2921,3,2026-05-02T06:19:00.050001
+Unexpected!,supr,customer_service,partner,0,2,0.805,Reaction to healthcare,conv_8956,9,2026-05-02T06:19:00.051554
+So happy about this!,anno,customer_service,user,0,1,0.578,Reaction to education,conv_9493,10,2026-05-02T06:19:00.032533
+OVER THE MOON!,ecst,friendship,agent,0,3,0.886,Reaction to customer_service,conv_9956,9,2026-05-02T06:19:00.046698
+Best day ever!,dist,family,stranger,0,1,0.644,Reaction to education,conv_9364,11,2026-05-02T06:19:00.031226
+NIGHTMARE COME TRUE!,terr,education,agent,0,3,0.922,Reaction to healthcare,conv_3236,9,2026-05-02T06:19:00.047262
+This is amazing!,disg,friendship,stranger,0,2,0.848,Reaction to healthcare,conv_9989,4,2026-05-02T06:19:00.045387
+Best day ever!,joy,education,stranger,0,2,0.856,Reaction to customer_service,conv_5904,3,2026-05-02T06:19:00.043893
+So happy about this!,admi,family,user,0,3,0.887,Reaction to healthcare,conv_4807,9,2026-05-02T06:19:00.046979
+SEEING RED!,rage,education,user,0,3,0.708,Reaction to workplace,conv_7121,5,2026-05-02T06:19:00.048471
+This is amazing!,disa,healthcare,partner,0,1,0.76,Reaction to romance,conv_4184,7,2026-05-02T06:19:00.050322
+HATE EVERY FIBER!,loat,workplace,agent,0,3,0.81,Reaction to family,conv_8119,8,2026-05-02T06:19:00.048369
+So happy about this!,admi,workplace,agent,0,3,0.73,Reaction to friendship,conv_2549,10,2026-05-02T06:19:00.046827
+This is amazing!,surp,workplace,partner,0,2,0.905,Reaction to healthcare,conv_7618,10,2026-05-02T06:19:00.044959
+So happy about this!,sere,education,partner,0,1,0.599,Reaction to workplace,conv_8159,1,2026-05-02T06:19:00.030340
+HATE EVERY FIBER!,loat,online_debate,stranger,0,3,0.875,Reaction to family,conv_8536,5,2026-05-02T06:19:00.048139
+On high alert.,vigi,friendship,partner,0,3,0.881,Reaction to education,conv_5503,2,2026-05-02T06:19:00.048969
+So happy about this!,ange,online_debate,agent,0,2,0.819,Reaction to workplace,conv_6791,3,2026-05-02T06:19:00.045898
+Best day ever!,pens,friendship,partner,0,1,0.583,Reaction to workplace,conv_6769,11,2026-05-02T06:19:00.031601
+This is amazing!,cont,friendship,user,0,1,0.634,Reaction to workplace,conv_6585,8,2026-05-02T06:19:00.051039
+Scanning for threats.,vigi,workplace,user,0,3,0.842,Reaction to workplace,conv_5919,2,2026-05-02T06:19:00.048819
+Best day ever!,sere,healthcare,partner,0,1,0.566,Reaction to education,conv_2870,9,2026-05-02T06:19:00.030484
+"Oh great, another meeting.",joy,customer_service,agent,1,2,0.865,Reaction to healthcare,conv_3146,5,2026-05-02T06:19:00.043561
+Full of affection.,love,customer_service,stranger,0,1,0.751,Reaction to romance,conv_9023,3,2026-05-02T06:19:00.049382
+Best day ever!,remo,romance,stranger,0,1,0.701,Reaction to romance,conv_4281,7,2026-05-02T06:19:00.050491
+Care deeply.,love,customer_service,friend,0,1,0.715,Reaction to family,conv_9483,7,2026-05-02T06:19:00.049078
+So happy about this!,pens,online_debate,stranger,0,1,0.777,Reaction to friendship,conv_5675,8,2026-05-02T06:19:00.031578
+COMPLETELY STUNNED!,amaz,romance,friend,0,3,0.88,Reaction to education,conv_6785,2,2026-05-02T06:19:00.047647
+This is amazing!,aggr,romance,stranger,0,1,0.664,Reaction to friendship,conv_2063,12,2026-05-02T06:19:00.051262
+Best day ever!,opti,customer_service,agent,0,1,0.794,Reaction to family,conv_7674,12,2026-05-02T06:19:00.043388
+So happy about this!,joy,healthcare,user,0,2,0.661,Reaction to customer_service,conv_5635,2,2026-05-02T06:19:00.043820
+COMPLETELY STUNNED!,amaz,online_debate,user,0,3,0.914,Reaction to education,conv_2140,10,2026-05-02T06:19:00.047532
+This is amazing!,trus,customer_service,agent,0,2,0.698,Reaction to education,conv_1331,11,2026-05-02T06:19:00.044258
+HYPERVIGILANT.,vigi,healthcare,user,0,3,0.702,Reaction to friendship,conv_2636,4,2026-05-02T06:19:00.048801
+So happy about this!,aggr,workplace,user,0,1,0.732,Reaction to healthcare,conv_2585,12,2026-05-02T06:19:00.051227
+COMPLETELY STUNNED!,amaz,online_debate,stranger,0,3,0.859,Reaction to workplace,conv_2717,8,2026-05-02T06:19:00.047451
+COMPLETELY STUNNED!,amaz,healthcare,partner,0,3,0.798,Reaction to workplace,conv_9461,10,2026-05-02T06:19:00.047618
+This is amazing!,disg,romance,user,0,2,0.916,Reaction to online_debate,conv_4971,1,2026-05-02T06:19:00.045506
+This is amazing!,anno,education,partner,0,1,0.799,Reaction to romance,conv_4253,11,2026-05-02T06:19:00.032399
+HYPERVIGILANT.,vigi,education,user,0,3,0.692,Reaction to romance,conv_7870,8,2026-05-02T06:19:00.048980
+Best day ever!,joy,education,partner,0,2,0.825,Reaction to friendship,conv_5094,11,2026-05-02T06:19:00.043771
+This is amazing!,sere,healthcare,agent,0,1,0.611,Reaction to romance,conv_2562,8,2026-05-02T06:19:00.030461
+This is amazing!,opti,education,partner,0,1,0.7,Reaction to family,conv_7599,3,2026-05-02T06:19:00.032797
+Drowning in sorrow.,grie,workplace,friend,0,3,0.718,Reaction to workplace,conv_4916,5,2026-05-02T06:19:00.047978
+This is amazing!,appr,workplace,friend,0,2,0.767,Reaction to romance,conv_4381,5,2026-05-02T06:19:00.046034
+So happy about this!,remo,friendship,partner,0,1,0.766,Reaction to romance,conv_2343,9,2026-05-02T06:19:00.050413
+This is amazing!,opti,education,agent,0,1,0.803,Reaction to online_debate,conv_3083,2,2026-05-02T06:19:00.043432
+This is amazing!,appr,healthcare,partner,0,2,0.68,Reaction to online_debate,conv_8594,2,2026-05-02T06:19:00.046358
+So happy about this!,surp,family,friend,0,2,0.854,Reaction to healthcare,conv_2109,5,2026-05-02T06:19:00.044672
+Best day ever!,dist,romance,partner,0,1,0.701,Reaction to education,conv_3165,7,2026-05-02T06:19:00.031161
+This is amazing!,trus,healthcare,friend,0,2,0.849,Reaction to customer_service,conv_1014,5,2026-05-02T06:19:00.043961
+Best day ever!,trus,healthcare,agent,0,2,0.791,Reaction to friendship,conv_9942,2,2026-05-02T06:19:00.044130
+Best day ever!,aggr,friendship,agent,0,1,0.588,Reaction to workplace,conv_3757,2,2026-05-02T06:19:00.051359
+This is amazing!,remo,family,partner,0,1,0.607,Reaction to education,conv_4251,12,2026-05-02T06:19:00.050638
+Best day ever!,inte,customer_service,agent,0,1,0.755,Reaction to online_debate,conv_8574,10,2026-05-02T06:19:00.032191
+SEEING RED!,rage,online_debate,friend,0,3,0.935,Reaction to romance,conv_3163,10,2026-05-02T06:19:00.048402
+MIND-BLOWING!,amaz,workplace,user,0,3,0.762,Reaction to customer_service,conv_3866,2,2026-05-02T06:19:00.047497
+Best day ever!,surp,workplace,user,0,2,0.661,Reaction to friendship,conv_1275,7,2026-05-02T06:19:00.044805
+So happy about this!,surp,workplace,partner,0,2,0.722,Reaction to friendship,conv_9204,4,2026-05-02T06:19:00.044811
+This is amazing!,admi,education,friend,0,3,0.771,Reaction to education,conv_3186,11,2026-05-02T06:19:00.046716
+ABSOLUTELY THRILLED!,ecst,workplace,agent,0,3,0.835,Reaction to workplace,conv_3860,7,2026-05-02T06:19:00.046704
+So happy about this!,dist,customer_service,agent,0,1,0.592,Reaction to customer_service,conv_2664,4,2026-05-02T06:19:00.031213
+Best day ever!,sadn,online_debate,partner,0,2,0.924,Reaction to customer_service,conv_2221,7,2026-05-02T06:19:00.045140
+This is amazing!,inte,friendship,agent,0,1,0.669,Reaction to online_debate,conv_4273,8,2026-05-02T06:19:00.032374
+DEVASTATED by this loss.,grie,healthcare,partner,0,3,0.844,Reaction to online_debate,conv_3731,4,2026-05-02T06:19:00.047904
+This is amazing!,appr,online_debate,partner,0,2,0.749,Reaction to customer_service,conv_3188,11,2026-05-02T06:19:00.046040
+So happy about this!,surp,family,friend,0,2,0.803,Reaction to family,conv_4992,7,2026-05-02T06:19:00.044977
+So happy about this!,sadn,friendship,stranger,0,2,0.944,Reaction to customer_service,conv_1371,12,2026-05-02T06:19:00.045080
+So happy about this!,ange,workplace,partner,0,2,0.776,Reaction to customer_service,conv_5590,2,2026-05-02T06:19:00.045773
+Best day ever!,anno,friendship,user,0,1,0.688,Reaction to education,conv_9664,3,2026-05-02T06:19:00.032574
+Best day ever!,remo,healthcare,agent,0,1,0.62,Reaction to workplace,conv_3401,3,2026-05-02T06:19:00.050580
+Best day ever!,joy,family,partner,0,2,0.901,Reaction to healthcare,conv_6677,11,2026-05-02T06:19:00.043808
+Best day ever!,bore,healthcare,user,0,1,0.701,Reaction to education,conv_3742,2,2026-05-02T06:19:00.031686
+This is amazing!,sadn,workplace,partner,0,2,0.762,Reaction to online_debate,conv_2796,5,2026-05-02T06:19:00.045199
+Best day ever!,joy,healthcare,user,0,2,0.702,Reaction to online_debate,conv_2504,3,2026-05-02T06:19:00.043705
+Best day ever!,subm,romance,partner,0,1,0.756,Reaction to healthcare,conv_1649,1,2026-05-02T06:19:00.049399
+Filled with wonder.,awe,friendship,friend,0,1,0.693,Reaction to friendship,conv_2628,6,2026-05-02T06:19:00.050030
+Best day ever!,admi,customer_service,stranger,0,3,0.934,Reaction to online_debate,conv_3767,4,2026-05-02T06:19:00.046732
+So happy about this!,admi,healthcare,partner,0,3,0.745,Reaction to workplace,conv_3371,12,2026-05-02T06:19:00.046869
+ASTONISHING!,amaz,customer_service,stranger,0,3,0.877,Reaction to online_debate,conv_5030,11,2026-05-02T06:19:00.047578
+This is amazing!,disa,education,friend,0,1,0.562,Reaction to education,conv_5468,11,2026-05-02T06:19:00.050243
+"Oh great, another meeting.",joy,friendship,agent,1,2,0.833,Reaction to customer_service,conv_1315,2,2026-05-02T06:19:00.043880
+This is amazing!,admi,workplace,user,0,3,0.686,Reaction to healthcare,conv_3873,1,2026-05-02T06:19:00.047025
+REVOLTED!,loat,customer_service,agent,0,3,0.738,Reaction to customer_service,conv_7162,3,2026-05-02T06:19:00.048134
+HYPERVIGILANT.,vigi,online_debate,agent,0,3,0.682,Reaction to healthcare,conv_9006,1,2026-05-02T06:19:00.048940
+Best day ever!,admi,education,friend,0,3,0.685,Reaction to customer_service,conv_4146,7,2026-05-02T06:19:00.046838
+Full of affection.,love,workplace,friend,0,1,0.691,Reaction to healthcare,conv_9848,1,2026-05-02T06:19:00.049318
+ASTONISHING!,amaz,romance,partner,0,3,0.836,Reaction to workplace,conv_5090,8,2026-05-02T06:19:00.047676
+This is amazing!,acce,online_debate,friend,0,1,0.558,Reaction to family,conv_2906,2,2026-05-02T06:19:00.030914
+So happy about this!,appr,customer_service,friend,0,2,0.807,Reaction to friendship,conv_2109,8,2026-05-02T06:19:00.046364
+This is amazing!,anno,romance,user,0,1,0.679,Reaction to romance,conv_9621,3,2026-05-02T06:19:00.032496
+So happy about this!,sere,online_debate,stranger,0,1,0.661,Reaction to online_debate,conv_8247,2,2026-05-02T06:19:00.030378
+Best day ever!,pens,family,friend,0,1,0.608,Reaction to workplace,conv_4227,7,2026-05-02T06:19:00.031626
+So happy about this!,disa,online_debate,agent,0,1,0.761,Reaction to friendship,conv_2889,8,2026-05-02T06:19:00.050304
+ASTONISHING!,amaz,healthcare,friend,0,3,0.822,Reaction to friendship,conv_5423,2,2026-05-02T06:19:00.047422
+This is amazing!,subm,romance,agent,0,1,0.781,Reaction to romance,conv_9360,11,2026-05-02T06:19:00.049598
+ABSOLUTELY FURIOUS!,rage,online_debate,partner,0,3,0.841,Reaction to healthcare,conv_6047,1,2026-05-02T06:19:00.048567
+Best day ever!,acce,romance,agent,0,1,0.615,Reaction to romance,conv_6774,9,2026-05-02T06:19:00.030684
+Full of affection.,love,online_debate,stranger,0,1,0.747,Reaction to online_debate,conv_5203,9,2026-05-02T06:19:00.049324
+OVER THE MOON!,ecst,workplace,user,0,3,0.804,Reaction to romance,conv_5863,6,2026-05-02T06:19:00.046431
+"Fantastic, more work.",joy,workplace,agent,1,2,0.907,Reaction to healthcare,conv_9975,10,2026-05-02T06:19:00.043719
+Drowning in sorrow.,grie,customer_service,partner,0,3,0.764,Reaction to romance,conv_3130,4,2026-05-02T06:19:00.047984
+This makes me nervous.,fear,romance,agent,0,2,0.734,Reaction to education,conv_9164,7,2026-05-02T06:19:00.044589
+So happy about this!,ange,friendship,stranger,0,2,0.794,Reaction to online_debate,conv_3329,9,2026-05-02T06:19:00.045811
+This is amazing!,sadn,workplace,agent,0,2,0.711,Reaction to customer_service,conv_6367,12,2026-05-02T06:19:00.045236
+Overwhelmed.,awe,healthcare,friend,0,1,0.618,Reaction to workplace,conv_1595,7,2026-05-02T06:19:00.050012
+So happy about this!,surp,friendship,stranger,0,2,0.857,Reaction to healthcare,conv_1345,4,2026-05-02T06:19:00.044953
+Best day ever!,sere,friendship,stranger,0,1,0.616,Reaction to family,conv_4681,12,2026-05-02T06:19:00.030419
+This is amazing!,remo,healthcare,partner,0,1,0.584,Reaction to friendship,conv_6473,12,2026-05-02T06:19:00.050516
+Best day ever!,sadn,education,user,0,2,0.886,Reaction to friendship,conv_6710,2,2026-05-02T06:19:00.045152
+On high alert.,vigi,education,stranger,0,3,0.922,Reaction to education,conv_9285,2,2026-05-02T06:19:00.048732
+Best day ever!,sadn,friendship,user,0,2,0.866,Reaction to romance,conv_4706,7,2026-05-02T06:19:00.045038
+Best day ever!,admi,online_debate,partner,0,3,0.695,Reaction to family,conv_8741,8,2026-05-02T06:19:00.046815
+Best day ever!,admi,online_debate,friend,0,3,0.712,Reaction to online_debate,conv_5303,4,2026-05-02T06:19:00.046968
+Best day ever!,joy,healthcare,user,0,2,0.756,Reaction to family,conv_9976,3,2026-05-02T06:19:00.043765
+This is amazing!,cont,workplace,agent,0,1,0.72,Reaction to friendship,conv_6137,3,2026-05-02T06:19:00.051021
+COMPLETELY STUNNED!,amaz,education,user,0,3,0.706,Reaction to family,conv_9514,2,2026-05-02T06:19:00.047687
+This is amazing!,remo,healthcare,friend,0,1,0.749,Reaction to online_debate,conv_9908,4,2026-05-02T06:19:00.050557
+This is amazing!,admi,online_debate,user,0,3,0.949,Reaction to workplace,conv_2290,10,2026-05-02T06:19:00.046990
+So happy about this!,remo,family,agent,0,1,0.66,Reaction to friendship,conv_4333,6,2026-05-02T06:19:00.050551
+Best day ever!,remo,online_debate,friend,0,1,0.637,Reaction to friendship,conv_7720,5,2026-05-02T06:19:00.050694
+Best day ever!,admi,romance,agent,0,3,0.732,Reaction to customer_service,conv_7772,4,2026-05-02T06:19:00.046916
+Best day ever!,bore,friendship,user,0,1,0.664,Reaction to customer_service,conv_2583,8,2026-05-02T06:19:00.031845
+ABSOLUTELY TERRIFIED!,terr,workplace,partner,0,3,0.777,Reaction to education,conv_1523,2,2026-05-02T06:19:00.047239
+BEST DAY OF MY LIFE!,ecst,workplace,friend,0,3,0.945,Reaction to friendship,conv_7025,9,2026-05-02T06:19:00.046630
+So happy about this!,cont,romance,agent,0,1,0.787,Reaction to friendship,conv_5501,6,2026-05-02T06:19:00.050936
+This is amazing!,ange,education,friend,0,2,0.858,Reaction to healthcare,conv_5862,1,2026-05-02T06:19:00.045836
+BEST DAY OF MY LIFE!,ecst,healthcare,user,0,3,0.656,Reaction to customer_service,conv_7949,9,2026-05-02T06:19:00.046563
+This is amazing!,subm,online_debate,partner,0,1,0.554,Reaction to workplace,conv_1360,6,2026-05-02T06:19:00.049614
+Best day ever!,trus,workplace,user,0,2,0.793,Reaction to online_debate,conv_8078,9,2026-05-02T06:19:00.044033
+This is amazing!,trus,education,partner,0,2,0.949,Reaction to customer_service,conv_8353,1,2026-05-02T06:19:00.043997
+ABSOLUTELY THRILLED!,ecst,romance,stranger,0,3,0.671,Reaction to friendship,conv_5644,8,2026-05-02T06:19:00.046517
+Best day ever!,acce,online_debate,stranger,0,1,0.604,Reaction to customer_service,conv_2879,9,2026-05-02T06:19:00.030792
+Best day ever!,subm,customer_service,agent,0,1,0.639,Reaction to online_debate,conv_2048,10,2026-05-02T06:19:00.049668
+ABSOLUTELY TERRIFIED!,terr,customer_service,user,0,3,0.666,Reaction to customer_service,conv_9782,4,2026-05-02T06:19:00.047105
+Best day ever!,disa,customer_service,user,0,1,0.629,Reaction to customer_service,conv_3402,6,2026-05-02T06:19:00.050140
+Best day ever!,admi,education,user,0,3,0.843,Reaction to romance,conv_2589,7,2026-05-02T06:19:00.046821
+This is amazing!,cont,romance,user,0,1,0.61,Reaction to workplace,conv_5096,10,2026-05-02T06:19:00.050887
+Best day ever!,anno,workplace,partner,0,1,0.708,Reaction to friendship,conv_5383,4,2026-05-02T06:19:00.032703
+So happy about this!,appr,workplace,stranger,0,2,0.662,Reaction to romance,conv_4459,3,2026-05-02T06:19:00.046089
+BLIND RAGE!,rage,romance,stranger,0,3,0.668,Reaction to education,conv_1138,11,2026-05-02T06:19:00.048378
+So happy about this!,opti,family,stranger,0,1,0.748,Reaction to family,conv_2631,3,2026-05-02T06:19:00.043273
+This is amazing!,trus,education,user,0,2,0.86,Reaction to healthcare,conv_6626,10,2026-05-02T06:19:00.044246
+So happy about this!,trus,workplace,stranger,0,2,0.72,Reaction to family,conv_7056,11,2026-05-02T06:19:00.043991
+Best day ever!,surp,online_debate,user,0,2,0.69,Reaction to workplace,conv_3179,9,2026-05-02T06:19:00.044799
+Care deeply.,love,romance,agent,0,1,0.643,Reaction to healthcare,conv_9427,5,2026-05-02T06:19:00.049176
+This is amazing!,disa,education,stranger,0,1,0.599,Reaction to education,conv_9849,5,2026-05-02T06:19:00.050340
+"Fantastic, more work.",joy,romance,stranger,1,2,0.928,Reaction to online_debate,conv_7370,9,2026-05-02T06:19:00.043544
+So happy about this!,sere,family,agent,0,1,0.607,Reaction to healthcare,conv_2970,2,2026-05-02T06:19:00.030354
+This is amazing!,inte,education,friend,0,1,0.66,Reaction to family,conv_6650,10,2026-05-02T06:19:00.032018
+ABSOLUTELY THRILLED!,ecst,workplace,agent,0,3,0.789,Reaction to healthcare,conv_6272,9,2026-05-02T06:19:00.046636
+ABSOLUTELY THRILLED!,ecst,education,partner,0,3,0.711,Reaction to workplace,conv_2052,3,2026-05-02T06:19:00.046687
+Didn't see that coming!,supr,customer_service,friend,0,2,0.784,Reaction to online_debate,conv_8771,2,2026-05-02T06:19:00.051798
+This is amazing!,bore,family,user,0,1,0.592,Reaction to online_debate,conv_5476,5,2026-05-02T06:19:00.031762
+This is amazing!,remo,romance,friend,0,1,0.616,Reaction to romance,conv_1676,2,2026-05-02T06:19:00.050485
+Best day ever!,surp,education,agent,0,2,0.653,Reaction to customer_service,conv_2333,3,2026-05-02T06:19:00.044659
+Best day ever!,anno,friendship,friend,0,1,0.662,Reaction to romance,conv_9827,4,2026-05-02T06:19:00.032644
+So happy about this!,acce,healthcare,friend,0,1,0.63,Reaction to healthcare,conv_4859,9,2026-05-02T06:19:00.030596
+"Fantastic, more work.",joy,friendship,agent,1,2,0.88,Reaction to romance,conv_6194,5,2026-05-02T06:19:00.043650
+Best day ever!,disg,healthcare,friend,0,2,0.697,Reaction to customer_service,conv_6982,1,2026-05-02T06:19:00.045601
+HEARTBROKEN.,grie,online_debate,partner,0,3,0.824,Reaction to healthcare,conv_1151,2,2026-05-02T06:19:00.047911
+So happy about this!,admi,education,agent,0,3,0.902,Reaction to romance,conv_9846,8,2026-05-02T06:19:00.046852
+Best day ever!,admi,friendship,partner,0,3,0.758,Reaction to healthcare,conv_1968,9,2026-05-02T06:19:00.046893
+ABSOLUTELY FURIOUS!,rage,education,stranger,0,3,0.705,Reaction to workplace,conv_5117,9,2026-05-02T06:19:00.048396
+So happy about this!,ange,workplace,friend,0,2,0.83,Reaction to education,conv_7422,3,2026-05-02T06:19:00.045909
+BEST DAY OF MY LIFE!,ecst,healthcare,stranger,0,3,0.762,Reaction to customer_service,conv_5853,10,2026-05-02T06:19:00.046460
+SEEING RED!,rage,online_debate,agent,0,3,0.863,Reaction to friendship,conv_5486,4,2026-05-02T06:19:00.048441
+This is amazing!,disa,family,user,0,1,0.602,Reaction to customer_service,conv_5706,9,2026-05-02T06:19:00.050401
+So happy about this!,cont,healthcare,partner,0,1,0.567,Reaction to friendship,conv_8096,11,2026-05-02T06:19:00.050863
+So happy about this!,ange,workplace,user,0,2,0.751,Reaction to friendship,conv_6164,4,2026-05-02T06:19:00.045730
+Best day ever!,trus,family,user,0,2,0.651,Reaction to family,conv_2477,7,2026-05-02T06:19:00.044062
+So happy about this!,remo,online_debate,agent,0,1,0.706,Reaction to workplace,conv_5785,4,2026-05-02T06:19:00.050539
+This makes me nervous.,fear,workplace,user,0,2,0.831,Reaction to customer_service,conv_4093,2,2026-05-02T06:19:00.044296
+Care deeply.,love,healthcare,agent,0,1,0.658,Reaction to friendship,conv_5511,8,2026-05-02T06:19:00.049127
+This is amazing!,remo,online_debate,partner,0,1,0.661,Reaction to friendship,conv_7880,6,2026-05-02T06:19:00.050420
+This is amazing!,sere,customer_service,user,0,1,0.617,Reaction to family,conv_8202,7,2026-05-02T06:19:00.030537
+"Fantastic, more work.",joy,online_debate,user,1,2,0.793,Reaction to friendship,conv_7170,1,2026-05-02T06:19:00.043867
+This is amazing!,admi,workplace,stranger,0,3,0.655,Reaction to friendship,conv_2114,4,2026-05-02T06:19:00.046781
+Best day ever!,appr,workplace,stranger,0,2,0.917,Reaction to healthcare,conv_9614,7,2026-05-02T06:19:00.046382
+Unexpected!,supr,romance,agent,0,2,0.764,Reaction to education,conv_2410,12,2026-05-02T06:19:00.051788
+This is amazing!,remo,romance,stranger,0,1,0.576,Reaction to healthcare,conv_6081,4,2026-05-02T06:19:00.050752
+Afraid of consequences.,fear,education,friend,0,2,0.871,Reaction to workplace,conv_5410,12,2026-05-02T06:19:00.044367
+So happy about this!,bore,education,stranger,0,1,0.599,Reaction to workplace,conv_3725,1,2026-05-02T06:19:00.031869
+So happy about this!,ange,customer_service,partner,0,2,0.894,Reaction to friendship,conv_7238,3,2026-05-02T06:19:00.045934
+So happy about this!,acce,online_debate,agent,0,1,0.779,Reaction to online_debate,conv_3531,6,2026-05-02T06:19:00.030949
+This is amazing!,pens,online_debate,partner,0,1,0.562,Reaction to healthcare,conv_6379,6,2026-05-02T06:19:00.031357
+Best day ever!,admi,family,user,0,3,0.719,Reaction to friendship,conv_4646,6,2026-05-02T06:19:00.046863
+So happy about this!,surp,family,friend,0,2,0.711,Reaction to workplace,conv_8296,5,2026-05-02T06:19:00.044793
+Scanning for threats.,vigi,friendship,agent,0,3,0.731,Reaction to family,conv_4989,5,2026-05-02T06:19:00.049044
+So happy about this!,sadn,friendship,partner,0,2,0.747,Reaction to family,conv_3087,6,2026-05-02T06:19:00.045277
+PARALYZED WITH FEAR!,terr,workplace,friend,0,3,0.845,Reaction to healthcare,conv_2780,5,2026-05-02T06:19:00.047199
+So happy about this!,aggr,workplace,agent,0,1,0.661,Reaction to online_debate,conv_9576,1,2026-05-02T06:19:00.051203
+REVOLTED!,loat,online_debate,stranger,0,3,0.711,Reaction to family,conv_3569,1,2026-05-02T06:19:00.048055
+This is amazing!,opti,workplace,user,0,1,0.696,Reaction to healthcare,conv_6021,5,2026-05-02T06:19:00.043375
+This is amazing!,appr,romance,friend,0,2,0.694,Reaction to romance,conv_9524,12,2026-05-02T06:19:00.046058
+PARALYZED WITH FEAR!,terr,education,stranger,0,3,0.936,Reaction to customer_service,conv_8012,8,2026-05-02T06:19:00.047158
+Best day ever!,appr,online_debate,agent,0,2,0.724,Reaction to healthcare,conv_3846,1,2026-05-02T06:19:00.046370
+Best day ever!,appr,family,friend,0,2,0.854,Reaction to healthcare,conv_9747,4,2026-05-02T06:19:00.046046
+ASTONISHING!,amaz,online_debate,user,0,3,0.861,Reaction to romance,conv_5543,3,2026-05-02T06:19:00.047659
+This is amazing!,appr,friendship,user,0,2,0.783,Reaction to customer_service,conv_2636,7,2026-05-02T06:19:00.046238
+HATE EVERY FIBER!,loat,workplace,partner,0,3,0.676,Reaction to customer_service,conv_8671,11,2026-05-02T06:19:00.048099
+Best day ever!,ange,healthcare,friend,0,2,0.687,Reaction to online_debate,conv_2730,6,2026-05-02T06:19:00.045988
+So happy about this!,inte,family,agent,0,1,0.696,Reaction to online_debate,conv_7511,6,2026-05-02T06:19:00.032083
+"Oh great, another meeting.",joy,workplace,partner,1,2,0.844,Reaction to customer_service,conv_4128,6,2026-05-02T06:19:00.043899
+So happy about this!,sadn,customer_service,partner,0,2,0.828,Reaction to education,conv_7512,9,2026-05-02T06:19:00.045289
+This is amazing!,appr,workplace,partner,0,2,0.87,Reaction to family,conv_9825,12,2026-05-02T06:19:00.046352
+This is amazing!,bore,friendship,agent,0,1,0.571,Reaction to family,conv_8807,6,2026-05-02T06:19:00.031674
+Best day ever!,sadn,education,partner,0,2,0.8,Reaction to family,conv_4887,3,2026-05-02T06:19:00.045320
+Best day ever!,surp,family,user,0,2,0.751,Reaction to healthcare,conv_9156,3,2026-05-02T06:19:00.044665
+On high alert.,vigi,family,partner,0,3,0.778,Reaction to romance,conv_4093,5,2026-05-02T06:19:00.048852
+So happy about this!,pens,workplace,friend,0,1,0.739,Reaction to family,conv_5222,8,2026-05-02T06:19:00.031566
+This is amazing!,admi,romance,friend,0,3,0.923,Reaction to romance,conv_5991,9,2026-05-02T06:19:00.046721
+ABSOLUTELY TERRIFIED!,terr,romance,agent,0,3,0.76,Reaction to friendship,conv_3608,9,2026-05-02T06:19:00.047080
+This is amazing!,pens,family,user,0,1,0.762,Reaction to customer_service,conv_4914,6,2026-05-02T06:19:00.031436
+COMPLETELY STUNNED!,amaz,customer_service,agent,0,3,0.942,Reaction to healthcare,conv_5445,12,2026-05-02T06:19:00.047410
+"Oh great, another meeting.",joy,education,user,1,2,0.815,Reaction to customer_service,conv_9802,6,2026-05-02T06:19:00.043861
+This is amazing!,cont,customer_service,stranger,0,1,0.71,Reaction to family,conv_2465,6,2026-05-02T06:19:00.050966
+BEST DAY OF MY LIFE!,ecst,customer_service,agent,0,3,0.899,Reaction to friendship,conv_8324,11,2026-05-02T06:19:00.046389
+So happy about this!,sadn,online_debate,agent,0,2,0.654,Reaction to workplace,conv_8332,1,2026-05-02T06:19:00.045032
+OVER THE MOON!,ecst,healthcare,user,0,3,0.91,Reaction to education,conv_3601,10,2026-05-02T06:19:00.046618
+This is amazing!,acce,romance,partner,0,1,0.573,Reaction to friendship,conv_8762,11,2026-05-02T06:19:00.030762
+Best day ever!,joy,healthcare,partner,0,2,0.799,Reaction to workplace,conv_5021,4,2026-05-02T06:19:00.043656
+This is amazing!,inte,education,friend,0,1,0.724,Reaction to workplace,conv_6077,7,2026-05-02T06:19:00.032120
+Filled with wonder.,awe,friendship,partner,0,1,0.714,Reaction to romance,conv_5453,12,2026-05-02T06:19:00.050054
+So happy about this!,remo,online_debate,agent,0,1,0.593,Reaction to family,conv_1926,8,2026-05-02T06:19:00.050563
+This is amazing!,inte,workplace,stranger,0,1,0.619,Reaction to online_debate,conv_7724,10,2026-05-02T06:19:00.032368
+Profoundly moving.,awe,customer_service,friend,0,1,0.745,Reaction to friendship,conv_5090,8,2026-05-02T06:19:00.049976
+Care deeply.,love,education,stranger,0,1,0.75,Reaction to healthcare,conv_9494,6,2026-05-02T06:19:00.049103
+So happy about this!,trus,customer_service,agent,0,2,0.698,Reaction to workplace,conv_6781,6,2026-05-02T06:19:00.044198
+Best day ever!,trus,online_debate,friend,0,2,0.702,Reaction to education,conv_8541,7,2026-05-02T06:19:00.044167
+This is amazing!,acce,workplace,stranger,0,1,0.601,Reaction to online_debate,conv_9255,8,2026-05-02T06:19:00.030821
+OVER THE MOON!,ecst,friendship,friend,0,3,0.915,Reaction to online_debate,conv_3598,6,2026-05-02T06:19:00.046596
+So happy about this!,aggr,education,agent,0,1,0.604,Reaction to online_debate,conv_9713,12,2026-05-02T06:19:00.051274
+This is amazing!,pens,friendship,partner,0,1,0.569,Reaction to online_debate,conv_1201,7,2026-05-02T06:19:00.031304
+DEVASTATED by this loss.,grie,customer_service,agent,0,3,0.848,Reaction to education,conv_3515,3,2026-05-02T06:19:00.047816
+Best day ever!,opti,healthcare,agent,0,1,0.712,Reaction to friendship,conv_7932,9,2026-05-02T06:19:00.043410
+So happy about this!,opti,friendship,friend,0,1,0.56,Reaction to workplace,conv_5656,5,2026-05-02T06:19:00.043445
+PARALYZED WITH FEAR!,terr,education,friend,0,3,0.826,Reaction to family,conv_4674,11,2026-05-02T06:19:00.047289
+So happy about this!,disg,education,user,0,2,0.711,Reaction to workplace,conv_5857,11,2026-05-02T06:19:00.045513
+Mean so much.,love,romance,user,0,1,0.692,Reaction to workplace,conv_4151,4,2026-05-02T06:19:00.049109
+This is amazing!,trus,online_debate,friend,0,2,0.747,Reaction to online_debate,conv_2146,3,2026-05-02T06:19:00.044136
+So happy about this!,pens,friendship,agent,0,1,0.615,Reaction to online_debate,conv_9131,12,2026-05-02T06:19:00.031572
+Best day ever!,opti,friendship,stranger,0,1,0.749,Reaction to friendship,conv_9578,6,2026-05-02T06:19:00.043516
+BLIND RAGE!,rage,healthcare,user,0,3,0.748,Reaction to healthcare,conv_2835,8,2026-05-02T06:19:00.048701
+This is amazing!,disg,healthcare,friend,0,2,0.66,Reaction to workplace,conv_9844,1,2026-05-02T06:19:00.045369
+MIND-BLOWING!,amaz,workplace,partner,0,3,0.715,Reaction to customer_service,conv_3619,10,2026-05-02T06:19:00.047561
+Afraid of consequences.,fear,healthcare,friend,0,2,0.876,Reaction to education,conv_7499,12,2026-05-02T06:19:00.044540
+COMPLETELY STUNNED!,amaz,healthcare,partner,0,3,0.855,Reaction to online_debate,conv_6839,4,2026-05-02T06:19:00.047445
+So happy about this!,bore,customer_service,stranger,0,1,0.629,Reaction to healthcare,conv_4455,1,2026-05-02T06:19:00.031934
+REVOLTED!,loat,education,user,0,3,0.816,Reaction to romance,conv_7124,12,2026-05-02T06:19:00.048270
+Mean so much.,love,customer_service,agent,0,1,0.582,Reaction to education,conv_4520,10,2026-05-02T06:19:00.049277
+OVER THE MOON!,ecst,romance,partner,0,3,0.661,Reaction to family,conv_7915,8,2026-05-02T06:19:00.046557
+This is amazing!,surp,online_debate,friend,0,2,0.88,Reaction to romance,conv_7025,7,2026-05-02T06:19:00.044719
+So happy about this!,bore,family,friend,0,1,0.773,Reaction to workplace,conv_3128,12,2026-05-02T06:19:00.031857
+This makes me nervous.,fear,friendship,friend,0,2,0.772,Reaction to family,conv_7674,3,2026-05-02T06:19:00.044404
+ABSOLUTELY DESPISE THIS!,loat,friendship,agent,0,3,0.896,Reaction to healthcare,conv_2312,12,2026-05-02T06:19:00.048105
+Best day ever!,disg,friendship,user,0,2,0.849,Reaction to healthcare,conv_9608,3,2026-05-02T06:19:00.045446
+So happy about this!,surp,customer_service,friend,0,2,0.888,Reaction to romance,conv_5924,5,2026-05-02T06:19:00.044928
+This is amazing!,remo,workplace,partner,0,1,0.615,Reaction to healthcare,conv_3601,5,2026-05-02T06:19:00.050426
+This is amazing!,appr,family,agent,0,2,0.703,Reaction to family,conv_8129,1,2026-05-02T06:19:00.046226
+ASTONISHING!,amaz,friendship,partner,0,3,0.805,Reaction to customer_service,conv_6956,10,2026-05-02T06:19:00.047405
+So happy about this!,inte,online_debate,user,0,1,0.735,Reaction to customer_service,conv_3798,11,2026-05-02T06:19:00.032227
+So happy about this!,trus,family,user,0,2,0.828,Reaction to family,conv_4334,12,2026-05-02T06:19:00.044252
+OVER THE MOON!,ecst,customer_service,stranger,0,3,0.808,Reaction to healthcare,conv_9706,11,2026-05-02T06:19:00.046658
+This is amazing!,cont,friendship,agent,0,1,0.589,Reaction to workplace,conv_5082,12,2026-05-02T06:19:00.051077
+COMPLETELY STUNNED!,amaz,healthcare,user,0,3,0.762,Reaction to family,conv_4542,12,2026-05-02T06:19:00.047550
+Drowning in sorrow.,grie,online_debate,agent,0,3,0.656,Reaction to family,conv_5311,3,2026-05-02T06:19:00.047758
+So happy about this!,inte,online_debate,agent,0,1,0.562,Reaction to online_debate,conv_6617,4,2026-05-02T06:19:00.031981
+So happy about this!,trus,friendship,user,0,2,0.859,Reaction to customer_service,conv_8576,3,2026-05-02T06:19:00.043943
+This is amazing!,inte,family,friend,0,1,0.687,Reaction to online_debate,conv_5098,9,2026-05-02T06:19:00.032246
+SEEING RED!,rage,online_debate,friend,0,3,0.853,Reaction to customer_service,conv_8563,2,2026-05-02T06:19:00.048453
+Best day ever!,dist,romance,agent,0,1,0.66,Reaction to friendship,conv_1390,4,2026-05-02T06:19:00.031292
+So happy about this!,pens,online_debate,stranger,0,1,0.779,Reaction to online_debate,conv_4423,12,2026-05-02T06:19:00.031381
+Best day ever!,dist,workplace,user,0,1,0.636,Reaction to romance,conv_3165,10,2026-05-02T06:19:00.031173
+Full of affection.,love,customer_service,agent,0,1,0.649,Reaction to customer_service,conv_9894,11,2026-05-02T06:19:00.049348
+MIND-BLOWING!,amaz,romance,friend,0,3,0.731,Reaction to friendship,conv_1176,12,2026-05-02T06:19:00.047457
+This is amazing!,opti,education,partner,0,1,0.667,Reaction to online_debate,conv_1100,6,2026-05-02T06:19:00.043504
+This makes me nervous.,fear,education,partner,0,2,0.93,Reaction to romance,conv_2971,6,2026-05-02T06:19:00.044409
+This is amazing!,opti,workplace,stranger,0,1,0.569,Reaction to healthcare,conv_7903,8,2026-05-02T06:19:00.043336
+REVOLTED!,loat,family,partner,0,3,0.848,Reaction to friendship,conv_2684,6,2026-05-02T06:19:00.048340
+Best day ever!,trus,friendship,friend,0,2,0.76,Reaction to customer_service,conv_2563,2,2026-05-02T06:19:00.044282
+BEST DAY OF MY LIFE!,ecst,online_debate,agent,0,3,0.894,Reaction to healthcare,conv_5818,1,2026-05-02T06:19:00.046710
+ABSOLUTELY THRILLED!,ecst,romance,stranger,0,3,0.726,Reaction to healthcare,conv_4644,2,2026-05-02T06:19:00.046664
+Didn't see that coming!,supr,healthcare,stranger,0,2,0.868,Reaction to romance,conv_8062,4,2026-05-02T06:19:00.051511
+Best day ever!,admi,family,friend,0,3,0.883,Reaction to friendship,conv_6529,1,2026-05-02T06:19:00.046727
+This is amazing!,ange,family,friend,0,2,0.941,Reaction to family,conv_2710,4,2026-05-02T06:19:00.045855
+So happy about this!,disa,romance,user,0,1,0.553,Reaction to online_debate,conv_3681,12,2026-05-02T06:19:00.050377
+So happy about this!,sere,education,agent,0,1,0.756,Reaction to healthcare,conv_2693,8,2026-05-02T06:19:00.030561
+ABSOLUTELY THRILLED!,ecst,romance,agent,0,3,0.764,Reaction to online_debate,conv_2873,5,2026-05-02T06:19:00.046591
+Best day ever!,pens,friendship,user,0,1,0.658,Reaction to customer_service,conv_5814,7,2026-05-02T06:19:00.031411
+Drowning in sorrow.,grie,romance,friend,0,3,0.681,Reaction to online_debate,conv_9200,9,2026-05-02T06:19:00.048031
+BEST DAY OF MY LIFE!,ecst,customer_service,friend,0,3,0.844,Reaction to workplace,conv_1548,6,2026-05-02T06:19:00.046500
+Best day ever!,ange,online_debate,agent,0,2,0.944,Reaction to customer_service,conv_1494,9,2026-05-02T06:19:00.045951
+Drowning in sorrow.,grie,customer_service,agent,0,3,0.71,Reaction to customer_service,conv_7342,6,2026-05-02T06:19:00.047775
+So happy about this!,trus,workplace,agent,0,2,0.68,Reaction to family,conv_7701,1,2026-05-02T06:19:00.044111
+I'm worried something might go wrong.,fear,education,friend,0,2,0.665,Reaction to friendship,conv_2657,9,2026-05-02T06:19:00.044533
+This is amazing!,cont,healthcare,agent,0,1,0.75,Reaction to education,conv_9535,1,2026-05-02T06:19:00.050913
+Best day ever!,anno,family,user,0,1,0.692,Reaction to online_debate,conv_4108,2,2026-05-02T06:19:00.032656
+On high alert.,vigi,customer_service,stranger,0,3,0.849,Reaction to education,conv_5450,4,2026-05-02T06:19:00.048837
+Profoundly moving.,awe,customer_service,partner,0,1,0.723,Reaction to family,conv_5139,4,2026-05-02T06:19:00.049811
+Best day ever!,surp,workplace,partner,0,2,0.796,Reaction to customer_service,conv_9171,6,2026-05-02T06:19:00.044898
+This is amazing!,sadn,education,friend,0,2,0.801,Reaction to workplace,conv_2697,10,2026-05-02T06:19:00.045296
+Mean so much.,love,customer_service,agent,0,1,0.771,Reaction to romance,conv_3081,2,2026-05-02T06:19:00.049265
+This is amazing!,trus,romance,stranger,0,2,0.654,Reaction to education,conv_5931,5,2026-05-02T06:19:00.044192
+So happy about this!,sere,romance,user,0,1,0.774,Reaction to family,conv_1059,12,2026-05-02T06:19:00.030508
+Unexpected!,supr,romance,stranger,0,2,0.829,Reaction to family,conv_7009,1,2026-05-02T06:19:00.051814
+This is amazing!,acce,workplace,agent,0,1,0.68,Reaction to family,conv_2017,7,2026-05-02T06:19:00.030937
+This is amazing!,disg,customer_service,friend,0,2,0.913,Reaction to healthcare,conv_3699,12,2026-05-02T06:19:00.045470
+Overwhelmed.,awe,friendship,friend,0,1,0.592,Reaction to online_debate,conv_3747,6,2026-05-02T06:19:00.049942
+Mean so much.,love,friendship,user,0,1,0.656,Reaction to workplace,conv_1624,9,2026-05-02T06:19:00.049188
+Best day ever!,acce,family,agent,0,1,0.599,Reaction to online_debate,conv_6765,4,2026-05-02T06:19:00.030774
+This is amazing!,opti,online_debate,agent,0,1,0.79,Reaction to romance,conv_2186,2,2026-05-02T06:19:00.032804
+This is amazing!,cont,healthcare,stranger,0,1,0.64,Reaction to customer_service,conv_7309,12,2026-05-02T06:19:00.050948
+Drowning in sorrow.,grie,online_debate,stranger,0,3,0.85,Reaction to workplace,conv_2365,6,2026-05-02T06:19:00.047950
+Filled with wonder.,awe,customer_service,friend,0,1,0.663,Reaction to education,conv_5104,5,2026-05-02T06:19:00.049741
+HATE EVERY FIBER!,loat,education,user,0,3,0.784,Reaction to romance,conv_2086,6,2026-05-02T06:19:00.048110
+So happy about this!,surp,customer_service,agent,0,2,0.718,Reaction to workplace,conv_6720,8,2026-05-02T06:19:00.044910
+What a surprise!,supr,family,stranger,0,2,0.765,Reaction to education,conv_2692,10,2026-05-02T06:19:00.051668
+Unexpected!,supr,education,friend,0,2,0.89,Reaction to online_debate,conv_3335,10,2026-05-02T06:19:00.051770
+HYPERVIGILANT.,vigi,family,partner,0,3,0.741,Reaction to healthcare,conv_1365,11,2026-05-02T06:19:00.048957
+This is amazing!,anno,customer_service,friend,0,1,0.656,Reaction to romance,conv_1751,4,2026-05-02T06:19:00.032715
+So happy about this!,surp,education,friend,0,2,0.657,Reaction to online_debate,conv_6075,11,2026-05-02T06:19:00.044707
+Best day ever!,admi,customer_service,stranger,0,3,0.87,Reaction to customer_service,conv_4296,5,2026-05-02T06:19:00.046922
+Best day ever!,subm,online_debate,stranger,0,1,0.594,Reaction to friendship,conv_3891,12,2026-05-02T06:19:00.049449
+So happy about this!,cont,customer_service,stranger,0,1,0.761,Reaction to friendship,conv_3661,10,2026-05-02T06:19:00.051050
+So happy about this!,appr,family,partner,0,2,0.853,Reaction to workplace,conv_7582,9,2026-05-02T06:19:00.046160
+So happy about this!,cont,friendship,friend,0,1,0.724,Reaction to workplace,conv_6404,4,2026-05-02T06:19:00.050766
+So happy about this!,remo,customer_service,user,0,1,0.75,Reaction to romance,conv_7711,1,2026-05-02T06:19:00.050626
+This is amazing!,ange,romance,user,0,2,0.902,Reaction to romance,conv_3165,10,2026-05-02T06:19:00.045688
+So happy about this!,trus,friendship,friend,0,2,0.733,Reaction to healthcare,conv_5086,11,2026-05-02T06:19:00.044234
+This is amazing!,appr,friendship,user,0,2,0.724,Reaction to customer_service,conv_8957,4,2026-05-02T06:19:00.046137
+Best day ever!,disg,friendship,partner,0,2,0.867,Reaction to family,conv_6975,8,2026-05-02T06:19:00.045625
+Unexpected!,supr,online_debate,user,0,2,0.909,Reaction to customer_service,conv_2295,8,2026-05-02T06:19:00.051597
+So happy about this!,pens,friendship,friend,0,1,0.631,Reaction to romance,conv_3575,11,2026-05-02T06:19:00.031517
+NIGHTMARE COME TRUE!,terr,healthcare,user,0,3,0.759,Reaction to customer_service,conv_9865,8,2026-05-02T06:19:00.047358
+So happy about this!,bore,friendship,partner,0,1,0.644,Reaction to family,conv_9690,6,2026-05-02T06:19:00.031680
+So happy about this!,pens,romance,partner,0,1,0.602,Reaction to romance,conv_5169,9,2026-05-02T06:19:00.031310
+This is amazing!,admi,romance,partner,0,3,0.891,Reaction to customer_service,conv_2833,5,2026-05-02T06:19:00.046804
+This is amazing!,admi,education,stranger,0,3,0.742,Reaction to workplace,conv_4842,1,2026-05-02T06:19:00.046798
+Best day ever!,acce,healthcare,stranger,0,1,0.582,Reaction to workplace,conv_9248,10,2026-05-02T06:19:00.030660
+Best day ever!,acce,friendship,stranger,0,1,0.602,Reaction to friendship,conv_6250,4,2026-05-02T06:19:00.030932
+DEVASTATED by this loss.,grie,family,user,0,3,0.834,Reaction to customer_service,conv_4070,7,2026-05-02T06:19:00.047740
+Overwhelmed.,awe,romance,stranger,0,1,0.736,Reaction to workplace,conv_8155,1,2026-05-02T06:19:00.049771
+HATE EVERY FIBER!,loat,healthcare,partner,0,3,0.871,Reaction to customer_service,conv_9586,11,2026-05-02T06:19:00.048306
+Best day ever!,dist,workplace,stranger,0,1,0.63,Reaction to customer_service,conv_2380,6,2026-05-02T06:19:00.031038
+This is amazing!,aggr,family,stranger,0,1,0.617,Reaction to romance,conv_5687,2,2026-05-02T06:19:00.051177
+Care deeply.,love,family,stranger,0,1,0.788,Reaction to education,conv_5738,5,2026-05-02T06:19:00.049164
+ABSOLUTELY TERRIFIED!,terr,romance,stranger,0,3,0.729,Reaction to healthcare,conv_7868,4,2026-05-02T06:19:00.047268
+Best day ever!,bore,education,partner,0,1,0.694,Reaction to healthcare,conv_5656,8,2026-05-02T06:19:00.031863
+Didn't see that coming!,supr,online_debate,partner,0,2,0.811,Reaction to family,conv_9607,1,2026-05-02T06:19:00.051657
+Best day ever!,dist,online_debate,partner,0,1,0.804,Reaction to workplace,conv_8859,1,2026-05-02T06:19:00.031274
+Unexpected!,supr,healthcare,agent,0,2,0.868,Reaction to romance,conv_5577,9,2026-05-02T06:19:00.051705
+ABSOLUTELY TERRIFIED!,terr,family,agent,0,3,0.73,Reaction to healthcare,conv_5720,7,2026-05-02T06:19:00.047117
+I'm worried something might go wrong.,fear,online_debate,agent,0,2,0.782,Reaction to workplace,conv_8128,6,2026-05-02T06:19:00.044488
+This is amazing!,pens,customer_service,stranger,0,1,0.629,Reaction to family,conv_4809,6,2026-05-02T06:19:00.031554
+This is amazing!,aggr,customer_service,partner,0,1,0.8,Reaction to healthcare,conv_1386,1,2026-05-02T06:19:00.051291
+Best day ever!,sere,healthcare,friend,0,1,0.769,Reaction to healthcare,conv_9114,11,2026-05-02T06:19:00.030303
+ASTONISHING!,amaz,family,agent,0,3,0.942,Reaction to family,conv_5398,10,2026-05-02T06:19:00.047596
+BLIND RAGE!,rage,friendship,user,0,3,0.688,Reaction to education,conv_7265,8,2026-05-02T06:19:00.048512
+So happy about this!,ange,customer_service,user,0,2,0.863,Reaction to education,conv_5319,1,2026-05-02T06:19:00.045940
+On high alert.,vigi,friendship,friend,0,3,0.785,Reaction to customer_service,conv_1493,11,2026-05-02T06:19:00.048899
+Didn't see that coming!,supr,healthcare,partner,0,2,0.74,Reaction to online_debate,conv_5881,11,2026-05-02T06:19:00.051758
+Unexpected!,supr,healthcare,agent,0,2,0.814,Reaction to friendship,conv_8960,3,2026-05-02T06:19:00.051776
+This is amazing!,anno,friendship,friend,0,1,0.684,Reaction to customer_service,conv_4854,9,2026-05-02T06:19:00.032484
+This is amazing!,anno,online_debate,agent,0,1,0.664,Reaction to education,conv_1973,10,2026-05-02T06:19:00.032386
+This is amazing!,trus,friendship,stranger,0,2,0.944,Reaction to healthcare,conv_9498,7,2026-05-02T06:19:00.044153
+ABSOLUTELY FURIOUS!,rage,workplace,partner,0,3,0.819,Reaction to family,conv_8946,8,2026-05-02T06:19:00.048595
+Overwhelmed.,awe,education,stranger,0,1,0.573,Reaction to education,conv_9563,1,2026-05-02T06:19:00.049953
+This is amazing!,sadn,workplace,user,0,2,0.694,Reaction to online_debate,conv_3695,5,2026-05-02T06:19:00.045254
+HEARTBROKEN.,grie,customer_service,user,0,3,0.723,Reaction to online_debate,conv_7498,9,2026-05-02T06:19:00.048025
+"Fantastic, more work.",joy,romance,agent,1,2,0.72,Reaction to romance,conv_4792,1,2026-05-02T06:19:00.043712
+ASTONISHING!,amaz,family,stranger,0,3,0.704,Reaction to family,conv_4669,3,2026-05-02T06:19:00.047480
+ABSOLUTELY THRILLED!,ecst,friendship,user,0,3,0.792,Reaction to online_debate,conv_7870,9,2026-05-02T06:19:00.046552
+This is amazing!,subm,online_debate,agent,0,1,0.725,Reaction to romance,conv_5618,12,2026-05-02T06:19:00.049556
+Best day ever!,appr,healthcare,user,0,2,0.669,Reaction to workplace,conv_5144,5,2026-05-02T06:19:00.046131
+This is amazing!,disa,education,partner,0,1,0.79,Reaction to healthcare,conv_2030,12,2026-05-02T06:19:00.050189
+Best day ever!,trus,online_debate,friend,0,2,0.652,Reaction to workplace,conv_2257,11,2026-05-02T06:19:00.043973
+On high alert.,vigi,workplace,user,0,3,0.948,Reaction to customer_service,conv_9834,8,2026-05-02T06:19:00.048923
+Best day ever!,sere,family,agent,0,1,0.733,Reaction to family,conv_8106,10,2026-05-02T06:19:00.030407
+Unexpected!,supr,healthcare,stranger,0,2,0.907,Reaction to healthcare,conv_5646,3,2026-05-02T06:19:00.051523
+Mean so much.,love,online_debate,agent,0,1,0.608,Reaction to workplace,conv_6761,7,2026-05-02T06:19:00.049182
+On high alert.,vigi,family,stranger,0,3,0.856,Reaction to friendship,conv_5170,8,2026-05-02T06:19:00.048858
+Best day ever!,disa,education,stranger,0,1,0.569,Reaction to family,conv_7721,9,2026-05-02T06:19:00.050291
+"Fantastic, more work.",joy,online_debate,partner,1,2,0.897,Reaction to friendship,conv_2990,8,2026-05-02T06:19:00.043675
+This is amazing!,anno,workplace,stranger,0,1,0.572,Reaction to online_debate,conv_9436,10,2026-05-02T06:19:00.032586
+BLIND RAGE!,rage,education,agent,0,3,0.893,Reaction to friendship,conv_1187,1,2026-05-02T06:19:00.048408
+Best day ever!,pens,romance,agent,0,1,0.636,Reaction to workplace,conv_7138,6,2026-05-02T06:19:00.031477
+ABSOLUTELY DESPISE THIS!,loat,customer_service,agent,0,3,0.768,Reaction to friendship,conv_9403,10,2026-05-02T06:19:00.048169
+So happy about this!,sere,education,agent,0,1,0.668,Reaction to education,conv_3826,11,2026-05-02T06:19:00.030514
+Full of affection.,love,online_debate,agent,0,1,0.665,Reaction to workplace,conv_1490,2,2026-05-02T06:19:00.049224
+So happy about this!,opti,romance,friend,0,1,0.605,Reaction to friendship,conv_4966,7,2026-05-02T06:19:00.043485
+This is amazing!,surp,friendship,partner,0,2,0.862,Reaction to education,conv_3837,8,2026-05-02T06:19:00.044940
+Scanning for threats.,vigi,friendship,partner,0,3,0.864,Reaction to education,conv_9871,6,2026-05-02T06:19:00.049015
+Didn't see that coming!,supr,customer_service,friend,0,2,0.754,Reaction to friendship,conv_8276,3,2026-05-02T06:19:00.051644
+Best day ever!,cont,healthcare,partner,0,1,0.758,Reaction to romance,conv_3628,12,2026-05-02T06:19:00.051044
+Best day ever!,cont,friendship,agent,0,1,0.78,Reaction to family,conv_7322,9,2026-05-02T06:19:00.050972
+HYPERVIGILANT.,vigi,online_debate,partner,0,3,0.885,Reaction to friendship,conv_6874,7,2026-05-02T06:19:00.048755
+So happy about this!,dist,education,stranger,0,1,0.794,Reaction to education,conv_1682,2,2026-05-02T06:19:00.031232
+BEST DAY OF MY LIFE!,ecst,family,friend,0,3,0.833,Reaction to workplace,conv_6202,11,2026-05-02T06:19:00.046693
+So happy about this!,dist,customer_service,stranger,0,1,0.571,Reaction to online_debate,conv_9913,11,2026-05-02T06:19:00.030992
+This is amazing!,sere,workplace,stranger,0,1,0.731,Reaction to romance,conv_3059,1,2026-05-02T06:19:00.030473
+REVOLTED!,loat,romance,stranger,0,3,0.835,Reaction to family,conv_7568,10,2026-05-02T06:19:00.048157
+So happy about this!,appr,romance,friend,0,2,0.75,Reaction to romance,conv_8565,9,2026-05-02T06:19:00.046311
+So happy about this!,remo,family,stranger,0,1,0.64,Reaction to family,conv_2470,9,2026-05-02T06:19:00.050603
+So happy about this!,inte,family,partner,0,1,0.625,Reaction to friendship,conv_3486,7,2026-05-02T06:19:00.032355
+Drowning in sorrow.,grie,healthcare,agent,0,3,0.673,Reaction to education,conv_1538,2,2026-05-02T06:19:00.047933
+This is amazing!,sadn,romance,stranger,0,2,0.748,Reaction to education,conv_5680,8,2026-05-02T06:19:00.045260
+This is amazing!,ange,workplace,stranger,0,2,0.775,Reaction to education,conv_7276,2,2026-05-02T06:19:00.045916
+Best day ever!,pens,customer_service,user,0,1,0.743,Reaction to healthcare,conv_8910,8,2026-05-02T06:19:00.031632
+Best day ever!,surp,friendship,agent,0,2,0.727,Reaction to customer_service,conv_1691,11,2026-05-02T06:19:00.044725
+This is amazing!,inte,family,friend,0,1,0.692,Reaction to online_debate,conv_3469,7,2026-05-02T06:19:00.032276
+So happy about this!,disa,education,partner,0,1,0.722,Reaction to family,conv_1402,10,2026-05-02T06:19:00.050085
+ABSOLUTELY DESPISE THIS!,loat,workplace,friend,0,3,0.834,Reaction to customer_service,conv_4935,8,2026-05-02T06:19:00.048151
+On high alert.,vigi,workplace,agent,0,3,0.941,Reaction to online_debate,conv_8663,7,2026-05-02T06:19:00.048749
+So happy about this!,cont,friendship,friend,0,1,0.665,Reaction to education,conv_9345,10,2026-05-02T06:19:00.050778
+HATE EVERY FIBER!,loat,customer_service,partner,0,3,0.718,Reaction to family,conv_2767,10,2026-05-02T06:19:00.048357
+This is amazing!,remo,family,agent,0,1,0.65,Reaction to workplace,conv_6612,3,2026-05-02T06:19:00.050473
+So happy about this!,admi,education,friend,0,3,0.901,Reaction to romance,conv_8670,6,2026-05-02T06:19:00.046858
+HYPERVIGILANT.,vigi,workplace,partner,0,3,0.919,Reaction to education,conv_7139,12,2026-05-02T06:19:00.048992
+This is amazing!,ange,education,agent,0,2,0.719,Reaction to romance,conv_2634,7,2026-05-02T06:19:00.045701
+This is amazing!,admi,friendship,partner,0,3,0.676,Reaction to education,conv_3228,7,2026-05-02T06:19:00.047013
+This is amazing!,inte,friendship,friend,0,1,0.582,Reaction to workplace,conv_6071,3,2026-05-02T06:19:00.032147
+Best day ever!,disa,romance,agent,0,1,0.685,Reaction to family,conv_1507,11,2026-05-02T06:19:00.050329
+So happy about this!,cont,education,partner,0,1,0.6,Reaction to online_debate,conv_2604,11,2026-05-02T06:19:00.050821
+What a surprise!,supr,customer_service,agent,0,2,0.755,Reaction to healthcare,conv_8566,12,2026-05-02T06:19:00.051472
+ABSOLUTELY FURIOUS!,rage,education,partner,0,3,0.653,Reaction to workplace,conv_4260,12,2026-05-02T06:19:00.048431
+BEST DAY OF MY LIFE!,ecst,customer_service,stranger,0,3,0.946,Reaction to education,conv_2158,4,2026-05-02T06:19:00.046585
+This is amazing!,acce,online_debate,stranger,0,1,0.77,Reaction to friendship,conv_3703,4,2026-05-02T06:19:00.030714
+Best day ever!,disa,family,user,0,1,0.802,Reaction to friendship,conv_6005,5,2026-05-02T06:19:00.050389
+COMPLETELY STUNNED!,amaz,healthcare,partner,0,3,0.899,Reaction to workplace,conv_7270,2,2026-05-02T06:19:00.047387
+ASTONISHING!,amaz,workplace,partner,0,3,0.91,Reaction to family,conv_5889,5,2026-05-02T06:19:00.047682
+DEVASTATED by this loss.,grie,family,friend,0,3,0.833,Reaction to friendship,conv_9555,8,2026-05-02T06:19:00.048020
+PARALYZED WITH FEAR!,terr,workplace,agent,0,3,0.662,Reaction to family,conv_9553,2,2026-05-02T06:19:00.047146
+Best day ever!,cont,romance,stranger,0,1,0.799,Reaction to online_debate,conv_2179,10,2026-05-02T06:19:00.051009
+So happy about this!,sadn,healthcare,stranger,0,2,0.691,Reaction to workplace,conv_1499,9,2026-05-02T06:19:00.045314
+HEARTBROKEN.,grie,romance,user,0,3,0.688,Reaction to healthcare,conv_6727,8,2026-05-02T06:19:00.047770
+Best day ever!,appr,workplace,friend,0,2,0.837,Reaction to online_debate,conv_7217,8,2026-05-02T06:19:00.046080
+Best day ever!,bore,education,agent,0,1,0.693,Reaction to romance,conv_9490,3,2026-05-02T06:19:00.031692
+COMPLETELY STUNNED!,amaz,education,partner,0,3,0.722,Reaction to online_debate,conv_2053,4,2026-05-02T06:19:00.047509
+Best day ever!,pens,friendship,partner,0,1,0.771,Reaction to customer_service,conv_9969,4,2026-05-02T06:19:00.031375
+This is amazing!,remo,healthcare,stranger,0,1,0.584,Reaction to friendship,conv_8248,8,2026-05-02T06:19:00.050700
+This is amazing!,disa,workplace,stranger,0,1,0.627,Reaction to family,conv_8099,2,2026-05-02T06:19:00.050273
+Filled with wonder.,awe,education,agent,0,1,0.657,Reaction to family,conv_5272,9,2026-05-02T06:19:00.049829
+ABSOLUTELY DESPISE THIS!,loat,online_debate,stranger,0,3,0.708,Reaction to workplace,conv_2847,10,2026-05-02T06:19:00.048061
+This is amazing!,trus,romance,user,0,2,0.674,Reaction to healthcare,conv_6177,9,2026-05-02T06:19:00.044051
+SEEING RED!,rage,family,user,0,3,0.837,Reaction to friendship,conv_3404,10,2026-05-02T06:19:00.048690
+HEARTBROKEN.,grie,friendship,partner,0,3,0.65,Reaction to customer_service,conv_6716,8,2026-05-02T06:19:00.047834
+Best day ever!,disa,education,friend,0,1,0.705,Reaction to friendship,conv_5021,4,2026-05-02T06:19:00.050335
+This is amazing!,dist,workplace,stranger,0,1,0.572,Reaction to education,conv_1490,9,2026-05-02T06:19:00.031256
+Overwhelmed.,awe,healthcare,agent,0,1,0.582,Reaction to healthcare,conv_5575,1,2026-05-02T06:19:00.050059
+Best day ever!,bore,workplace,user,0,1,0.779,Reaction to family,conv_4529,2,2026-05-02T06:19:00.031661
+So happy about this!,sere,healthcare,friend,0,1,0.807,Reaction to customer_service,conv_6047,1,2026-05-02T06:19:00.030555
+So happy about this!,anno,healthcare,friend,0,1,0.725,Reaction to education,conv_6774,10,2026-05-02T06:19:00.032436
+This is amazing!,disg,family,stranger,0,2,0.851,Reaction to workplace,conv_6645,9,2026-05-02T06:19:00.045542
+Full of affection.,love,healthcare,friend,0,1,0.67,Reaction to education,conv_7557,3,2026-05-02T06:19:00.049300
+So happy about this!,anno,workplace,agent,0,1,0.567,Reaction to romance,conv_6236,11,2026-05-02T06:19:00.032423
+So happy about this!,appr,healthcare,user,0,2,0.662,Reaction to healthcare,conv_2619,1,2026-05-02T06:19:00.046154
+Best day ever!,disa,friendship,user,0,1,0.635,Reaction to healthcare,conv_7530,5,2026-05-02T06:19:00.050128
+So happy about this!,admi,customer_service,stranger,0,3,0.663,Reaction to healthcare,conv_9842,1,2026-05-02T06:19:00.046875
+Best day ever!,bore,family,agent,0,1,0.653,Reaction to friendship,conv_6120,3,2026-05-02T06:19:00.031916
+So happy about this!,ange,healthcare,user,0,2,0.897,Reaction to workplace,conv_9288,7,2026-05-02T06:19:00.046007
+OVER THE MOON!,ecst,online_debate,stranger,0,3,0.948,Reaction to workplace,conv_5443,4,2026-05-02T06:19:00.046511
+I'm worried something might go wrong.,fear,romance,partner,0,2,0.708,Reaction to online_debate,conv_7101,6,2026-05-02T06:19:00.044576
+So happy about this!,bore,workplace,user,0,1,0.74,Reaction to online_debate,conv_6518,10,2026-05-02T06:19:00.031802
+Best day ever!,dist,family,agent,0,1,0.619,Reaction to workplace,conv_7547,3,2026-05-02T06:19:00.031190
+I'm worried something might go wrong.,fear,friendship,user,0,2,0.767,Reaction to healthcare,conv_4401,12,2026-05-02T06:19:00.044422
+OVER THE MOON!,ecst,romance,user,0,3,0.899,Reaction to workplace,conv_9250,5,2026-05-02T06:19:00.046436
+Best day ever!,ange,friendship,friend,0,2,0.679,Reaction to romance,conv_7046,6,2026-05-02T06:19:00.045712
+Best day ever!,joy,customer_service,stranger,0,2,0.834,Reaction to customer_service,conv_9707,12,2026-05-02T06:19:00.043618
+So happy about this!,trus,education,friend,0,2,0.884,Reaction to education,conv_7275,6,2026-05-02T06:19:00.044222
+Best day ever!,surp,workplace,user,0,2,0.81,Reaction to healthcare,conv_5893,2,2026-05-02T06:19:00.044749
+This is amazing!,acce,romance,agent,0,1,0.699,Reaction to family,conv_2834,2,2026-05-02T06:19:00.030828
+Best day ever!,pens,romance,friend,0,1,0.566,Reaction to healthcare,conv_8449,6,2026-05-02T06:19:00.031448
+Best day ever!,trus,customer_service,partner,0,2,0.92,Reaction to education,conv_3611,9,2026-05-02T06:19:00.043949
+BLIND RAGE!,rage,romance,agent,0,3,0.848,Reaction to healthcare,conv_6486,2,2026-05-02T06:19:00.048425
