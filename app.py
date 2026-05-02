@@ -16,7 +16,7 @@ api_key = st.sidebar.text_input("API Key", value="demo-key-123")
 session_id = st.sidebar.text_input("Session ID", value="default")
 
 # Main tabs
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Single Prediction", "💬 Conversation Arc", "📁 Batch Analysis", "ℹ️ About"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Single Prediction", "💬 Conversation Arc", "📁 Batch Analysis", "🔀 Compare", "ℹ️ About"])
 
 with tab1:
     st.header("Single Utterance Analysis")
@@ -153,14 +153,28 @@ Hey, deep breaths. We'll figure it out together."""
         emotions_seq = [t['emotion'] for t in arc['trajectory']]
         confidences = [t['confidence'] for t in arc['trajectory']]
         
-        # Color mapping for emotions
+        # Color mapping for all 32 emotions
         emotion_colors = {
-            'joy': '#FFD700', 'trust': '#90EE90', 'fear': '#8B0000',
-            'surprise': '#FFA500', 'sadness': '#00008B', 'disgust': '#006400',
-            'anger': '#DC143C', 'anticipation': '#9370DB', 'ecstasy': '#FF69B4',
-            'admiration': '#DA70D6', 'terror': '#8B0000', 'amazement': '#FF4500',
-            'grief': '#2F4F4F', 'loathing': '#8B4513', 'rage': '#B22222',
-            'vigilance': '#556B2F'
+            # Joy sector
+            'joy': '#FFD700', 'ecstasy': '#FF69B4', 'serenity': '#FFE4B5',
+            # Trust sector  
+            'trust': '#90EE90', 'admiration': '#DA70D6', 'acceptance': '#98FB98',
+            # Fear sector
+            'fear': '#8B0000', 'terror': '#8B0000', 'apprehension': '#CD5C5C',
+            # Surprise sector
+            'surprise': '#FFA500', 'amazement': '#FF4500', 'distraction': '#FFDAB9',
+            # Sadness sector
+            'sadness': '#00008B', 'grief': '#2F4F4F', 'pensiveness': '#4682B4',
+            # Disgust sector
+            'disgust': '#006400', 'loathing': '#8B4513', 'boredom': '#556B2F',
+            # Anger sector
+            'anger': '#DC143C', 'rage': '#B22222', 'annoyance': '#DC143C',
+            # Anticipation sector
+            'anticipation': '#9370DB', 'vigilance': '#556B2F', 'interest': '#DDA0DD',
+            # Dyadic emotions
+            'optimism': '#FFB6C1', 'love': '#FF69B4', 'submission': '#D8BFD8',
+            'awe': '#9400D3', 'disapproval': '#8B7D6B', 'remorse': '#483D8B',
+            'contempt': '#8B4513', 'aggressiveness': '#B22222'
         }
         
         colors = [emotion_colors.get(e, '#808080') for e in emotions_seq]
@@ -220,41 +234,130 @@ with tab3:
                 texts = df['text'].tolist()[:50]  # Limit to 50 for demo
                 
                 with st.spinner(f"Analyzing {len(texts)} texts..."):
-                    results = []
-                    for text in texts:
-                        try:
-                            resp = requests.post(
-                                f"{API_URL}/predict",
-                                json={"text": str(text)},
-                                headers={"X-API-Key": api_key}
-                            )
-                            results.append(resp.json())
-                        except:
-                            results.append(None)
+                    try:
+                        resp = requests.post(
+                            f"{API_URL}/predict/batch",
+                            json=texts,
+                            headers={"X-API-Key": api_key}
+                        )
+                        batch_result = resp.json()
+                        results = batch_result['predictions']
+                    except:
+                        # Fallback to individual predictions
+                        results = []
+                        for text in texts:
+                            try:
+                                resp = requests.post(
+                                    f"{API_URL}/predict",
+                                    json={"text": str(text)},
+                                    headers={"X-API-Key": api_key}
+                                )
+                                results.append(resp.json())
+                            except:
+                                results.append(None)
                     
                     # Add results to dataframe
                     df_batch = df.head(len(texts)).copy()
                     df_batch['emotion'] = [r['emotion'] if r else None for r in results]
                     df_batch['confidence'] = [r['confidence'] if r else None for r in results]
                     df_batch['sarcasm'] = [r['sarcasm'] if r else None for r in results]
+                    df_batch['intensity'] = [r['intensity'] if r else None for r in results]
                     
                     st.success("Analysis complete!")
                     st.dataframe(df_batch)
                     
                     # Show distribution
-                    col1, col2 = st.columns(2)
+                    col1, col2, col3 = st.columns(3)
                     with col1:
                         st.write("**Emotion Distribution:**")
                         emotion_counts = df_batch['emotion'].value_counts()
-                        st.bar_chart(emotion_counts)
+                        st.bar_chart(emotion_counts.head(10))
                     with col2:
                         st.write("**Sarcasm Rate:**")
-                        sarcasm_rate = df_batch['sarcasm'].sum() / len(df_batch) * 100
+                        sarcasm_rate = df_batch['sarcasm'].sum() / len(df_batch) * 100 if df_batch['sarcasm'].notna().any() else 0
                         st.metric("Sarcasm Rate", f"{sarcasm_rate:.1f}%")
+                    with col3:
+                        st.write("**Intensity Distribution:**")
+                        intensity_counts = df_batch['intensity'].value_counts()
+                        st.bar_chart(intensity_counts)
         else:
             st.error("CSV must contain a 'text' column")
 
 with tab4:
+    st.header("Comparative Analysis")
+    st.markdown("Compare two conversations side-by-side to see where emotional trajectories diverge")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("Conversation A")
+        conv_a_text = st.text_area("Conversation A (one utterance per line):", 
+                                   value="I'm excited about this project.\nThis is going to be great!\nLet's get started.",
+                                   height=150, key="conv_a")
+    
+    with col2:
+        st.subheader("Conversation B")
+        conv_b_text = st.text_area("Conversation B (one utterance per line):",
+                                   value="I'm not sure about this project.\nThis might be difficult.\nDo we have to start now?",
+                                   height=150, key="conv_b")
+    
+    if st.button("Compare Conversations", type="primary"):
+        conv_a = [line.strip() for line in conv_a_text.split('\n') if line.strip()]
+        conv_b = [line.strip() for line in conv_b_text.split('\n') if line.strip()]
+        
+        if conv_a and conv_b:
+            with st.spinner("Comparing conversations..."):
+                try:
+                    response = requests.post(
+                        f"{API_URL}/compare",
+                        json={"conv_a": conv_a, "conv_b": conv_b},
+                        headers={"X-API-Key": api_key}
+                    )
+                    compare_result = response.json()
+                    st.session_state['compare_result'] = compare_result
+                except Exception as e:
+                    st.error(f"Error: {e}")
+    
+    if 'compare_result' in st.session_state:
+        result = st.session_state['compare_result']
+        summary = result['summary']
+        
+        # Summary metrics
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.metric("Emotion Agreement", f"{summary['emotion_agreement_rate']:.0%}")
+        with col2:
+            st.metric("Avg Divergence", f"{summary['avg_divergence']:.3f}")
+        with col3:
+            st.metric("A Sarcasm Rate", f"{summary['conv_a_sarcasm_rate']:.0%}")
+        with col4:
+            st.metric("B Sarcasm Rate", f"{summary['conv_b_sarcasm_rate']:.0%}")
+        
+        # Comparison table
+        st.subheader("Turn-by-Turn Comparison")
+        
+        comparison_data = []
+        for turn in result['comparison']:
+            comparison_data.append({
+                'Turn': turn['turn'],
+                'Conv A Emotion': turn['conv_a']['emotion'] if turn['conv_a'] else '-',
+                'Conv A Conf': f"{turn['conv_a']['confidence']:.0%}" if turn['conv_a'] else '-',
+                'Conv B Emotion': turn['conv_b']['emotion'] if turn['conv_b'] else '-',
+                'Conv B Conf': f"{turn['conv_b']['confidence']:.0%}" if turn['conv_b'] else '-',
+                'Divergence': f"{turn.get('divergence', 0):.3f}" if turn.get('divergence') is not None else '-',
+                'Match': '✓' if turn.get('emotion_match') else '✗' if turn.get('emotion_match') is False else '-'
+            })
+        
+        st.dataframe(comparison_data, use_container_width=True)
+        
+        # Key divergence points
+        if result['key_divergence_points']:
+            st.subheader("⚠️ Key Divergence Points")
+            for dp in result['key_divergence_points']:
+                st.warning(f"**Turn {dp['turn']}**: A={dp['conv_a']['emotion'] if dp['conv_a'] else '-'} vs B={dp['conv_b']['emotion'] if dp['conv_b'] else '-'} (divergence: {dp.get('divergence', 'N/A')})")
+
+with tab5:
     st.header("About Plutchik ERC")
     
     st.markdown("""
