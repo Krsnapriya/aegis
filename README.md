@@ -1,8 +1,5 @@
 # Plutchik ERC - 32-Class Emotion Recognition System
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28.0-FF4B4B?logo=streamlit)](https://streamlit.io)
 
 **Real-time emotion detection with 32-class Plutchik wheel resolution, sarcasm detection, and conversation arc analysis.**
 
