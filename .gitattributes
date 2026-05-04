@@ -1,0 +1,5 @@
+plutchik_erc_dashboard/my_plutchik_model/emotion_centroids.pkl filter=lfs diff=lfs merge=lfs -text
+data/processed/ERC/plutchik_v2_production.xlsx filter=lfs diff=lfs merge=lfs -text
+plutchik_erc_dashboard/my_plutchik_model/best_model.pt filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text

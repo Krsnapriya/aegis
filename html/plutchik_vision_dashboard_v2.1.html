@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plutchik ERC v2.1 — Vision Dashboard (repo-synced)</title>
+<style>
+:root { --bg:#08080F; --bg2:#0D0D1C; --text:#E0E0EE; --text2:#7878A0; --primary:#8078DD; --mild:#1DAA80; --intense:#E8593C; --border:rgba(110,110,200,0.15); }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;padding:28px;max-width:920px;margin:0 auto}
+h1{font-size:1.6rem;margin-bottom:0.35rem}
+.sub{color:var(--text2);font-size:0.9rem;margin-bottom:1.5rem}
+a{color:var(--primary)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px}
+.tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:12px;margin-right:6px}
+.tag-live{background:rgba(29,170,128,0.15);color:var(--mild);border:1px solid rgba(29,170,128,0.35)}
+.tag-warn{background:rgba(232,89,60,0.12);color:var(--intense);border:1px solid rgba(232,89,60,0.25)}
+ul{margin:0.5rem 0 0 1.1rem}
+code{font-size:12px;background:#121222;padding:2px 6px;border-radius:4px}
+</style>
+</head>
+<body>
+  <h1>Plutchik ERC v2.1 — Vision Dashboard</h1>
+  <p class="sub">Living product vision, reconciled with the <code>legacy</code> repo. Engineering gates: <a href="../docs/HARDENED_ARCHITECTURE_ROADMAP.md">HARDENED_ARCHITECTURE_ROADMAP.md</a> · Runbook: <a href="../docs/PHASE7_EVIDENCE_RUNBOOK.md">PHASE7_EVIDENCE_RUNBOOK.md</a></p>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">API layer (FastAPI)</h2>
+    <p style="color:var(--text2);margin-bottom:10px">Implemented in <code>plutchik_erc_dashboard/inference_server.py</code>:</p>
+    <ul>
+      <li><span class="tag tag-live">Live</span> <code>POST /predict</code> — multi-task output + optional <code>assessment</code> (HITL signal).</li>
+      <li><span class="tag tag-live">Live</span> <code>POST /predict/batch</code> — stateless batch scoring.</li>
+      <li><span class="tag tag-live">Live</span> <code>POST /predict/arc</code> — dialogue arc + KL-based inflection hints.</li>
+      <li><span class="tag tag-live">Live</span> <code>POST /explain</code> — Captum IG on the <strong>full</strong> <code>[CONTEXT]…[CURRENT]…</code> string; returns <code>context_span_top</code> / <code>current_span_top</code>.</li>
+      <li><span class="tag tag-live">Live</span> <code>X-API-Key</code> + per-IP rate limit (429) via <code>verify_api_key</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">Training — DAT / GRL warmup</h2>
+    <p><code>train_v2.py</code> + <code>utils/trainer.py</code>: <code>warmup_steps = warmup_epochs × len(train_loader)</code>. With <code>epochs=5</code> and <code>warmup_epochs=1</code>, warmup is <strong>one full epoch</strong> (≈20% of all optimizer steps).</p>
+    <p style="color:var(--text2);margin-top:8px"><code>models/multitask_emotion_model.py</code> — scenario discriminator is <strong>2 logits</strong> (binary domain), not raw multi-class scenario IDs.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">Analyst dashboard (Streamlit)</h2>
+    <ul>
+      <li>Comparative trajectories + per-conversation tables + emotion histograms (<code>app.py</code>).</li>
+      <li>CSV batch upload with configurable row cap + distribution / ring / sarcasm profile.</li>
+      <li>Checkbox for full explainability → <code>POST /explain</code>; context vs current IG tables in Model Internals.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">CDA / HITL</h2>
+    <ul>
+      <li>Verified contrastive merge: <code>PLUTCHIK_CDA_JSONL</code> + <code>PLUTCHIK_CDA_MIN_PAIRS</code> (default 200) in <code>train_v2.py</code>.</li>
+      <li>Gate docs: <code>data/processed/ERC/CDA_GATE_README.md</code> · counter <code>scripts/count_cda_verified.py</code>.</li>
+      <li>Human verification CLI: <code>python utils/pair_verifier.py</code> (from dashboard dir).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">Extension + compression path</h2>
+    <ul>
+      <li>Chrome MV3: <code>plutchik_erc_dashboard/extension/</code> — Reddit selector <code>[data-testid="comment"]</code>, shadow-DOM overlay, optional <code>chrome.storage.local.apiKey</code> for <code>X-API-Key</code>.</li>
+      <li>ONNX export stub: <code>scripts/export_onnx.py</code> (Stage 5 toward WASM).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">Dataset hygiene + PyPI-style loader</h2>
+    <ul>
+      <li><code>standardize_emotion_cause</code> (max 7 words) applied in <code>prepare_sample</code>.</li>
+      <li><code>scripts/dataset_hygiene.py</code> — CSV rewrite + optional semantic dedupe (<code>--semantic</code>).</li>
+      <li>Installable loader: <code>pip install -e ./plutchik_erc_data</code> → <code>from plutchik_erc_data import load_dataset</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem;margin-bottom:10px">Bias audit</h2>
+    <p><code>scripts/bias_audit.py</code> — per-scenario sarcasm F1 on val split; <code>--write-json</code> → <code>routing_decision.json</code> next to checkpoint.</p>
+  </div>
+
+  <p style="color:var(--text2);font-size:12px;margin-top:20px">This file replaces older static HTML that marked batch/arc/explain as missing. Update this page when product scope changes.</p>
+</body>
+</html>

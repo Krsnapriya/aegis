@@ -1,0 +1,101 @@
+from pathlib import Path
+import sys
+
+_dash = Path(__file__).resolve().parent.parent
+if str(_dash) not in sys.path:
+    sys.path.insert(0, str(_dash))
+
+import requests
+import json
+import os
+from dotenv import load_dotenv
+from utils.constants import EMOTION_NAMES
+
+load_dotenv()
+
+class NemotronClient:
+    def __init__(self, model="nvidia/nemotron-3-super-120b-a12b:free"):
+        self.api_key = os.getenv("OPENROUTER_API_KEY")
+        self.model = model
+        self.url = "https://openrouter.ai/api/v1/chat/completions"
+
+    def predict_emotion(self, text, scenario="general", topic="general", context="[NO_CONTEXT]"):
+        if not self.api_key:
+            return {"error": "API Key missing"}
+
+        prompt = f"""
+        You are an expert in Plutchik's Wheel of Emotions and Emotion Recognition in Conversation (ERC).
+        Analyze the following utterance and provide a structured JSON response.
+
+        ### PLUTCHIK CATEGORIES (32):
+        joy, trust, fear, surprise, sadness, disgust, anger, anticipation, 
+        ecstasy, admiration, terror, amazement, grief, loathing, rage, vigilance, 
+        serenity, acceptance, apprehension, distraction, pensiveness, boredom, annoyance, interest, 
+        optimism, love, submission, awe, disapproval, remorse, contempt, aggressiveness.
+
+        ### INPUT:
+        - Scenario: {scenario}
+        - Topic: {topic}
+        - Context: {context}
+        - Utterance: "{text}"
+
+        ### TASK:
+        1. Identify the most dominant emotion from the 32 categories above.
+        2. Detect if there is sarcasm (subtext diverging from literal text).
+        3. Rate the intensity of the emotion (0.0 to 1.0).
+        4. Provide a brief one-sentence reasoning.
+
+        ### OUTPUT FORMAT (JSON ONLY):
+        {{
+            "emotion": "string",
+            "sarcasm_detected": boolean,
+            "sarcasm_confidence": float (0.0 to 1.0),
+            "intensity": float (0.0 to 1.0),
+            "reasoning": "string"
+        }}
+        """
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://github.com/Krsnapriya/plutchik",
+            "X-Title": "Plutchik ERC Dashboard"
+        }
+
+        payload = {
+            "model": self.model,
+            "messages": [
+                {"role": "user", "content": prompt}
+            ]
+        }
+
+        print(f"Sending request to OpenRouter with model: {self.model}")
+        try:
+            response = requests.post(self.url, headers=headers, data=json.dumps(payload), timeout=30)
+            response.raise_for_status()
+            result = response.json()
+            
+            content = result['choices'][0]['message']['content']
+            # Basic JSON extraction in case the model adds extra text
+            start = content.find('{')
+            end = content.rfind('}') + 1
+            if start == -1 or end == 0:
+                return {"error": "Failed to parse JSON: " + content}
+            
+            parsed = json.loads(content[start:end])
+            if "emotion" in parsed and isinstance(parsed["emotion"], str):
+                parsed["emotion"] = parsed["emotion"].lower()
+                if parsed["emotion"] not in EMOTION_NAMES:
+                    return {"error": f"Invalid emotion predicted by LLM: {parsed['emotion']}"}
+            return parsed
+            
+        except Exception as e:
+            if 'response' in locals():
+                print(f"API Error Response: {response.text}")
+            return {"error": str(e)}
+
+if __name__ == "__main__":
+    client = NemotronClient()
+    test_text = "I am so happy that my flight got cancelled and I'm stuck at the airport for 12 hours."
+    print(f"Testing Nemotron-3 with: {test_text}")
+    print(json.dumps(client.predict_emotion(test_text, scenario="travel", topic="flight_delay"), indent=4))
