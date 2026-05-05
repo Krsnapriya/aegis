@@ -20,8 +20,8 @@ class NemotronClient:
         self.url = "https://openrouter.ai/api/v1/chat/completions"
 
     def predict_emotion(self, text, scenario="general", topic="general", context="[NO_CONTEXT]"):
-        if not self.api_key:
-            return {"error": "API Key missing"}
+        if not self.api_key or self.api_key == "your_openrouter_api_key_here":
+            return self._mock_inference(text)
 
         prompt = f"""
         You are an expert in Plutchik's Wheel of Emotions and Emotion Recognition in Conversation (ERC).
@@ -89,10 +89,42 @@ class NemotronClient:
                     return {"error": f"Invalid emotion predicted by LLM: {parsed['emotion']}"}
             return parsed
             
+        except requests.exceptions.Timeout:
+            print("LLM API Timeout. Falling back to mock mode.")
+            return self._mock_inference(text, warning="LLM API Timeout: Using offline fallback heuristics.")
+        except requests.exceptions.HTTPError as e:
+            err_text = response.text if 'response' in locals() else str(e)
+            print(f"LLM API Error: {err_text}. Falling back to mock mode.")
+            return self._mock_inference(text, warning=f"LLM Auth/API Error. Using offline fallback heuristics.")
         except Exception as e:
-            if 'response' in locals():
-                print(f"API Error Response: {response.text}")
-            return {"error": str(e)}
+            print(f"LLM Connection Error: {str(e)}. Falling back to mock mode.")
+            return self._mock_inference(text, warning="LLM Connection Error. Using offline fallback heuristics.")
+
+    def _mock_inference(self, text, warning="Local Offline Mode (Mock LLM) Active."):
+        # Simple heuristic fallback
+        text_lower = text.lower()
+        emotion = "neutral"
+        if any(w in text_lower for w in ["happy", "great", "excellent", "good"]):
+            emotion = "joy"
+        elif any(w in text_lower for w in ["sad", "terrible", "bad", "depressed"]):
+            emotion = "sadness"
+        elif any(w in text_lower for w in ["angry", "mad", "furious"]):
+            emotion = "anger"
+        elif any(w in text_lower for w in ["scared", "fear", "terrified"]):
+            emotion = "fear"
+        else:
+            emotion = "interest"
+            
+        sarcasm = "?" in text and "!" in text
+        
+        return {
+            "emotion": emotion,
+            "sarcasm_detected": sarcasm,
+            "sarcasm_confidence": 0.8 if sarcasm else 0.1,
+            "intensity": 0.6,
+            "reasoning": f"[MOCK] Detected keyword indicators mapping to {emotion}.",
+            "warning": warning
+        }
 
 if __name__ == "__main__":
     client = NemotronClient()

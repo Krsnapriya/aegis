@@ -22,9 +22,8 @@ if torch.cuda.is_available():
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-# Add project to path
+# Project directory
 project_dir = Path(__file__).parent
-sys.path.insert(0, str(project_dir))
 
 from models.multitask_emotion_model import PluTchikMultiTaskModel, MultiTaskLoss
 from utils.preprocessing import build_dataset_from_csv, load_contrastive_pairs, PlutchikERCDataset
@@ -34,14 +33,14 @@ from utils.trainer import PluTchikTrainer
 CONFIG = {
     "csv_path": "data/processed/ERC/plutchik_v2_production.csv",
     "model_dir": "my_plutchik_model",
-    "batch_size": 8,
-    "epochs": 5,          # Production run: 5 epochs (GRL needs room to activate)
-    "lr": 2e-5,
-    "max_len": 256,
+    "batch_size": 4,      # Reduced to 4 to fix MPS OOM on M1
+    "epochs": 1,          # Fast prototype generation
+    "lr": 5e-5,
+    "max_len": 128,       # Faster processing
     "iaa_weighting": True,
-    "adv_weight": 0.3,    # Reduced from 1.0 to prevent "Total Erasure"
-    "warmup_epochs": 1,   # 1 epoch warmup, then GRL activates for remaining 4
-    "grl_lambda_max": 0.5 # Cap the lambda to prevent gradient explosion
+    "adv_weight": 0.3,    
+    "warmup_epochs": 0,   
+    "grl_lambda_max": 0.5 
 }
 
 # ============== PLUTCHIK CONSTANTS ==============

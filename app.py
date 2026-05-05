@@ -5,13 +5,9 @@ Streamlit Dashboard for Plutchik Emotion Recognition with Explainability.
 from pathlib import Path
 import sys
 
-_pkg = Path(__file__).resolve().parent
-_repo = _pkg.parent
-_core = _repo / "core"
-for _path in (_core, _pkg):
-    _ps = str(_path)
-    if _ps not in sys.path:
-        sys.path.insert(0, _ps)
+# Now at the root directory
+import sys
+from pathlib import Path
 
 import streamlit as st
 import pandas as pd
@@ -36,7 +32,7 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file for local development.
 # In a production environment, these should be set as actual environment variables.
-load_dotenv(dotenv_path=_repo / ".env")
+load_dotenv(dotenv_path=Path(__file__).resolve().parent / ".env")
 
 
 # ============== PAGE CONFIG ==============
@@ -235,11 +231,24 @@ def call_api(endpoint: str, payload: dict, use_auth: bool = True):
         headers["X-API-Key"] = API_KEY
     
     try:
-        response = requests.post(f"{API_BASE}/{endpoint}", json=payload, headers=headers)
+        response = requests.post(f"{API_BASE}/{endpoint}", json=payload, headers=headers, timeout=15.0)
         response.raise_for_status()
         return response.json()
+    except requests.exceptions.HTTPError as e:
+        try:
+            err_detail = response.json().get("detail", str(e))
+        except Exception:
+            err_detail = str(e)
+        st.error(f"❌ Server Error: {err_detail}")
+        return None
+    except requests.exceptions.ConnectionError:
+        st.error("❌ Connection Refused: The inference server is unreachable.")
+        return None
+    except requests.exceptions.Timeout:
+        st.error("❌ Timeout: The inference server took too long to respond.")
+        return None
     except Exception as e:
-        st.error(f"API Error: {e}")
+        st.error(f"❌ Unexpected Error: {e}")
         return None
 
 # Load utilities
@@ -295,6 +304,12 @@ with st.sidebar:
             value=True,
             help="Calls POST /explain so token IG matches [CONTEXT]…[CURRENT]… input seen by the model.",
         )
+    st.markdown("---")
+    if API_KEY:
+        st.sidebar.success("🔑 API Key Loaded")
+    else:
+        st.sidebar.error("❌ API Key Missing")
+    
     batch_max_rows = 200
     if analysis_mode == "Batch File Upload":
         batch_max_rows = st.number_input("Max CSV rows to score", min_value=10, max_value=2000, value=200, step=10)
@@ -335,6 +350,8 @@ st.markdown("<br>", unsafe_allow_html=True)
 if st.button("✨ Run Analysis", key="predict_btn", use_container_width=True):
     if not user_text.strip():
         st.warning("Please provide input for analysis.")
+    elif len(user_text) > 10000 and analysis_mode != "Batch File Upload":
+        st.warning("Input exceeds 10,000 character limit. Please shorten your text.")
     else:
         if analysis_mode == "Comparative Analysis":
             with st.spinner("🧬 Comparing trajectories..."):
@@ -657,30 +674,36 @@ elif st.session_state.get("arc_prediction"):
     # 1. Timeline Chart
     turns = arc["turns"]
     df_arc = pd.DataFrame(turns)
-    df_arc["intensity_val"] = arc["intensity_trajectory"]
+    
+    # Safe assignment
+    if not df_arc.empty and len(df_arc) == len(arc.get("intensity_trajectory", [])):
+        df_arc["intensity_val"] = arc["intensity_trajectory"]
+    elif not df_arc.empty:
+        df_arc["intensity_val"] = [0.0] * len(df_arc)
     
     fig_timeline = go.Figure()
     
     # Line for trajectory
-    fig_timeline.add_trace(go.Scatter(
-        x=df_arc["turn"],
-        y=df_arc["intensity_val"],
-        mode='lines+markers',
-        name='Emotional Intensity',
-        line=dict(color='#58a6ff', width=3),
-        marker=dict(size=12, color='#58a6ff', symbol='circle'),
-        text=[f"{t['speaker']}: {t['emotion']}" for t in turns],
-        hoverinfo='text+y'
-    ))
+    if not df_arc.empty:
+        fig_timeline.add_trace(go.Scatter(
+            x=list(range(1, len(df_arc) + 1)),
+            y=df_arc["intensity_val"],
+            mode='lines+markers',
+            name='Emotional Intensity',
+            line=dict(color='#58a6ff', width=3),
+            marker=dict(size=12, color='#58a6ff', symbol='circle'),
+            text=[f"{t.get('speaker', 'Unknown')}: {t.get('emotion', 'invalid')}" for t in turns],
+            hoverinfo='text+y'
+        ))
     
     # Highlight inflection points
     for tp in arc.get("turning_points", []):
-        tp_color = "#ff7b72" if tp["type"] == "intensity_shift" else "#a371f7"
+        tp_color = "#ff7b72" if tp.get("type", "") == "intensity_shift" else "#a371f7"
         fig_timeline.add_vline(
-            x=tp["turn"], 
+            x=tp.get("turn", 0), 
             line_dash="dash", 
             line_color=tp_color,
-            annotation_text=f"Shift: {tp['type'].replace('_', ' ')}",
+            annotation_text=f"Shift: {tp.get('type', 'emotion').replace('_', ' ')}",
             annotation_position="top left"
         )
     
@@ -700,13 +723,15 @@ elif st.session_state.get("arc_prediction"):
     
     # 2. Detailed Turn Table
     st.markdown("#### Turn-by-Turn Analysis")
-    for t in turns:
-        with st.expander(f"Turn {t['turn']}: {t['speaker']} — {t['emotion'].title()}"):
+    for i, t in enumerate(turns):
+        with st.expander(f"Turn {i+1}: {t.get('speaker', 'Unknown')} — {t.get('emotion', 'invalid').title()}"):
             col_a, col_b, col_c = st.columns(3)
-            col_a.metric("Confidence", f"{t['confidence']:.1%}")
-            col_b.metric("Intensity", f"{t['intensity']:.2f}")
-            col_c.metric("Sarcasm", "Yes" if t['sarcasm_prob'] > 0.5 else "No")
-            st.write(f"**Text:** {t['text']}")
+            col_a.metric("Confidence", f"{t.get('confidence', 0.0):.1%}")
+            col_b.metric("Intensity", f"{t.get('intensity', 0.0):.2f}")
+            col_c.metric("Sarcasm", "Yes" if t.get('sarcasm_prob', 0.0) > 0.5 else "No")
+            st.write(f"**Text:** {t.get('text', '')}")
+            if "error" in t:
+                st.error(f"Error: {t['error']}")
     
     st.divider()
 

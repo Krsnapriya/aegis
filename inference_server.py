@@ -9,17 +9,10 @@ import sys
 
 from dotenv import load_dotenv
 
-# Resolve imports whether started as `uvicorn …` from repo root, from this folder, or `python plutchik_erc_dashboard/inference_server.py`.
 project_dir = Path(__file__).resolve().parent
-_repo_root = project_dir.parent
-_core = _repo_root / "core"
-for _p in (_core, project_dir):
-    _s = str(_p)
-    if _s not in sys.path:
-        sys.path.insert(0, _s)
 
 # Load environment variables from the repo root
-load_dotenv(_repo_root / ".env")
+load_dotenv(project_dir / ".env")
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -40,7 +33,7 @@ from utils.constants import PLUTCHIK, EMOTION_NAMES, NUM_EMOTIONS, RING_INTENSIT
 from utils.explainability_v2 import CaptumExplainer
 from database import engine, get_db, Base, SessionLocal
 from models.db_models import DB_Prediction, DB_Correction, DB_DialogueTurn
-from advanced_engine import AdvancedPlutchikEngine, InputSanitizer
+from core.advanced_engine import AdvancedPlutchikEngine, InputSanitizer
 
 input_sanitizer = InputSanitizer()
 
@@ -175,6 +168,8 @@ def _db_worker():
     MAX_RETRIES = 3
     while True:
         record = _db_write_queue.get()
+        if record is None:
+            break # Sentinel received, exit
         for attempt in range(MAX_RETRIES):
             db_session = SessionLocal()
             try:
@@ -192,7 +187,18 @@ def _db_worker():
                 db_session.close()
         _db_write_queue.task_done()
 
-threading.Thread(target=_db_worker, daemon=True).start()
+_db_thread = threading.Thread(target=_db_worker, daemon=True)
+_db_thread.start()
+
+@app.on_event("shutdown")
+def shutdown():
+    logger.info("Gracefully shutting down DB write queue...")
+    _db_write_queue.put(None) # Sentinel
+    _db_thread.join(timeout=5.0)
+    if _db_thread.is_alive():
+        logger.warning("DB worker thread did not exit cleanly within timeout.")
+    else:
+        logger.info("✓ DB worker stopped cleanly.")
 
 # ============== SESSION MANAGER ==============
 class SessionManager:
@@ -660,6 +666,11 @@ async def predict_arc(req: ArcRequest, _auth: str = Depends(verify_api_key)):
                 "error": reason,
             }
             turns_results.append(turn_result)
+            
+            # CRITICAL FIX: Keep history arrays aligned with turns_results to prevent UI crash
+            dummy_probs = [0.0] * NUM_EMOTIONS
+            emotion_history.append(dummy_probs)
+            intensity_trajectory.append(0.0)
             continue
 
         context = " | ".join(list(context_window)) if context_window else "[NO_CONTEXT]"
@@ -687,6 +698,8 @@ async def predict_arc(req: ArcRequest, _auth: str = Depends(verify_api_key)):
         except Exception as e:
             logger.error(f"Error processing arc utterance: {e}")
             turns_results.append({"speaker": utterance.speaker, "text": utterance.text, "error": str(e)})
+            emotion_history.append([0.0] * NUM_EMOTIONS)
+            intensity_trajectory.append(0.0)
             continue
 
     # Analyze the arc to find turning points and classify the arc type
@@ -731,6 +744,8 @@ async def analyze_dynamic(req: DynamicAnalysisRequest, _auth: str = Depends(veri
         warning = result.get("warning")
         if not history:
             warning = (warning + " | " if warning else "") + "No session history found. Trajectory may be unstable."
+            # Provide at least the current vector to prevent downstream crash
+            history = [result['emotion_probs']]
         
         # 3. Run advanced analysis
         analysis = advanced_engine.analyze_dynamic(
@@ -758,46 +773,6 @@ async def analyze_dynamic(req: DynamicAnalysisRequest, _auth: str = Depends(veri
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/explain", response_model=PredictResponse)
-async def explain(req: PredictRequest, background_tasks: BackgroundTasks, _auth: str = Depends(verify_api_key)):
-    """Detailed model inspection with full token attribution."""
-    # Fix 5: /explain was the only inference endpoint that skipped sanitization.
-    is_valid, sanitized_text, reason, emoji_emotion = input_sanitizer.sanitize_and_validate(req.text)
-    if not is_valid:
-        raise HTTPException(status_code=422, detail=reason)
-
-    if reason == "EmojiBypass" and emoji_emotion:
-        synth = {
-            "emotion": emoji_emotion, "confidence": 1.0, "sarcasm_prob": 0.0,
-            "intensity": 0.5, "ring": PLUTCHIK[emoji_emotion]["ring"],
-            "sector": PLUTCHIK[emoji_emotion]["sector"],
-            "top_5": [{"emotion": emoji_emotion, "probability": 1.0}],
-            "explanations": {"reason": "Deterministic Emoji Bypass — no token attribution available"},
-            "cls_embedding": [0.0]*768, "token_embeddings": None,
-            "emotion_probs": [1.0 if EMOTION_NAMES[i] == emoji_emotion else 0.0 for i in range(NUM_EMOTIONS)],
-            "warning": "Emoji Map Bypass — Captum attribution skipped"
-        }
-        return PredictResponse(**synth, context_used="BYPASS")
-
-    try:
-        context = session_manager.get_context(req.session_id)
-        result = _run_inference(sanitized_text, req.scenario, req.topic, context, compute_explanations=True)
-        # Token attribution is included in _run_inference when compute_explanations=True.
-        return PredictResponse(
-            emotion=result["emotion"],
-            confidence=result["confidence"],
-            sarcasm_prob=result["sarcasm_prob"],
-            intensity=result["intensity"],
-            ring=result["ring"],
-            sector=result["sector"],
-            context_used=context,
-            explanations=result["explanations"],
-            cls_embedding=result["cls_embedding"],
-            token_embeddings=result["token_embeddings"],
-            top_5=[EmotionScore(**s) for s in result["top_5"]],
-            emotion_probs=result["emotion_probs"],
-            warning=result.get("warning")
-        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
