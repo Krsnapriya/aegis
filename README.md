@@ -1,15 +1,3 @@
----
-title: Plutchik Emotion Engine
-emoji: 🎭
-colorFrom: blue
-colorTo: indigo
-sdk: streamlit
-sdk_version: 1.28.0
-app_file: app.py
-pinned: false
-license: mit
----
-
 # 🎭 Plutchik Emotion Recognition Dashboard
 
 A production-grade Emotion AI dashboard using the **Plutchik ERC Dataset v2.1** with a multi-task deep learning model and interactive explainability visualizations.
