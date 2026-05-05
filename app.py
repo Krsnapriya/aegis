@@ -562,8 +562,11 @@ if "prediction" in st.session_state:
         
         with c1:
             st.info("**🤖 Local RoBERTa**")
-            st.metric("Emotion", local["emotion"].title(), f"{local['emotion_confidence']:.1%}")
-            st.progress(local["sarcasm_confidence"], f"Sarcasm: {local['sarcasm_confidence']:.1%}")
+            if local:
+                st.metric("Emotion", local["emotion"].title(), f"{local['emotion_confidence']:.1%}")
+                st.progress(local["sarcasm_confidence"], f"Sarcasm: {local['sarcasm_confidence']:.1%}")
+            else:
+                st.error("Local engine failed to return results.")
         
         with c2:
             if llm:
@@ -573,7 +576,7 @@ if "prediction" in st.session_state:
                 with st.expander("View LLM Reasoning"):
                     st.write(llm["reasoning"])
             else:
-                st.error("Nemotron-3 failed to return a result.")
+                st.error("Nemotron-3 failed or returned no result.")
         st.divider()
 
 # ============== RESULTS DISPLAY ==============

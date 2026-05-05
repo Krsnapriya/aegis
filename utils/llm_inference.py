@@ -11,7 +11,10 @@ import os
 from dotenv import load_dotenv
 from utils.constants import EMOTION_NAMES
 
-load_dotenv()
+# Load environment variables. Try multiple paths for robustness.
+_repo_root = Path(__file__).resolve().parent.parent
+env_path = _repo_root / ".env"
+load_dotenv(dotenv_path=env_path if env_path.exists() else None)
 
 class NemotronClient:
     def __init__(self, model="nvidia/nemotron-3-super-120b-a12b:free"):
