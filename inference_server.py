@@ -10,6 +10,8 @@ import sys
 from dotenv import load_dotenv
 
 project_dir = Path(__file__).resolve().parent
+if str(project_dir) not in sys.path:
+    sys.path.append(str(project_dir))
 
 # Load environment variables from the repo root
 load_dotenv(project_dir / ".env")

@@ -4,7 +4,7 @@ Tests for the PluTchikMultiTaskModel.
 
 import pytest
 import torch
-from plutchik_erc_dashboard.models.multitask_emotion_model import PluTchikMultiTaskModel, MultiTaskLoss
+from models.multitask_emotion_model import PluTchikMultiTaskModel, MultiTaskLoss
 
 @pytest.fixture
 def model():

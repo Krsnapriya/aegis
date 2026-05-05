@@ -8,6 +8,9 @@ import sys
 # Now at the root directory
 import sys
 from pathlib import Path
+root_dir = Path(__file__).resolve().parent
+if str(root_dir) not in sys.path:
+    sys.path.append(str(root_dir))
 
 import streamlit as st
 import pandas as pd

@@ -4,8 +4,8 @@ Tests for the ERC Preprocessing Pipeline.
 
 import pytest
 import torch
-from plutchik_erc_dashboard.utils.preprocessing import ERCPreprocessor, PlutchikERCDataset
-from plutchik_erc_dashboard.utils.constants import PLUTCHIK
+from utils.preprocessing import ERCPreprocessor, PlutchikERCDataset
+from utils.constants import PLUTCHIK
 
 @pytest.fixture
 def preprocessor():
