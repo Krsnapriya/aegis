@@ -25,7 +25,7 @@ COPY . .
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy entrypoint script
-COPY plutchik_erc_dashboard/entrypoint.sh .
+COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh && chmod -R 777 /app
 
 # Expose port 7860 for Hugging Face Spaces (via Nginx)

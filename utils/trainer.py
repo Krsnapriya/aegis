@@ -12,8 +12,12 @@ from typing import Dict, List, Tuple
 import json
 import pickle
 from sklearn.metrics import f1_score
-from torch.amp import autocast
-from torch.amp import GradScaler
+# AMP imports
+try:
+    from torch.amp import autocast, GradScaler
+except ImportError:
+    # Fallback for older versions
+    from torch.cuda.amp import autocast, GradScaler
 
 
 class PluTchikTrainer:
@@ -42,7 +46,14 @@ class PluTchikTrainer:
             "loss": [], "emotion_acc": [], "sarcasm_acc": [], "intensity_mse": [], "emotion_f1": [],
             "adv_loss": [], "disc_acc": [], "grad_norm": []
         }
-        self.scaler = GradScaler("cuda", enabled=(device == "cuda"))
+        # Version-agnostic GradScaler instantiation
+        if "cuda" in str(device):
+            try:
+                self.scaler = GradScaler(device="cuda", enabled=True)
+            except TypeError:
+                self.scaler = GradScaler(enabled=True)
+        else:
+            self.scaler = GradScaler(enabled=False)
         self.global_step = 0
         self.total_steps = 0
     
@@ -94,8 +105,37 @@ class PluTchikTrainer:
             
             # Forward with autocast
             optimizer.zero_grad()
-            with autocast("cuda", enabled=(self.device == "cuda")):
-                # Handle optional Dissonance Head fields
+            
+            # Context-aware autocast for PyTorch 2.1.0
+            if "cuda" in str(self.device):
+                with autocast("cuda", enabled=True):
+                    # Handle optional Dissonance Head fields
+                    context_ids = batch.get("context_input_ids")
+                    if context_ids is not None:
+                        context_ids = context_ids.to(self.device)
+                        context_mask = batch["context_attention_mask"].to(self.device)
+                        dissonance_labels = batch["dissonance_label"].to(self.device)
+                    else:
+                        context_mask = None
+                        dissonance_labels = None
+
+                    outputs = self.model(
+                        input_ids, attention_mask, alpha=alpha,
+                        context_input_ids=context_ids,
+                        context_attention_mask=context_mask
+                    )
+                    
+                    # Loss
+                    targets = {
+                        "emotion": emotion_labels,
+                        "sarcasm": sarcasm_labels,
+                        "intensity": intensity_labels,
+                        "scenario": scenario_labels,
+                        "dissonance": dissonance_labels
+                    }
+                    loss, loss_breakdown = self.loss_fn(outputs, targets, iaa_weights)
+            else:
+                # No autocast for CPU/MPS (standard path)
                 context_ids = batch.get("context_input_ids")
                 if context_ids is not None:
                     context_ids = context_ids.to(self.device)
@@ -111,7 +151,6 @@ class PluTchikTrainer:
                     context_attention_mask=context_mask
                 )
                 
-                # Loss
                 targets = {
                     "emotion": emotion_labels,
                     "sarcasm": sarcasm_labels,
@@ -227,11 +266,20 @@ class PluTchikTrainer:
                 context_mask = None
                 dissonance_labels = None
 
-            outputs = self.model(
-                input_ids, attention_mask, alpha=0.0,
-                context_input_ids=context_ids,
-                context_attention_mask=context_mask
-            )
+            # Context-aware autocast for PyTorch 2.1.0
+            if "cuda" in str(self.device):
+                with autocast("cuda", enabled=True):
+                    outputs = self.model(
+                        input_ids, attention_mask, alpha=0.0,
+                        context_input_ids=context_ids,
+                        context_attention_mask=context_mask
+                    )
+            else:
+                outputs = self.model(
+                    input_ids, attention_mask, alpha=0.0,
+                    context_input_ids=context_ids,
+                    context_attention_mask=context_mask
+                )
             
             targets = {
                 "emotion": emotion_labels,

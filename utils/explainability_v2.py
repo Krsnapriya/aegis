@@ -17,7 +17,7 @@ class CaptumExplainer:
         self.model = model
         self.tokenizer = tokenizer
         
-    def attribute_tokens(self, text: str, target_class: int):
+    def attribute_tokens(self, text: str, target_class: int, n_steps: int = 50):
         """
         Compute Integrated Gradients attribution for tokens.
         """
@@ -51,6 +51,7 @@ class CaptumExplainer:
             baselines=baseline_ids,
             additional_forward_args=(attention_mask,),
             target=target_class,
+            n_steps=n_steps,
             return_convergence_delta=True
         )
         

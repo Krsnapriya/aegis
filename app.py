@@ -217,12 +217,16 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # ============== UI HEADER ==============
-st.markdown("<h1 style='text-align: center;'>PLUTCHIK AI</h1>", unsafe_allow_html=True)
-st.markdown("<p class='subtitle' style='text-align: center;'>Beyond Words: Decoding the Emotional DNA</p>", unsafe_allow_html=True)
+st.markdown("""
+    <div class='main-header'>
+        <h1 class='title-text'>PLUTCHIK AI</h1>
+        <p class='subtitle-text'>BEYOND WORDS: DECODING THE EMOTIONAL DNA • v2.5 Hardened</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # ============== API INTEGRATION (Thin Client) ==============
-API_BASE = os.getenv("PLUTCHIK_API_URL", "http://localhost:8000")
+API_BASE = os.getenv("PLUTCHIK_API_URL", "http://127.0.0.1:8000")
 API_KEY = os.getenv("PLUTCHIK_API_KEY")
 
 def call_api(endpoint: str, payload: dict, use_auth: bool = True):
@@ -287,8 +291,21 @@ with st.sidebar:
          "conflict", "casual", "social", "travel", "technology", "creative", "wellbeing", "community"]
     )
     
-    topic = st.text_input("Operational Topic", value="general")
-    speaker = st.text_input("Source Persona", value="USER")
+    col_t1, col_t2 = st.columns([3, 1])
+    with col_t1:
+        topic_list = ["general", "billing", "technical", "feedback", "deadline", "resolution", "complaint", "other"]
+        topic = st.selectbox("Operational Topic", topic_list, index=0)
+    with col_t2:
+        topic_manual = st.text_input("Custom Topic", placeholder="...")
+        if topic_manual: topic = topic_manual
+
+    col_s1, col_s2 = st.columns([3, 1])
+    with col_s1:
+        persona_list = ["USER", "AGENT", "CUSTOMER", "EMPLOYEE", "MANAGER", "ADMIN", "other"]
+        speaker = st.selectbox("Source Persona", persona_list, index=0)
+    with col_s2:
+        speaker_manual = st.text_input("Custom Persona", placeholder="...")
+        if speaker_manual: speaker = speaker_manual
 
     st.markdown("---")
     use_history = st.checkbox("Persistent Context", value=True)
@@ -341,7 +358,22 @@ with input_container:
             user_text_2 = st.text_area("B", label_visibility="collapsed", placeholder="USER: Hello\nAGENT: GO AWAY", height=200)
         user_text = user_text_1 # For button validation
     else:
-        uploaded_file = st.file_uploader("Upload Signal Batch (CSV)", type=["csv"])
+        st.markdown("#### 📦 Batch Configuration")
+        c1, c2 = st.columns([2, 1])
+        with c1:
+            uploaded_file = st.file_uploader("Upload Signal Batch (CSV)", type=["csv"], help="CSV should have at least a 'text' column. Optional: 'speaker', 'topic', 'scenario'")
+        with c2:
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("📄 Generate Sample CSV"):
+                # Sample creation logic already run, but we can provide the download directly
+                sample_df = pd.DataFrame([
+                    {'text': 'I am extremely satisfied!', 'speaker': 'CUSTOMER', 'scenario': 'support', 'topic': 'resolution'},
+                    {'text': 'This is unacceptable.', 'speaker': 'CUSTOMER', 'scenario': 'support', 'topic': 'complaint'},
+                    {'text': 'I am here to help.', 'speaker': 'AGENT', 'scenario': 'support', 'topic': 'empathy'}
+                ])
+                csv_sample = sample_df.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download Template", csv_sample, "plutchik_template.csv", "text/csv")
+        
         user_text = "FILE_UPLOADED" if uploaded_file else ""
 
 
@@ -363,23 +395,41 @@ if st.button("✨ Run Analysis", key="predict_btn", use_container_width=True):
                             spk, txt = line.split(":", 1)
                             utts.append({"speaker": spk.strip(), "text": txt.strip()})
                     if utts:
-                        res = call_api("predict/arc", {"utterances": utts, "scenario": scenario, "topic": topic})
+                        res = call_api("predict/arc", {"utterances": utts, "scenario": scenario, "topic": topic, "explain": True})
                         if res: results.append(res)
                 st.session_state.compare_results = results
                 st.session_state.arc_prediction = None
                 st.session_state.prediction = None
         elif analysis_mode == "Batch File Upload":
             with st.spinner("📦 Processing batch file..."):
-                df = pd.read_csv(uploaded_file)
-                if "text" not in df.columns:
-                    st.error("CSV must contain a 'text' column.")
-                else:
-                    texts = df["text"].astype(str).tolist()[: int(batch_max_rows)]
-                    batch_req = {"items": [{"text": t, "scenario": scenario, "topic": topic} for t in texts]}
-                    res = call_api("predict/batch", batch_req)
-                    if res:
-                        st.session_state.batch_results = pd.DataFrame(res["results"])
-                        st.session_state.prediction = None
+                try:
+                    df_batch = pd.read_csv(uploaded_file)
+                    if "text" not in df_batch.columns:
+                        st.error("❌ CSV Error: Column 'text' is mandatory.")
+                    else:
+                        rows = df_batch.head(int(batch_max_rows))
+                        batch_items = []
+                        for _, row in rows.iterrows():
+                            batch_items.append({
+                                "text": str(row["text"]),
+                                "scenario": str(row.get("scenario", scenario)),
+                                "topic": str(row.get("topic", topic)),
+                                "speaker": str(row.get("speaker", speaker))
+                            })
+                        
+                        res = call_api("predict/batch", {"items": batch_items})
+                        if res:
+                            res_df = pd.DataFrame(res["results"])
+                            # Merge back original metadata if columns exist for better reporting
+                            for col in ["speaker", "topic", "scenario"]:
+                                if col in df_batch.columns:
+                                    res_df[f"orig_{col}"] = rows[col].values
+                            
+                            st.session_state.batch_results = res_df
+                            st.session_state.prediction = None
+                            st.success(f"✓ Batch analysis complete: {len(res_df)} signals processed.")
+                except Exception as e:
+                    st.error(f"❌ Batch Processing Failed: {e}")
         elif analysis_mode == "Conversation Arc":
             # Move existing logic here
             with st.spinner("🧬 Analyzing conversation trajectory..."):
@@ -389,7 +439,7 @@ if st.button("✨ Run Analysis", key="predict_btn", use_container_width=True):
                         spk, txt = line.split(":", 1)
                         utterances.append({"speaker": spk.strip(), "text": txt.strip()})
                 if utterances:
-                    arc_res = call_api("predict/arc", {"utterances": utterances, "scenario": scenario, "topic": topic})
+                    arc_res = call_api("predict/arc", {"utterances": utterances, "scenario": scenario, "topic": topic, "explain": True})
                     if arc_res:
                         st.session_state.arc_prediction = arc_res
                         st.session_state.prediction = None
@@ -422,7 +472,7 @@ if st.button("✨ Run Analysis", key="predict_btn", use_container_width=True):
                     "session_id": "dashboard_session",
                     "speaker": speaker,
                     "scenario": scenario,
-                    "topic": topic
+                    "topic": topic, "explain": True
                 }
                 ep = "explain" if use_captum_explain else "predict"
                 result = call_api(ep, payload)
@@ -487,7 +537,7 @@ if st.button("✨ Run Analysis", key="predict_btn", use_container_width=True):
                     "session_id": "dashboard_session",
                     "speaker": speaker,
                     "scenario": scenario,
-                    "topic": topic
+                    "topic": topic, "explain": True
                 }
                 
                 result = call_api("predict", payload)
@@ -1149,8 +1199,7 @@ This AI decodes the **subtext**—detecting when words and intent diverge.
 """)
 
 st.sidebar.markdown("""
-<div style='text-align: center; color: #6c757d; font-size: 0.7rem; margin-top: 2rem;'>
-    <p style='margin-bottom: 0;'>Version 2.1 Production Edition</p>
-    <p style='margin-top: 0;'>© 2026 Plutchik ERC Project</p>
-</div>
-""", unsafe_allow_html=True)
+---
+**Version 2.5.0 Hardened Production Edition**  
+© 2026 Plutchik ERC Project
+""")

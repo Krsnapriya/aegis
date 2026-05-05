@@ -21,7 +21,7 @@ import torch
 import numpy as np
 import json
 import os
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Optional, Any, Tuple
 from datetime import datetime
 import uvicorn
 from collections import deque, OrderedDict
@@ -302,6 +302,7 @@ class PredictRequest(BaseModel):
     speaker: str = Field("USER", max_length=50)
     scenario: str = Field("casual", max_length=50)
     topic: str = Field("general", max_length=50)
+    explain: bool = True
 
     @validator("text")
     def text_must_not_be_whitespace(cls, v):
@@ -355,6 +356,7 @@ class BatchItem(BaseModel):
     text: str = Field(..., max_length=5000)
     scenario: str = Field("casual", max_length=100)
     topic: str = Field("general", max_length=100)
+    speaker: str = Field("USER", max_length=100)
 
 class BatchRequest(BaseModel):
     items: List[BatchItem]
@@ -447,7 +449,8 @@ def _run_inference(text: str, scenario: str, topic: str, context: str = "[NO_CON
     explanations = None
     if compute_explanations:
         try:
-            token_attributions = captum_explainer.attribute_tokens(text, target_class=emotion_idx)
+            # RUTHLESS SPEED: Use 5 steps for dashboard responsiveness
+            token_attributions = captum_explainer.attribute_tokens(text, target_class=emotion_idx, n_steps=5)
             explanations = {"token_attributions": token_attributions}
         except Exception as e:
             logger.error(f"Captum failed: {e}")
@@ -485,7 +488,7 @@ def _log_prediction_to_db(req: PredictRequest, result: dict, context: str):
     )
     _db_write_queue.put(db_pred)
 
-def _analyze_arc_trajectory(emotion_history: List[List[float]]) -> (List[Dict], str):
+def _analyze_arc_trajectory(emotion_history: List[List[float]]) -> Tuple[List[Dict], str]:
     """
     Analyzes a sequence of emotion probability distributions to find turning points.
     A turning point is a significant shift in the emotional landscape.
@@ -566,7 +569,8 @@ async def predict(req: PredictRequest, background_tasks: BackgroundTasks, _auth:
     
     try:
         context = session_manager.get_context(req.session_id)
-        result = _run_inference(sanitized_text, req.scenario, req.topic, context, compute_explanations=False)
+        # Use req.explain to control whether to compute attributions
+        result = _run_inference(sanitized_text, req.scenario, req.topic, context, compute_explanations=req.explain)
         session_manager.add_turn(req.session_id, sanitized_text, req.speaker,
                                   emotion_probs=result.get("emotion_probs"))
 
@@ -834,7 +838,7 @@ async def predict_batch(req: BatchRequest, _auth: str = Depends(verify_api_key))
                 ))
                 continue
 
-            result = _run_inference(sanitized_text, item.scenario, item.topic, compute_explanations=False)
+            result = _run_inference(sanitized_text, item.scenario, item.topic, context="[NO_CONTEXT]", compute_explanations=False)
             results.append(BatchResponseItem(
                 text=item.text,
                 emotion=result["emotion"],
