@@ -1,143 +1,158 @@
-# 🎭 Plutchik Emotion Engine (Hardened Production Suite)
+# 🎭 The Ultimate Plutchik Emotion Engine: Technical Deep Dive & Production Manual
 
-[![Status: Production Ready](https://img.shields.io/badge/Status-Production--Ready-brightgreen.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
-[![Accuracy: 80.2%](https://img.shields.io/badge/Accuracy-80.2%25-blueviolet.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
-[![Engine: RoBERTa-Base](https://img.shields.io/badge/Engine-RoBERTa--Base-orange.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
-
-## 🌌 Overview: Beyond Sentiment Analysis
-
-The **Plutchik Emotion Engine** is a high-fidelity, multi-task neural framework designed to decode the "Emotional DNA" of human conversation. Unlike traditional sentiment analysis which reduces human experience to a binary (Positive/Negative) or ternary (Neutral) scale, the Plutchik Engine operates on a **32-class emotional taxonomy** derived from Robert Plutchik's psychophysiological theory.
-
-It is built to handle the complexities of **Emotion Recognition in Conversation (ERC)**, specifically targeting:
-*   **Sarcasm & Dissonance**: Detecting when words betray the underlying emotional intent.
-*   **Intensity Trajectories**: Modeling how emotions evolve, escalate, or dissipate over dialogue turns.
-*   **Contextual Grounding**: Factoring in Scenarios (Workplace vs. Romance) and Personas (Agent vs. Customer).
+[![Version: 2.5.0-Hardened](https://img.shields.io/badge/Version-2.5.0--Hardened-brightgreen.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
+[![Architecture: Multi-Task Transformer](https://img.shields.io/badge/Architecture-Multi--Task--Transformer-blue.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
+[![Taxonomy: Plutchik 32](https://img.shields.io/badge/Taxonomy-Plutchik--32-orange.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
 
 ---
 
-## 🏗️ System Architecture
+## 📖 1. Theoretical Foundation: The Psychophysiology of Plutchik
 
-```mermaid
-graph TD
-    subgraph "Frontend Layer"
-        UI[Streamlit Dashboard]
-        Upload[Batch CSV Processor]
-    end
+The core of this engine is grounded in **Robert Plutchik's Psychoevolutionary Theory of Emotion**. Unlike models based on Ekman's "Big Six" (which are discrete), Plutchik's model is **structured and hierarchical**. 
 
-    subgraph "Inference Layer (FastAPI)"
-        API[Inference Server]
-        Model[Multi-Task RoBERTa Core]
-        Captum[Explainability Engine]
-        Dyn[Dynamic Trajectory Forecaster]
-    end
+### 1.1 The Wheel of Emotion
+Plutchik's wheel consists of 8 primary bipolar emotions: **Joy vs. Sadness**, **Anger vs. Fear**, **Trust vs. Disgust**, and **Surprise vs. Anticipation**. 
+*   **Dimensionality**: Each emotion exists on a vertical axis of **Intensity**. For example: *Annoyance → Anger → Rage*. 
+*   **Dyads**: Plutchik proposed that complex emotions are mixtures of these primary ones. *Love = Joy + Trust*; *Optimism = Anticipation + Joy*.
+*   **The 32-Class Taxonomy**: This engine implements a refined 32-class version of this taxonomy, capturing the "Secondary" and "Tertiary" rings of the wheel to provide unprecedented granularity in conversational analysis.
 
-    subgraph "Intelligence Pathways"
-        Model -->|Logits| Emotion[32-Class Classification]
-        Model -->|Logits| Sarcasm[Binary Detection]
-        Model -->|Sigmoid| Intensity[Regression 0.0-1.0]
-        Model -->|GRL| Scenario[Adversarial Domain Lock]
-    end
-
-    subgraph "Data & Persistence"
-        Queue[Async DB Write Queue]
-        DB[(SQLite / Postgres)]
-        Logs[JSONL Corrections Log]
-    end
-
-    UI -->|JSON| API
-    API -->|Model| Model
-    API -->|Captum| Captum
-    API -->|ODE| Dyn
-    Emotion --> Queue
-    Queue --> DB
-```
+### 1.2 Why ERC (Emotion Recognition in Conversation)?
+Standard sentiment analysis is "stateless." It looks at a single sentence in isolation. **ERC** is "stateful." It recognizes that an utterance like "I'm fine" means something entirely different after a heated argument than after a positive resolution. 
+*   **Contextual Shifting**: Emotions in conversation are dynamic. The engine tracks the "Emotional Trajectory" across multiple turns.
+*   **Persona Bias**: An "Agent" in a support scenario has a different emotional baseline than a "Customer."
 
 ---
 
-## 🧠 Neural & Algorithmic Core
+## 🏗️ 2. Architectural Blueprint: The Hardened Production Suite
 
-### 1. Multi-Task RoBERTa Architecture
-The engine utilizes a `roberta-base` backbone with four specialized prediction heads. The beauty of multi-task learning (MTL) here is **Feature Interdependence**: the model's understanding of "Sarcasm" informs its "Emotion" prediction, and vice versa.
-*   **Adversarial Domain Discrimination (GRL)**: We utilize a Gradient Reversal Layer (GRL) during training to ensure the model's shared representations are "scenario-agnostic." This prevents the model from overfitting to specific keywords associated with "Workplace" or "Family" contexts, forcing it to learn pure emotional cues.
-*   **Dual-Encoder Dissonance Head**: For complex conversational turns, the engine compares the `Current Utterance` representation against a `Context Representation` (previous 3 turns) to calculate an **Emotional Dissonance Score**.
+The system is designed as a **decoupled, high-performance microservice architecture**.
 
-### 2. Explainability via Integrated Gradients (IG)
-We leverage **Captum** to provide token-level attributions. The engine doesn't just say "The user is Angry"; it highlights exactly which words triggered that classification.
-*   **Contextual Spans**: The engine distinguishes between the impact of the *Current* text and the *Historical Context*.
-*   **Sensitivity Analysis**: By calculating gradients relative to a baseline (pad tokens), we determine the "Emotional Weight" of each sub-word.
+### 2.1 Component Breakdown
 
-### 3. Dynamic Intelligence & Emotion ODEs
-Located in `core/advanced_engine.py`, this is the "Forecasting" component. It treats an emotional state as a continuous vector moving through a high-dimensional space.
-*   **TrajectoryForecaster**: Uses a series of Linear layers to project the current state into the future.
-*   **EmotionODEFunc**: Models the *rate of change* ($\frac{de}{dt}$) of an emotional state, allowing the system to predict when a customer is nearing a "Breaking Point" or an "Inflection Point."
+#### A. The Neural Core (PyTorch + RoBERTa)
+At the center is a **Multi-Task RoBERTa-Base** model. We chose RoBERTa over BERT due to its improved pre-training on larger datasets and removal of the Next Sentence Prediction (NSP) task, which we found less relevant for short-turn conversational dynamics.
+*   **Shared Encoder**: A 12-layer, 768-hidden Transformer block.
+*   **Task-Specific Heads**: Four non-linear MLP heads that branch from the CLS token representation.
 
----
+#### B. The Inference Gateway (FastAPI)
+`inference_server.py` is the production entry point. It manages:
+*   **Model Lifecycle**: Loading, versioning, and hot-reloading.
+*   **Auth & Security**: X-API-Key validation for multi-tenant isolation.
+*   **Resource Management**: Intelligent switching between CUDA/MPS/CPU.
 
-## 📂 File-by-File Technical Directory
-
-### 🔧 Root Utilities & Entrypoints
-*   **`inference_server.py`**: The production heart. A FastAPI-based service managing model lifecycle, hot-reloading weights, async DB writing, and providing specialized endpoints (`/predict`, `/explain`, `/analyze/dynamic`).
-*   **`app.py`**: The Streamlit-driven intelligence hub. Features a premium "Glassmorphism" UI, real-time visualizations (Plotly), batch processing capabilities, and comparative model audits (RoBERTa vs. Nemotron-3).
-*   **`train_v2.py`**: The primary training harness. Orchestrates 5-epoch fine-tuning with MPS/CUDA acceleration, utilizing weighted multi-task loss.
-*   **`database.py`**: SQLAlchemy-based schema definitions for persisting conversational results, sarcasm audits, and human-in-the-loop (HITL) corrections.
-
-### 🧠 `models/` - The Architectures
-*   **`multitask_emotion_model.py`**: Contains the `PluTchikMultiTaskModel` class. Defines the RoBERTa backbone and the four specialized heads (Emotion, Sarcasm, Intensity, Scenario).
-*   **`db_models.py`**: Pydantic/SQLAlchemy models for internal data structures.
-
-### 🛠️ `utils/` - The Support Pipeline
-*   **`preprocessing.py`**: The most critical utility. Handles **Context Windowing**, metadata augmentation (prepending `[SCENARIO]` tokens), and tokenization logic.
-*   **`explainability_v2.py`**: Bridges the Gap between raw PyTorch gradients and human-readable UI highlights using Captum.
-*   **`llm_inference.py`**: An OpenRouter-based client for **Nemotron-3** integration. Acts as the "Gold Standard" or "Teacher Model" for comparative analysis.
-*   **`trainer.py`**: A robust `Trainer` class implementing gradient clipping, mixed-precision (where supported), and validation metrics (F1-Macro for emotions).
-*   **`constants.py`**: The "Source of Truth" for the Plutchik taxonomy, hex codes for UI rendering, and scenario definitions.
-
-### ⚙️ `core/` - The Advanced Engine
-*   **`advanced_engine.py`**: The implementation of continuous emotion modeling. Contains the ODE functions and the `AdvancedPlutchikEngine` which orchestrates the complex "Dynamic Intelligence" mode.
+#### C. The Intelligence Hub (Streamlit)
+`app.py` provides the "Command Center." It is optimized for **Human-in-the-Loop (HITL)** workflows, allowing researchers to audit model reasoning in real-time using Captum-based heatmaps.
 
 ---
 
-## 🚀 Production Functioning & Lifecycle
+## 🧠 3. Algorithmic Deep Dive: The Mathematics of Emotion
 
-### 1. The Boot Sequence
-When `inference_server.py` starts:
-1.  It loads the RoBERTa base weights from HuggingFace.
-2.  It attempts to load `my_plutchik_model/best_model.pt` (the fine-tuned state).
-3.  It initializes a **Background DB Worker Thread**. This is crucial: we use an internal queue to prevent SQLite "Database Locked" errors during high-concurrency API calls.
+### 3.1 Multi-Task Learning (MTL) & Weighted Loss
+The engine solves four tasks simultaneously. The total loss $L$ is a weighted sum:
 
-### 2. The Request Lifecycle
-When an utterance is transmitted:
-1.  **Augmentation**: `preprocessing.py` prepends context and metadata.
-2.  **Inference**: The model returns raw logits for all 4 tasks.
-3.  **Refining**: Intensity is squashed via Sigmoid; Emotion is selected via Argmax.
-4.  **Logging**: The result is queued for the DB and optionally saved to a JSONL file for future retraining (Flywheel effect).
+$$L_{total} = \lambda_1 L_{CE\_emo} + \lambda_2 L_{CE\_sarc} + \lambda_3 L_{MSE\_int} + \lambda_4 L_{CE\_adv}$$
 
-### 3. Hot-Reloading
-In a production environment, you don't want to stop the server to update the model. The `/reload` POST endpoint allows the server to swap its model weights in memory instantly after a training run completes.
+1.  **Emotion ($L_{CE\_emo}$)**: 32-way Cross-Entropy loss.
+2.  **Sarcasm ($L_{CE\_sarc}$)**: Binary Cross-Entropy. Crucial for detecting dissonance.
+3.  **Intensity ($L_{MSE\_int}$)**: Mean Squared Error regression. Captures the "distance from the wheel's center."
+4.  **Adversarial Domain Lock ($\lambda_4 L_{CE\_adv}$)**: Uses a Gradient Reversal Layer (GRL). During backpropagation, the gradients from this head are multiplied by $-\lambda$, forcing the encoder to learn features that are *not* indicative of the scenario (e.g., removing "Workplace" bias from "Anger" detection).
 
----
+### 3.2 Explainability: Integrated Gradients (IG)
+We implement the **Integrated Gradients** algorithm (Sundararajan et al.). Unlike simple Gradient * Input methods, IG satisfies the "Axiom of Completeness."
+*   **Formula**: $IG_i(x) = (x_i - x'_i) \times \int_{\alpha=0}^1 \frac{\partial F(x' + \alpha(x - x'))}{\partial x_i} d\alpha$
+*   **Implementation**: We approximate the integral using a Gauss-Legendre quadrature (typically 50-100 steps). This allows the dashboard to highlight tokens with **Positive Attribution** (supporting the prediction) and **Negative Attribution** (contradicting the prediction).
 
-## 📈 Training & Hardening
-
-The current model was "Hardened" via:
-*   **Epoch Scaling**: Increased from 1 to 5 epochs to ensure deep convergence.
-*   **Seed Injection**: High-confidence synthetic seeds were added to the dataset to ensure the model has strong "Ground Truth" for primary emotions (Joy, Anger, etc.).
-*   **Adversarial Training**: Using the Scenario Discriminator to ensure cross-domain robustness.
+### 3.3 Dynamic Intelligence: Emotion ODEs
+Located in `core/advanced_engine.py`, this module treats emotional states as a **Continuous Dynamical System**.
+*   **The Problem**: Conversational turns happen at discrete intervals ($t=1, 2, 3$), but human emotion is continuous.
+*   **The Solution**: We model the "Latent Emotion Vector" $h$ as following an Ordinary Differential Equation:
+    $$\frac{dh}{dt} = f(h(t), t, \theta)$$
+    where $f$ is a neural network (`EmotionODEFunc`). This allows us to "interpolate" emotional states between turns and "extrapolate" future emotional escalation.
 
 ---
 
-## 📜 Technical Purpose Summary Table
+## 📂 4. The Technical Directory: File-by-File Analysis
 
-| File | Primary Role | Core Algorithm/Technology |
+### 4.1 Core Application Layer
+
+#### `app.py`
+The "Face" of the project. It uses a custom **Glassmorphism CSS** layer to provide a premium interface.
+*   **Key Logic**: Manages session state, handles the "Dynamic Intelligence" loop, and orchestrates the comparison between Local RoBERTa and LLM (Nemotron) models.
+*   **Batch Upload**: Utilizes `st.file_uploader` and Pandas to score thousands of rows asynchronously.
+
+#### `inference_server.py`
+The "Brain." Engineered for stability.
+*   **Async Write Queue**: Implements a `queue.Queue` with a background worker thread (`_db_worker`). This ensures that even if SQLite is locked under load, predictions are still returned to the user instantly, with DB persistence happening in the background.
+*   **Reload API**: A POST `/reload` endpoint that re-triggers the model's weight-loading sequence.
+
+#### `train_v2.py`
+The "Forge." The primary training script.
+*   **Hardening Logic**: Implements "Seed Injection" where specific high-confidence manual examples are prioritized in the training batch to prevent "Drift."
+
+---
+
+### 4.2 Models & Architecture (`models/`)
+
+#### `multitask_emotion_model.py`
+*   **`PluTchikMultiTaskModel`**: The PyTorch implementation. Includes the `GradReverse` function for adversarial training and the dual-encoder pathway for dissonance detection.
+*   **`MultiTaskLoss`**: The custom loss class that handles multi-task weighting and Inter-Annotator Agreement (IAA) weighting.
+
+#### `db_models.py`
+Defines the `SignalAudit` and `SarcasmEvent` schemas. Used by SQLAlchemy to ensure type-safe persistence.
+
+---
+
+### 4.3 Utilities & Pipelines (`utils/`)
+
+#### `preprocessing.py`
+The "Filter."
+*   **`ERCPreprocessor`**: Handles the critical `[SCENARIO]` and `[CONTEXT]` token injection. It manages a sliding window of dialogue history, ensuring that every prediction "sees" the previous $N$ turns.
+*   **Scenario Mapping**: Maps 14+ scenarios (Romance, Workplace, etc.) into binary domains for the Adversarial head.
+
+#### `explainability_v2.py`
+*   **`CaptumExplainer`**: A specialized wrapper for the Captum library. It handles the mapping of sub-word BPE tokens back to original user-visible words, aggregating attributions to make them readable.
+
+#### `llm_inference.py`
+*   **`NemotronClient`**: A resilient client for OpenRouter. It handles LLM fallbacks, retry logic, and parses the "Reasoning" blocks from the 120B parameter model.
+
+#### `trainer.py`
+A generalized training loop with support for **F1-Macro scoring**, checkpointing, and early stopping.
+
+---
+
+## 🚀 5. Operational Guide: Deployment & Scaling
+
+### 5.1 Environment Variables
+*   `PLUTCHIK_API_KEY`: 64-char hex string for API authorization.
+*   `OPENROUTER_API_KEY`: Required for Nemotron-3 comparative analysis.
+*   `DATABASE_URL`: Defaults to `sqlite:///plutchik_erc.db`. Can be pointed to a PostgreSQL instance for production.
+
+### 5.2 Performance Optimization
+*   **MPS Acceleration**: Optimized for Mac Silicon (M1/M2/M3). Training uses `torch.device("mps")`.
+*   **Batching**: The `/predict/batch` endpoint uses vectorization to process up to 200 utterances in a single forward pass, significantly reducing overhead compared to sequential calls.
+
+---
+
+## 🔮 6. The Roadmap: Future Iterations
+
+1.  **Cross-Modal Expansion**: Incorporating audio-prosody features (pitch, tone) alongside text for a multi-modal Plutchik Engine.
+2.  **Federated Learning**: Allowing edge deployment where the model learns from local user "Corrections" without transmitting raw text to a central server.
+3.  **Real-Time VAD (Voice Activity Detection)**: Integration with live telephony streams.
+
+---
+
+## 📜 Summary Table of Components
+
+| Module | Technical Specialization | Purpose |
 | :--- | :--- | :--- |
-| `app.py` | UI/UX Layer | Streamlit, Plotly, Glassmorphism CSS |
-| `inference_server.py` | API & Lifecycle | FastAPI, Uvicorn, Async Queue |
-| `multitask_emotion_model.py` | Neural Architecture | PyTorch, RoBERTa, GRL |
-| `advanced_engine.py` | Trajectory Modeling | ODE Solvers, Vector Projection |
-| `preprocessing.py` | Data Engineering | Tokenizers, Context Windowing |
-| `llm_inference.py` | LLM Integration | OpenRouter API, Nemotron-3 |
-| `train_v2.py` | Model Convergence | Weighted Cross-Entropy, AdamW |
+| **`app.py`** | Streamlit / CSS | Frontend Dashboard & Visualization |
+| **`inference_server.py`** | FastAPI / Uvicorn | Production API & Lifecycle Management |
+| **`train_v2.py`** | PyTorch / Training | Model Fine-tuning & Weight Convergence |
+| **`advanced_engine.py`** | ODEs / Dynamics | Trajectory Forecasting & State Dynamics |
+| **`preprocessing.py`** | NLP / Tokenization | Context Windowing & Metadata Injection |
+| **`multitask_model.py`** | MTL / Transformers | Core Neural Network (RoBERTa) |
+| **`llm_inference.py`** | API / OpenRouter | LLM Comparision & Teacher Logic |
 
 ---
 
-> **Note**: This repository is optimized for **Production Deployment**. It handles edge cases like database locking, model divergence, and explainability timeouts to ensure a premium user experience.
+### **"Emotion is the DNA of conversation. Plutchik is the sequencer."**
