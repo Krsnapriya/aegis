@@ -232,6 +232,40 @@ st.markdown("""
 API_BASE = os.getenv("PLUTCHIK_API_URL", "http://127.0.0.1:8000")
 API_KEY = os.getenv("PLUTCHIK_API_KEY")
 
+import subprocess
+import socket
+import time
+
+def is_port_open(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('127.0.0.1', port)) == 0
+
+@st.cache_resource
+def ensure_backend():
+    if API_BASE in ["http://127.0.0.1:8000", "http://0.0.0.0:8000", "http://localhost:8000"]:
+        if not is_port_open(8000):
+            with st.status("🚀 Initializing Plutchik Neural Engine...", expanded=True) as status:
+                st.write("Loading RoBERTa weights and trajectory forecasting ODEs...")
+                proc = subprocess.Popen([sys.executable, "inference_server.py"])
+                
+                # Polling for availability
+                max_retries = 45
+                for i in range(max_retries):
+                    if is_port_open(8000):
+                        status.update(label="✅ Neural Engine Active", state="complete", expanded=False)
+                        return True
+                    time.sleep(2)
+                    if i % 5 == 0:
+                        st.write(f"Waking up the engine... ({i}/{max_retries})")
+                
+                status.update(label="❌ Engine Initialization Timeout", state="error")
+                return False
+    return True
+
+# Ensure backend is running before proceeding
+if not ensure_backend():
+    st.warning("⚠️ The local inference core could not be started. Some features (RoBERTa analysis, attributions) will be unavailable. Nemotron-3 (LLM) mode is still functional.")
+
 def call_api(endpoint: str, payload: dict, use_auth: bool = True):
     headers = {"Content-Type": "application/json"}
     if use_auth:
