@@ -171,6 +171,26 @@ class PluTchikMultiTaskModel(nn.Module):
             "token_ids": self.token_ids,
             "last_hidden_state": self.last_hidden_state
         }
+    
+    def get_embeddings(self, text, tokenizer, device="cpu"):
+        """
+        Extract RoBERTa embeddings for the given text.
+        Returns: A list of floats (CLS token embedding)
+        """
+        self.eval()
+        with torch.no_grad():
+            inputs = tokenizer(
+                text,
+                return_tensors="pt",
+                padding=True,
+                truncation=True,
+                max_length=512
+            ).to(device)
+            
+            outputs = self.roberta(**inputs)
+            # Use CLS token (index 0)
+            cls_embedding = outputs.last_hidden_state[0, 0, :].cpu().numpy().tolist()
+            return cls_embedding
 
 
 class MultiTaskLoss(nn.Module):
