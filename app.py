@@ -299,23 +299,25 @@ llm_client = NemotronClient()
 # Load centroids for embedding similarity (lightweight)
 @st.cache_resource
 def load_centroids():
+    import io
+    url = "https://huggingface.co/spaces/Krsnapriya/plutchikk/resolve/main/my_plutchik_model/emotion_centroids.pkl"
+    try:
+        res = requests.get(url, timeout=10)
+        if res.status_code == 200:
+            return pickle.loads(res.content)
+    except Exception as e:
+        st.warning(f"Failed to fetch centroids from cloud: {e}")
+    
+    # Fallback to local
     model_dir = Path(__file__).parent / "my_plutchik_model"
     centroids_path = model_dir / "emotion_centroids.pkl"
-    
-    if not centroids_path.exists():
-        try:
-            from huggingface_hub import hf_hub_download
-            model_dir.mkdir(parents=True, exist_ok=True)
-            hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/emotion_centroids.pkl", local_dir=str(model_dir.parent))
-        except Exception as e:
-            st.warning(f"Failed to download emotion centroids: {e}")
-            
     if centroids_path.exists():
         with open(centroids_path, "rb") as f:
             return pickle.load(f)
     return {}
 
 emotion_centroids = load_centroids()
+
 
 
 # ============== SIDEBAR CONFIGURATION ==============
@@ -328,6 +330,13 @@ with st.sidebar:
     )
     model_type = st.radio("Inference Core", ["Local RoBERTa", "Nemotron-3 (LLM)", "Compare Both Models"])
 
+    st.markdown("---")
+    # Debug connection status
+    if "hf.space" in API_BASE:
+        st.success(f"🌐 Connected to HF Space API")
+    else:
+        st.info("💻 Running Local/Default Backend")
+        
     st.markdown("---")
     st.markdown("### 📍 Context Matrix")
     
