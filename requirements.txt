@@ -4,6 +4,8 @@ torchvision>=0.16.0
 transformers>=4.35.0
 captum>=0.6.0
 torchdiffeq>=0.2.3
+huggingface-hub>=0.17.0
+
 
 
 # Backend & API

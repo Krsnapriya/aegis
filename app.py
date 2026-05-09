@@ -301,6 +301,17 @@ llm_client = NemotronClient()
 def load_centroids():
     model_dir = Path(__file__).parent / "my_plutchik_model"
     centroids_path = model_dir / "emotion_centroids.pkl"
+    
+    if not centroids_path.exists():
+        try:
+            from huggingface_hub import hf_hub_download
+            import shutil
+            model_dir.mkdir(parents=True, exist_ok=True)
+            downloaded_path = hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/emotion_centroids.pkl")
+            shutil.copy2(downloaded_path, centroids_path)
+        except Exception as e:
+            st.warning(f"Failed to download emotion centroids: {e}")
+            
     if centroids_path.exists():
         with open(centroids_path, "rb") as f:
             return pickle.load(f)

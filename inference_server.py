@@ -162,6 +162,18 @@ MODEL_READY = False
 def load_model_weights():
     global model, captum_explainer, advanced_engine, MODEL_READY
     
+    if not checkpoint_path.exists():
+        logger.info(f"Model weights not found locally at {checkpoint_path}. Downloading from Hugging Face Hub...")
+        try:
+            from huggingface_hub import hf_hub_download
+            model_dir.mkdir(parents=True, exist_ok=True)
+            downloaded_path = hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/best_model.pt")
+            import shutil
+            shutil.copy2(downloaded_path, checkpoint_path)
+            logger.info("Successfully downloaded best_model.pt")
+        except Exception as e:
+            logger.error(f"Failed to download model weights from Hugging Face: {e}")
+    
     if checkpoint_path.exists():
         try:
             # Use weights_only=False because the model class is defined in this project
