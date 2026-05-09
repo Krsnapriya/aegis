@@ -16,7 +16,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Install runtime dependencies and Nginx
-RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y nginx curl && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -33,3 +33,4 @@ EXPOSE 7860
 
 # Launch all services via entrypoint
 CMD ["./entrypoint.sh"]
+
