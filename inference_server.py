@@ -167,9 +167,7 @@ def load_model_weights():
         try:
             from huggingface_hub import hf_hub_download
             model_dir.mkdir(parents=True, exist_ok=True)
-            downloaded_path = hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/best_model.pt")
-            import shutil
-            shutil.copy2(downloaded_path, checkpoint_path)
+            hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/best_model.pt", local_dir=str(model_dir.parent))
             logger.info("Successfully downloaded best_model.pt")
         except Exception as e:
             logger.error(f"Failed to download model weights from Hugging Face: {e}")

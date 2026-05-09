@@ -305,10 +305,8 @@ def load_centroids():
     if not centroids_path.exists():
         try:
             from huggingface_hub import hf_hub_download
-            import shutil
             model_dir.mkdir(parents=True, exist_ok=True)
-            downloaded_path = hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/emotion_centroids.pkl")
-            shutil.copy2(downloaded_path, centroids_path)
+            hf_hub_download(repo_id="Krsnapriya/plutchikk", repo_type="space", filename="my_plutchik_model/emotion_centroids.pkl", local_dir=str(model_dir.parent))
         except Exception as e:
             st.warning(f"Failed to download emotion centroids: {e}")
             
