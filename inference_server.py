@@ -451,9 +451,8 @@ def _run_inference(text: str, scenario: str, topic: str, context: str = "[NO_CON
     explanations = None
     if compute_explanations:
         try:
-            # RUTHLESS SPEED: Use 5 steps for dashboard responsiveness
-            token_attributions = captum_explainer.attribute_tokens(text, target_class=emotion_idx, n_steps=5)
-            explanations = {"token_attributions": token_attributions}
+            # RUTHLESS SPEED: Use 10 steps (increased from 5 for better stability)
+            explanations = captum_explainer.attribute_tokens(full_input, target_class=emotion_idx, n_steps=10)
         except Exception as e:
             logger.error(f"Captum failed: {e}")
 
@@ -471,6 +470,7 @@ def _run_inference(text: str, scenario: str, topic: str, context: str = "[NO_CON
         "emotion_probs": emotion_probs.tolist(),
         "warning": warning
     }
+
 
 def _log_prediction_to_db(req: PredictRequest, result: dict, context: str):
     """Background task to persist prediction to DB via async queue."""
