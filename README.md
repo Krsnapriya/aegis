@@ -1,6 +1,6 @@
 ---
 title: Plutchik Emotion Engine
-emoji: 🎭
+emoji: "\U0001F3AD"
 colorFrom: blue
 colorTo: purple
 sdk: docker
@@ -8,157 +8,239 @@ pinned: false
 app_port: 7860
 ---
 
-# 🎭 The Ultimate Plutchik Emotion Engine: Technical Deep Dive & Production Manual
+# Plutchik ERC Engine
 
-[![Version: 2.5.0-Hardened](https://img.shields.io/badge/Version-2.5.0--Hardened-brightgreen.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
+[![Version: 2.5.1](https://img.shields.io/badge/Version-2.5.1-brightgreen.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
 [![Architecture: Multi-Task Transformer](https://img.shields.io/badge/Architecture-Multi--Task--Transformer-blue.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
 [![Taxonomy: Plutchik 32](https://img.shields.io/badge/Taxonomy-Plutchik--32-orange.svg?style=for-the-badge)](https://github.com/Krsnapriya/aegis)
 
----
-
-## 📖 1. Theoretical Foundation: The Psychophysiology of Plutchik
-
-The core of this engine is grounded in **Robert Plutchik's Psychoevolutionary Theory of Emotion**. Unlike models based on Ekman's "Big Six" (which are discrete), Plutchik's model is **structured and hierarchical**. 
-
-### 1.1 The Structural Model (The Wheel)
-Plutchik's 1980 model proposed eight primary bipolar emotions, paired as opposites:
-*   **Joy vs. Sadness**
-*   **Anger vs. Fear**
-*   **Trust vs. Disgust**
-*   **Surprise vs. Anticipation**
-
-#### The Three Dimensions:
-1.  **Intensity**: Emotions vary in strength. *Annoyance* escalates to *Anger*, which peaks at *Rage*. The engine models this as a continuous regression value [0,1].
-2.  **Similarity**: Emotions located closer on the wheel (e.g., Joy and Trust) are more likely to co-occur.
-3.  **Polarity**: Opposite emotions (e.g., Joy and Sadness) rarely manifest simultaneously without creating deep psychological dissonance.
-
-### 1.2 The 32-Class Taxonomy
-This engine implements a refined 32-class version of this taxonomy, capturing:
-*   **Primary Emotions**: The 8 basic states.
-*   **Secondary Dyads**: Combinations like *Love* (Joy + Trust) or *Optimism* (Anticipation + Joy).
-*   **Tertiary Rings**: Subtle variants like *Apprehension* (low-intensity Fear) or *Pensiveness* (low-intensity Sadness).
-
-### 1.3 Why ERC (Emotion Recognition in Conversation)?
-Traditional sentiment analysis is "stateless." It looks at a single sentence like "I'm fine" and might classify it as Neutral. **ERC** is "stateful." It recognizes that "I'm fine" spoken after a long silence or a biting remark is likely a signal of **Disgust** or **Anger (passive-aggressive)**. 
-*   **Contextual Shifting**: Emotions in conversation are dynamic. The engine tracks the "Emotional Trajectory" across multiple turns.
-*   **Persona Bias**: An "Agent" in a support scenario has a different emotional baseline than a "Customer."
+Multi-task RoBERTa model for Emotion Recognition in Conversation (ERC) using Plutchik's 32-class psychoevolutionary taxonomy. Predicts emotion, sarcasm, intensity, and domain invariance from a shared encoder, with Neural ODE trajectory forecasting and a human-in-the-loop correction flywheel.
 
 ---
 
-## 🏗️ 2. Architectural Blueprint: The Hardened Production Suite
+## 1. Dataset
 
-The system is designed as a **decoupled, high-performance microservice architecture**.
+### 1.1 Production Corpus
 
-### 2.1 Component Breakdown
+`data/processed/ERC/plutchik_v2_production.csv` — 2,800 utterances across 1,346 dialogues.
 
-#### A. The Neural Core (PyTorch + RoBERTa)
-At the center is a **Multi-Task RoBERTa-Base** model. We chose RoBERTa over BERT due to its improved pre-training on larger datasets and removal of the Next Sentence Prediction (NSP) task, which we found less relevant for short-turn conversational dynamics.
-*   **Shared Encoder**: A 12-layer, 768-hidden Transformer block.
-*   **Task-Specific Heads**: Four non-linear MLP heads branch from the CLS token representation.
+| Split | Rows |
+|---|---|
+| Train | 2,040 |
+| Val | 390 |
+| Test | 370 |
 
-#### B. The Inference Gateway (FastAPI)
-`inference_server.py` is the production entry point. It manages:
-*   **Model Lifecycle**: Loading, versioning, and hot-reloading.
-*   **Auth & Security**: X-API-Key validation for multi-tenant isolation.
-*   **Resource Management**: Intelligent switching between CUDA/MPS/CPU.
-*   **Async Write Queue**: A multi-threaded worker that handles database persistence without blocking prediction responses.
+Each row carries: `dialogue_id`, `turn_id`, `speaker`, `text`, `emotion` (32-class), `emotion_ring`, `scenario`, `sarcasm_flag`, `emotion_cause`, `sentiment_polarity`, `utterance_word_count`, `inter_annotator_agreement` (0.65–1.0, mean 0.825), `confidence_score`, `topic`, `emotion_shift`, pre-tokenized `input_ids`/`attention_mask`, and `split`.
 
-#### C. The Intelligence Hub (Streamlit)
-`app.py` provides the "Command Center." It is optimized for **Human-in-the-Loop (HITL)** workflows, allowing researchers to audit model reasoning in real-time using Captum-based heatmaps.
+- **Sarcasm prevalence**: 744/2,800 (26.6%)
+- **Emotion shift**: 1,384/2,800 turns flagged as representing a shift from the previous emotion
+- **Scenarios**: 14 environments (workplace, social, conflict, friendship, family, romance, support, academic, casual, travel, wellbeing, community, technology)
+- **All 32 Plutchik classes** present in the data
 
----
+### 1.2 Handcrafted vs. Synthetic
 
-## 🧠 3. Algorithmic Deep Dive: The Mathematics of Emotion
+- **Handcrafted dialogues** (production corpus): Multi-turn conversations with speakers, explicit emotion causes, and human IAA scores. Average 6–8 turns per dialogue.
+- **Synthetic data (excluded)**: `nuanced_generated` (985 rows, template-based single-turn) and `vast_expansion` (80 rows, mathematically padded). Both are filtered out at training time via `build_dataset_from_csv(exclude_synthetic=True)`. The original `scripts/augmenter.py` that generated these is deprecated.
 
-### 3.1 Multi-Task Learning (MTL) & Weighted Loss
-The engine solves four tasks simultaneously. The total loss $L$ is a weighted sum:
+### 1.3 Inter-Annotator Agreement
 
-$$L_{total} = \lambda_1 L_{CE\_emo} + \lambda_2 L_{CE\_sarc} + \lambda_3 L_{MSE\_int} + \lambda_4 L_{CE\_adv}$$
+Each row carries an IAA score (0.65–1.0). The `validate_iaa_scores()` diagnostic checks whether scores are formula-derived (binary split correlated with sarcasm) or reflect genuine annotator disagreement. IAA scores are used as per-sample loss weights during training — samples with higher agreement contribute more to the gradient.
 
-1.  **Emotion ($L_{CE\_emo}$)**: 32-way Cross-Entropy loss. This is the primary driver of emotional categorization.
-2.  **Sarcasm ($L_{CE\_sarc}$)**: Binary Cross-Entropy. Crucial for detecting dissonance. When sarcasm is high, the model "distrusts" the surface emotion.
-3.  **Intensity ($L_{MSE\_int}$)**: Mean Squared Error regression. Captures the "distance from the wheel's center."
-4.  **Adversarial Domain Lock ($\lambda_4 L_{CE\_adv}$)**: Uses a Gradient Reversal Layer (GRL). During backpropagation, the gradients from this head are multiplied by $-\lambda$, forcing the encoder to learn features that are *not* indicative of the scenario (e.g., removing "Workplace" bias from "Anger" detection).
+### 1.4 CDA Pipeline (Contrastive Data Augmentation)
 
-### 3.2 Explainability: Integrated Gradients (IG)
-We implement the **Integrated Gradients** algorithm (Sundararajan et al.). Unlike simple Gradient * Input methods, IG satisfies the "Axiom of Completeness."
-*   **Formula**: $IG_i(x) = (x_i - x'_i) \times \int_{\alpha=0}^1 \frac{\partial F(x' + \alpha(x - x'))}{\partial x_i} d\alpha$
-*   **Implementation**: We approximate the integral using a Gauss-Legendre quadrature (typically 50 steps). This allows the dashboard to highlight tokens with **Positive Attribution** (supporting the prediction) and **Negative Attribution** (contradicting the prediction).
+A human-in-the-loop pipeline for generating contrastive dissonance pairs to train the Dissonance Head:
 
-### 3.3 Dynamic Intelligence: Emotion ODEs
-Located in `core/advanced_engine.py`, this module treats emotional states as a **Continuous Dynamical System**.
-*   **The Problem**: Conversational turns happen at discrete intervals ($t=1, 2, 3$), but human emotion is continuous.
-*   **The Solution**: We model the "Latent Emotion Vector" $h$ as following an Ordinary Differential Equation:
-    $$\frac{dh}{dt} = f(h(t), t, \theta)$$
-    where $f$ is a neural network (`EmotionODEFunc`). This allows us to "interpolate" emotional states between turns and "extrapolate" future emotional escalation.
+1. **Template generation** (`utils/augmenter.py`): Extracts sarcastic training samples and creates JSONL templates with the original text/context/emotion and placeholders for a human-authored "twin" (literal re-reading with a different context and emotion).
+2. **Human verification** (`utils/pair_verifier.py`): An interactive CLI presents each template to a human annotator. The annotator fills in `twin_context` and `twin_emotion`, then passes a 3-gate verification: (a) does the twin context make the text read literally? (b) is the twin emotion plausible? (c) would a human agree without coaching?
+3. **Training merge gate**: CDA pairs are merged into training only when the `PLUTCHIK_CDA_JSONL` env var points to a JSONL file with at least `PLUTCHIK_CDA_MIN_PAIRS` (default 200) human-verified rows.
 
 ---
 
-## 📂 4. The Technical Directory: File-by-File Analysis
+## 2. Model Architecture
 
-### 4.1 Core Application Layer
+```
+Input: [CONTEXT] turn_N-2 | turn_N-1 [/CONTEXT] [CURRENT] [SCENARIO] workplace [/SCENARIO]
+       [TOPIC] termination [/TOPIC] utterance_text [/CURRENT]
+                          |
+                  RoBERTa-Base (12-layer, 768-hidden)
+                          |
+                    CLS token (768-d)
+                          |
+                   shared_dense (768->768, ReLU, Dropout, LayerNorm)
+                     /     |       \            \
+          emotion_head  sarcasm_head  intensity_head  scenario_discriminator
+          (384->32)     (384->2)      (384->1,Sig)    (GRL -> 384->2)
+```
 
-#### `app.py`
-The "Face" of the project. It uses a custom **Glassmorphism CSS** layer to provide a premium interface.
-*   **Key Logic**: Manages session state, handles the "Dynamic Intelligence" loop, and orchestrates the comparison between Local RoBERTa and LLM (Nemotron) models.
-*   **Batch Upload**: Utilizes `st.file_uploader` and Pandas to score thousands of rows asynchronously.
-*   **Visualizations**: Uses Plotly for Radar charts (emotional spectrum), Area charts (intensity trajectories), and Heatmaps (attributions).
+For CDA batches, an additional dual-encoder path:
 
-#### `inference_server.py`
-The "Brain." Engineered for high availability.
-*   **Hot-Reload API**: A POST `/reload` endpoint that re-triggers the model's weight-loading sequence.
-*   **Safety Rails**: Implements Pydantic validation on all inputs, sanitizing text and enforcing length limits (5000 chars) to prevent OOM.
-*   **Persistence Strategy**: Uses SQLAlchemy with a single-writer background thread to survive SQLite lock storms under high concurrency.
+```
+Context-only input -> RoBERTa (shared) -> CLS -> context_pooler (768->384, Tanh)
+                                                    |
+                                         cat(shared_rep, ctx_rep) -> dissonance_head (1152->192->1, Sigmoid)
+```
 
-#### `train_v2.py`
-The "Forge." The primary training script.
-*   **Hardening Logic**: Implements "Seed Injection" where specific high-confidence manual examples are prioritized in the training batch to prevent "Drift."
-*   **Acceleration**: Automatically detects and utilizes `mps` (Mac Silicon) or `cuda` (NVIDIA) backends.
+### 2.1 Multi-Task Heads
 
----
+| Task | Head | Output | Loss |
+|---|---|---|---|
+| Emotion Classification | 2-layer MLP (768->384->32) | 32-way logits | Cross-Entropy |
+| Sarcasm Detection | 2-layer MLP (768->384->2) | Binary logits | Cross-Entropy |
+| Intensity Regression | 2-layer MLP (768->384->1) | Scalar in [0,1] (sigmoid) | MSE |
+| Adversarial Domain Discriminator | 2-layer MLP (768->384->2) | Binary (formal vs. social) | Cross-Entropy via GRL |
 
-### 4.2 Models & Architecture (`models/`)
+### 2.2 Gradient Reversal Layer (GRL)
 
-#### `multitask_emotion_model.py`
-*   **`PluTchikMultiTaskModel`**: The core PyTorch implementation.
-*   **`GradReverse`**: A custom `torch.autograd.Function` that implements the gradient reversal for adversarial training.
-*   **Dissonance Head**: A dual-encoder architecture that accepts both a "Context" sequence and a "Current" sequence to calculate semantic mismatch.
+`GradReverse` is a custom `torch.autograd.Function`. Forward pass: identity. Backward pass: negates gradients scaled by `alpha`. Forces the shared encoder to learn features invariant to scenario domain. Binary domain labels derived from sarcasm-rate analysis: high-sarcasm scenarios (workplace, social, conflict, casual, friendship, romance) = class 0; low-sarcasm = class 1.
 
-#### `db_models.py`
-Defines the `SignalAudit` schema. Every prediction is logged with its full metadata (timestamp, speaker, scenario, topic, confidence, intensity) for later auditing.
+### 2.3 Dissonance Detection Head (Stage 3)
 
----
-
-### 4.3 Utilities & Pipelines (`utils/`)
-
-#### `preprocessing.py`
-The "Filter."
-*   **`ERCPreprocessor`**: Handles the critical `[SCENARIO]` and `[CONTEXT]` token injection. It manages a sliding window of dialogue history, ensuring that every prediction "sees" the previous $N$ turns.
-*   **Metadata Augmentation**: Formats inputs as `[CONTEXT] turn1 | turn2 [/CONTEXT] [CURRENT] [SCENARIO] workplace [/SCENARIO] text [/CURRENT]`.
-
-#### `explainability_v2.py`
-*   **`CaptumExplainer`**: A specialized wrapper for the Captum library. It handles the mapping of sub-word BPE tokens back to original user-visible words, aggregating attributions to make them readable.
-
-#### `llm_inference.py`
-*   **`NemotronClient`**: A resilient client for OpenRouter. It handles LLM fallbacks (keyword-based), retry logic, and parses the "Reasoning" blocks from the 120B parameter model.
-
-#### `trainer.py`
-A robust `Trainer` class implementing:
-*   **Gradient Clipping**: Prevents exploding gradients in the Transformer block.
-*   **Mixed-Precision (AMP)**: Uses `torch.amp` to speed up training on supported GPUs.
-*   **Validation Metrics**: Calculates F1-Macro and Accuracy per task.
+Dual-encoder architecture: the main encoder processes the full `[CONTEXT]...[/CONTEXT] [CURRENT]...[/CURRENT]` input; a separate `context_pooler` (Linear + Tanh) processes context-only input through shared RoBERTa weights. Text representation (768-d) and context representation (384-d, projected) are concatenated and fed through a 3-layer MLP with final Sigmoid to produce a dissonance score in [0,1]. Only activated when `context_input_ids` are provided (CDA contrastive batches).
 
 ---
 
-## 🚀 5. Operational Guide: Deployment & Scaling
+## 3. Algorithms
 
-### 5.1 Environment Variables
-*   `PLUTCHIK_API_KEY`: 64-char hex string for API authorization.
-*   `OPENROUTER_API_KEY`: Required for Nemotron-3 comparative analysis.
-*   `HF_TOKEN`: Required for pushing updates to Hugging Face Spaces.
-*   `DATABASE_URL`: Defaults to `sqlite:///plutchik_erc.db`.
+### 3.1 Wheel-Distance Metric
 
-### 5.2 Local Execution
+A custom Plutchik-specific distance measure between any two of the 32 emotions:
+
+```
+distance(e1, e2) = 0.85 * angular_distance / pi + 0.15 * ring_distance / 2
+```
+
+- **Angular distance**: Shortest path around the 8-sector wheel, normalized to [0,1]. Sectors are 45 degrees apart.
+- **Ring distance**: Absolute difference in ring intensities (mild=0, primary=1, dyadic=1.5, intense=2), normalized by /2.
+- Cross-sector errors (e.g., rage predicted instead of joy) are penalized roughly 5x more than same-sector intensity errors.
+- A full 32x32 matrix (`WHEEL_DISTANCE_MATRIX`) is precomputed at import time.
+
+**Wheel-distance loss scaling**: `exp(alpha * d(pred, true))` with alpha=2.0. Rage->joy (d=0.85) gets ~5.2x penalty; rage->annoyance (d=0.15) gets ~1.2x. Applied to per-sample emotion cross-entropy loss.
+
+### 3.2 Neural ODEs for Emotion Trajectory Forecasting
+
+`EmotionODEFunc` is a 3-layer MLP modeling dh/dt = f(h(t), t, context), where h is a 64-dim latent emotion state and context is a 128-dim conversation summary. `TrajectoryForecaster` encodes the 32-dim emotion vector into 64-dim latent space, solves the ODE using RK4 integration via `torchdiffeq.odeint`, then decodes back to 32-dim softmax probabilities. Computes velocity and acceleration to detect **inflection points** — moments where emotional trajectory changes direction.
+
+> **Note**: The encoder/decoder are currently randomly initialized (simulation mode). The ODE structure is correct but magnitudes are uncalibrated.
+
+### 3.3 Multimodal Incongruity Detector
+
+Rule-based sarcasm/passive-aggression detector using 5 signal channels:
+
+1. **Polarity contradiction**: Mixing positive and negative words (+0.3), or positive words with aggressive caps/exclamations (+0.4).
+2. **Emphasis markers**: 3+ exclamation marks or 2+ with high caps ratio (+0.2).
+3. **Intensifiers without substance**: 2+ intensifier words in a short utterance (<12 words) (+0.2).
+4. **Passive-aggressive phrases**: Detection of phrases like "just what i needed", "oh great", "thanks a lot" (+0.4).
+5. **Terse phrasing with elevated sentiment**: Fewer than 8 words with high semantic sentiment (+0.2).
+
+Outputs sarcasm probability (capped at 0.95), list of signals, and passive-aggressive flag.
+
+### 3.4 Counterfactual Generator / Strategic Reframe
+
+Template-based text rewriting targeting specific Plutchik emotions: softens language for trust/serenity targets ("I understand", "Perhaps"), intensifies for anger targets ("Frankly", exclamation marks), reframes problems as opportunities for joy targets. Not a learned model — deterministic template logic.
+
+### 3.5 Integrated Gradients (IG) for Explainability
+
+Uses Captum's `LayerIntegratedGradients` on RoBERTa embeddings layer. Computes attribution scores for each token relative to the predicted emotion class. Uses a padding-token baseline. Normalizes attributions and splits them into context-span and current-span top tokens. Default step count: 10 (reduced from 50 for dashboard speed).
+
+### 3.6 LLM Cross-Validation
+
+`NemotronClient` calls NVIDIA Nemotron-3 (120B params) via OpenRouter API. Sends a structured prompt asking the LLM to analyze Plutchik emotion, sarcasm, intensity, and reasoning in JSON. Includes retry/timeout handling (30s), JSON extraction with fallback parsing, emotion validation against the canonical 32-class list, and a heuristic keyword-based mock fallback when the API is unavailable.
+
+### 3.7 Input Sanitization
+
+`InputSanitizer` provides:
+- **Adversarial token stripping**: Removes reserved tokens like `[CONTEXT]`, `[/CURRENT]` to prevent prompt injection.
+- **Emoji-only bypass**: Maps 30+ emojis directly to Plutchik emotions for emoji-only inputs.
+- **Trigram gibberish detection**: Character-level n-gram log-probability model from a reference English corpus; rejects inputs below threshold.
+- **Max length enforcement**: 5,000 character limit.
+
+### 3.8 KL Divergence for Arc Analysis
+
+The conversation arc endpoint uses KL divergence between consecutive emotion probability distributions to detect turning points. Divergence > mean + 1.5 * std flagged as a turning point. Intensity delta analysis classifies arcs as "stable", "escalation", "de-escalation", or "volatile".
+
+### 3.9 Human-in-the-Loop Flywheel
+
+`/correct` endpoint accepts predicted vs. corrected emotion pairs persisted to the database. When enough corrections accumulate (>= `min_samples`), `utils/flywheel_trainer.py` triggers fine-tuning: loads the current model, creates a temporary CSV from corrections (IAA weight=2.0), and runs 3 epochs at lr=1e-5.
+
+---
+
+## 4. Training
+
+### 4.1 Configuration
+
+| Parameter | Value |
+|---|---|
+| Batch size | 4 (reduced for MPS OOM on M1) |
+| Epochs | 1 (fast prototype; production uses 5) |
+| Learning rate | 5e-5 |
+| Max sequence length | 128 tokens |
+| Optimizer | AdamW |
+| LR Scheduler | CosineAnnealingLR |
+| Seed | 42 (fully deterministic: Python, NumPy, PyTorch, CUDA) |
+
+### 4.2 Loss Function
+
+```
+L_total = 1.0 * L_emotion + 0.7 * L_sarcasm + 0.5 * L_intensity + 0.3 * L_adv + 1.0 * L_dissonance
+```
+
+- `L_emotion`: Cross-Entropy (32-way), scaled by wheel-distance weight and IAA weight
+- `L_sarcasm`: Cross-Entropy (binary), scaled by IAA weight
+- `L_intensity`: MSE (regression), scaled by IAA weight
+- `L_adv`: Cross-Entropy (binary domain classification through GRL)
+- `L_dissonance`: Binary Cross-Entropy (only active for CDA contrastive samples)
+
+### 4.3 Adversarial Warmup
+
+GRL lambda follows a sigmoid warmup: alpha = 0.0 for the first N epochs (warmup), then alpha = (2 / (1 + exp(-10 * p)) - 1) * grl_lambda_max where p is the fraction of remaining training steps. Default grl_lambda_max = 0.5.
+
+### 4.4 Hardware & Mixed Precision
+
+- Device auto-detection: CUDA -> MPS (Apple Silicon) -> CPU
+- AMP enabled on CUDA via `torch.amp.autocast` and `GradScaler`
+- Gradient clipping: `clip_grad_norm_(max_norm=1.0)`
+- Best model selection: Validation F1-Macro (not accuracy, to handle class imbalance)
+- Emotion centroids saved as pickle after each improvement for explainability
+
+### 4.5 Benchmarks
+
+| Metric | Value |
+|---|---|
+| Training Accuracy | 80.2% |
+| Validation Accuracy | 54.1% |
+| F1-Macro (Emotion) | 0.45 |
+| Inference Latency (Standard) | ~250ms |
+| Inference Latency (Fast Attribution) | ~800ms CPU / ~150ms GPU |
+| Inference Latency (Full Captum) | ~15s CPU / ~2s GPU |
+
+---
+
+## 5. Deployment
+
+### 5.1 Architecture
+
+- **Inference Server** (`inference_server.py`): FastAPI on port 8000. Endpoints: `/predict`, `/explain`, `/predict/batch`, `/predict/arc`, `/analyze/dynamic`, `/correct`, `/corrections/stats`, `/emotions`, `/session/{id}`, `/health`, `/reload`.
+- **Dashboard** (`app.py`): Streamlit with glassmorphism CSS. Five analysis modes: Single Utterance, Conversation Arc, Comparative Analysis, Dynamic Intelligence, Batch File Upload.
+- **Database**: SQLAlchemy with PostgreSQL (primary) and SQLite (fallback). Single-writer background thread with exponential-backoff retry.
+- **Security**: API key validation, rate limiting (30 req/min per IP), input sanitization, CORS restriction, Pydantic validation.
+
+### 5.2 Session Management
+
+Thread-safe `SessionManager` with RLock, sliding context window of 3 turns, emotion vector history (last 10 turns for ODE forecasting), LRU eviction at 1,000 sessions.
+
+### 5.3 Environment Variables
+
+| Variable | Purpose |
+|---|---|
+| `PLUTCHIK_API_KEY` | 64-char hex string for API authorization |
+| `OPENROUTER_API_KEY` | Nemotron-3 comparative analysis |
+| `HF_TOKEN` | Hugging Face Spaces updates |
+| `DATABASE_URL` | Defaults to `sqlite:///plutchik_erc.db` |
+| `PLUTCHIK_CDA_JSONL` | Path to CDA contrastive pairs JSONL |
+| `PLUTCHIK_CDA_MIN_PAIRS` | Minimum verified pairs for CDA merge (default 200) |
+
+### 5.4 Local Execution
+
 ```bash
 # 1. Start the Inference Server
 python3 inference_server.py
@@ -167,50 +249,35 @@ python3 inference_server.py
 streamlit run app.py
 ```
 
-### 5.3 Batch Processing Nuances
-The Dashboard now supports multi-column CSVs.
-*   **Mandatory Column**: `text`
-*   **Optional Columns**: `speaker`, `topic`, `scenario`
-*   **Behavior**: If optional columns are missing, the system uses the sidebar defaults. If present, it uses the specific metadata for each individual row.
+### 5.5 Batch Processing
+
+Dashboard supports multi-column CSVs:
+- **Mandatory column**: `text`
+- **Optional columns**: `speaker`, `topic`, `scenario`
+- If optional columns are missing, sidebar defaults are used. Up to 2,000 rows per upload.
 
 ---
 
----
+## 6. File Reference
 
-## 📈 6. Hardening & Performance
-
-### 6.1 Accuracy Benchmarks (v2.5)
-*   **Training Accuracy**: 80.2%
-*   **Validation Accuracy**: 54.1%
-*   **F1-Macro (Emotion)**: 0.45
-*   **Inference Latency (Standard)**: ~250ms
-*   **Inference Latency (Fast Attribution)**: ~800ms (CPU) / ~150ms (GPU)
-*   **Inference Latency (Full Captum)**: ~15s (CPU) / ~2s (GPU)
-
-### 6.2 Convergence Strategy
-The current model was trained for **5 epochs** with a **Cosine Annealing** learning rate scheduler, starting at `2e-5`. The first 2 epochs were "Warmup" phases where the Adversarial Discriminator was slowly phased in to prevent it from destabilizing the early emotional learning.
-
-### 6.3 Recent Optimizations (v2.5.1)
-*   **Riemann Approximation (Fast IG)**: Token attributions now utilize a 5-step Riemann approximation by default for the dashboard. This provides a 10x speedup in explainability results without sacrificing the core directional attribution markers.
-*   **Robust Path Resolution**: Implemented `sys.path` injection and `.env`-driven `PYTHONPATH` configuration to ensure the engine remains stable across variable execution environments and IDE configurations.
-*   **Dependency Hardening**: Integrated `torchdiffeq` directly into the production environment to support continuous-time emotional forecasting (Neural ODEs).
+| Module | Purpose |
+|---|---|
+| `app.py` | Streamlit dashboard & visualization |
+| `inference_server.py` | FastAPI production API & lifecycle |
+| `train_v2.py` | Training harness with wheel-distance weighting |
+| `models/multitask_emotion_model.py` | Multi-task RoBERTa architecture & loss |
+| `core/advanced_engine.py` | Neural ODEs, incongruity detection, reframing |
+| `utils/constants.py` | Plutchik taxonomy, wheel-distance metric |
+| `utils/preprocessing.py` | Dataset loading, context augmentation, IAA validation |
+| `utils/trainer.py` | Training loop with AMP & gradient clipping |
+| `utils/explainability_v2.py` | Captum Integrated Gradients |
+| `utils/llm_inference.py` | Nemotron cross-validation client |
+| `utils/pair_verifier.py` | Human-in-the-loop CDA verification |
+| `utils/flywheel_trainer.py` | HITL correction fine-tuning |
+| `database.py` | SQLAlchemy persistence layer |
 
 ---
 
-## 📜 Technical Purpose Summary Table
+**"Emotion is the DNA of conversation. Plutchik is the sequencer."**
 
-| Module | Technical Specialization | Purpose |
-| :--- | :--- | :--- |
-| **`app.py`** | Streamlit / Plotly | User Interface & Real-time Visualization |
-| **`inference_server.py`** | FastAPI / Async | Production API & Lifecycle Management |
-| **`train_v2.py`** | PyTorch / AdamW | Model Fine-tuning & Checkpointing |
-| **`advanced_engine.py`** | ODEs / Dynamics | Continuous State Forecasting |
-| **`preprocessing.py`** | NLP / Tokenization | Context Augmentation & Metadata Injection |
-| **`multitask_model.py`** | MTL / GRL | Core Neural Architecture |
-| **`llm_inference.py`** | API / OpenRouter | LLM Cross-Validation & Teacher Logic |
-| **`trainer.py`** | AMP / Sklearn | Cross-Platform Training Pipeline |
-
----
-
-### **"Emotion is the DNA of conversation. Plutchik is the sequencer."**
-© 2026 Plutchik ERC Project | Hardened for Production.
+(c) 2026 Plutchik ERC Project
