@@ -11,6 +11,7 @@ import numpy as np
 from typing import List, Dict, Tuple, Optional
 import warnings
 import logging
+import time as _time
 
 _engine_logger = logging.getLogger("plutchik-engine")
 
@@ -183,31 +184,62 @@ class CounterfactualGenerator:
 class MultimodalIncongruityDetector:
     """
     Detects sarcasm/passive-aggression by measuring distance between
-    semantic sentiment and pragmatic markers.
+    semantic sentiment and pragmatic markers. 5 signal channels:
+    polarity contradiction, emphasis, intensifiers, passive-aggressive, terse.
     """
     def __init__(self):
-        self.positive_words = set(["good", "great", "awesome", "love", "thanks", "helpful", "nice"])
-        self.negative_words = set(["bad", "terrible", "hate", "useless", "worst", "awful"])
+        self.positive_words = set([
+            "good", "great", "awesome", "love", "thanks", "helpful", "nice",
+            "wonderful", "fantastic", "amazing", "perfect", "brilliant",
+            "excellent", "superb", "outstanding", "beautiful", "delightful", "pleasant"
+        ])
+        self.negative_words = set([
+            "bad", "terrible", "hate", "useless", "worst", "awful",
+            "horrible", "disgusting", "pathetic", "miserable", "dreadful",
+            "appalling", "atrocious", "abysmal", "lousy", "inferior", "deficient", "subpar"
+        ])
+        self.intensifiers = set([
+            "absolutely", "totally", "completely", "utterly", "literally",
+            "definitely", "certainly", "obviously", "clearly", "undeniably"
+        ])
         
     def calculate_incongruity_score(self, text: str, semantic_sentiment: float) -> Dict:
         text_lower = text.lower()
+        words = text_lower.split()
         exclamations = text.count("!")
         caps_ratio = sum(1 for c in text if c.isupper()) / max(len(text), 1)
         pos_count = sum(1 for w in self.positive_words if w in text_lower)
         neg_count = sum(1 for w in self.negative_words if w in text_lower)
+        intensifier_count = sum(1 for w in self.intensifiers if w in text_lower)
         
         incongruity_score = 0.0
         signals = []
         
-        if pos_count > 0 and (exclamations > 2 or caps_ratio > 0.3):
+        # Channel 1: Polarity contradiction
+        if pos_count > 0 and neg_count > 0:
+            incongruity_score += 0.3
+            signals.append("Positive and negative words mixed in same utterance")
+        elif pos_count > 0 and (exclamations > 2 or caps_ratio > 0.3):
             incongruity_score += 0.4
             signals.append("Positive words with aggressive capitalization/punctuation")
             
-        if semantic_sentiment > 0.7 and neg_count > 0:
-            incongruity_score += 0.3
-            signals.append("High predicted joy despite negative lexical markers")
+        # Channel 2: Emphasis markers
+        if exclamations >= 3 or (exclamations >= 2 and caps_ratio > 0.2):
+            incongruity_score += 0.2
+            signals.append("Excessive emphasis markers")
             
-        if len(text) < 10 and semantic_sentiment > 0.6:
+        # Channel 3: Intensifiers without substance
+        if intensifier_count >= 2 and len(words) < 12:
+            incongruity_score += 0.2
+            signals.append("Multiple intensifiers in short utterance")
+            
+        # Channel 4: Passive-aggressive markers
+        if any(phrase in text_lower for phrase in ["just what i needed", "oh great", "how wonderful", "thanks a lot"]):
+            incongruity_score += 0.4
+            signals.append("Passive-aggressive phrase detected")
+            
+        # Channel 5: Terse phrasing with elevated sentiment
+        if len(words) < 8 and semantic_sentiment > 0.6:
             incongruity_score += 0.2
             signals.append("Terse phrasing with elevated sentiment")
             
@@ -258,7 +290,7 @@ class AdvancedPlutchikEngine:
             "reframe_suggestions": reframe_suggestions,
             "risk_level": risk_level,
             "baseline_deviation": baseline_deviation,
-            "timestamp": int(time.time()) if 'time' in globals() else 0
+            "timestamp": int(_time.time())
         }
 
 if __name__ == "__main__":

@@ -24,8 +24,8 @@ def test_augment_with_metadata(preprocessor):
 def test_get_context_window(preprocessor):
     """Tests the context window retrieval."""
     dialogues = [
-        ("USER", "Hello.", "neutral", False, None),
-        ("AGENT", "Hi, how can I help?", "neutral", False, None),
+        ("USER", "Hello.", "serenity", False, None),
+        ("AGENT", "Hi, how can I help?", "interest", False, None),
         ("USER", "I have a problem.", "sadness", False, None),
     ]
     context = preprocessor.get_context_window(dialogues, current_idx=2, window_size=2)
@@ -35,7 +35,7 @@ def test_get_context_window(preprocessor):
 def test_prepare_sample(preprocessor):
     """Tests the full sample preparation."""
     dialogues = [
-        ("USER", "I am so happy!", "joy", False, None, "friendship", "party", 0.9),
+        ("USER", "I am so happy!", "joy", False, None),
     ]
     sample = preprocessor.prepare_sample(
         speaker="USER",
@@ -61,12 +61,16 @@ def test_prepare_sample(preprocessor):
 
 def test_dataset_creation(preprocessor):
     """Tests the PlutchikERCDataset class."""
+    dialogues = [
+        ("USER", "First message", "interest", False, None),
+        ("AGENT", "Second message", "boredom", False, None),
+    ]
     samples = [
         preprocessor.prepare_sample(
-            "USER", "First message", "neutral", False, None, "casual", "greeting", [], 0
+            "USER", "First message", "interest", False, None, "casual", "greeting", dialogues, 0
         ),
         preprocessor.prepare_sample(
-            "AGENT", "Second message", "neutral", False, None, "casual", "greeting", [], 1
+            "AGENT", "Second message", "boredom", False, None, "casual", "greeting", dialogues, 1
         )
     ]
     dataset = PlutchikERCDataset(samples)

@@ -29,8 +29,8 @@ class ERCPreprocessor:
         self.emotion_to_idx = {emotion: idx for idx, emotion in enumerate(sorted(plutchik_dict.keys()))}
         self.idx_to_emotion = {v: k for k, v in self.emotion_to_idx.items()}
         
-        self.scenarios = ["workplace", "friendship", "family", "romance", "support", "academic", 
-                          "conflict", "casual", "social", "travel", "technology", "creative", 
+        self.scenarios = ["workplace", "friendship", "family", "romance", "support", "academic",
+                          "conflict", "casual", "social", "travel", "creative",
                           "wellbeing", "community"]
         
         # Binary Domain Mapping for Adversarial Hardening
@@ -163,6 +163,45 @@ class ERCPreprocessor:
         }
 
 
+def validate_iaa_scores(df: pd.DataFrame) -> Dict:
+    """
+    Validate inter-annotator agreement scores in the dataset.
+    Flags formula-derived IAA (perfect bimodal split at 0.5/0.9).
+    Returns dict with diagnostics.
+    """
+    iaa = df["inter_annotator_agreement"]
+    unique_vals = sorted(iaa.unique())
+    bimodal = len(unique_vals) <= 10
+    formula_suspect = False
+
+    # Check if IAA is formula-derived: binary split at 0.5 for sarcasm, 0.9 for non-sarcasm
+    if bimodal:
+        high = iaa[iaa >= 0.85]
+        low = iaa[iaa < 0.85]
+        if len(high) > 0 and len(low) > 0:
+            high_var = high.var()
+            low_var = low.var()
+            if high_var < 0.01 and low_var < 0.01:
+                formula_suspect = True
+
+    # Check correlation with sarcasm_flag
+    corr_with_sarcasm = df["inter_annotator_agreement"].corr(df["sarcasm_flag"].astype(float))
+
+    return {
+        "unique_values": unique_vals,
+        "count": len(iaa),
+        "mean": float(iaa.mean()),
+        "bimodal": bimodal,
+        "formula_suspect": formula_suspect or (corr_with_sarcasm > 0.95),
+        "correlation_with_sarcasm": float(corr_with_sarcasm),
+        "warning": (
+            "IAA scores appear formula-derived (binary split, high correlation with sarcasm). "
+            "Loss weights from these scores may not reflect true annotator disagreement."
+            if formula_suspect or corr_with_sarcasm > 0.95 else None
+        )
+    }
+
+
 class PlutchikERCDataset(Dataset):
     """
     PyTorch Dataset for Plutchik ERC data with multi-task labels.
@@ -234,12 +273,15 @@ def build_dataset_from_dialogues(dialogues_list: List[Dict], plutchik_dict: Dict
 
 
 def build_dataset_from_csv(csv_path: str, plutchik_dict: Dict,
-                            tokenizer_name: str = "roberta-base", split: str = None) -> PlutchikERCDataset:
+                            tokenizer_name: str = "roberta-base", split: str = None,
+                            exclude_synthetic: bool = True) -> PlutchikERCDataset:
     """
     Build dataset by loading CSV and grouping by dialogue_id for context.
     Optionally filters by split (train/val/test).
     """
     df = pd.read_csv(csv_path)
+    if exclude_synthetic:
+        df = df[~df["scenario"].isin(["nuanced_generated", "vast_expansion"])]
     if split:
         df = df[df["split"] == split]
     
@@ -286,7 +328,8 @@ def build_dataset_from_csv(csv_path: str, plutchik_dict: Dict,
     return PlutchikERCDataset(samples)
 
 
-def load_contrastive_pairs(jsonl_path: str, plutchik_dict: Dict, tokenizer_name: str = "roberta-base") -> List[Dict]:
+def load_contrastive_pairs(jsonl_path: str, plutchik_dict: Dict, tokenizer_name: str = "roberta-base",
+                           only_verified: bool = False) -> List[Dict]:
     """
     Load human-verified contrastive pairs for dissonance head training.
     """
@@ -301,6 +344,8 @@ def load_contrastive_pairs(jsonl_path: str, plutchik_dict: Dict, tokenizer_name:
     with open(jsonl_path, 'r') as f:
         for line in f:
             pair = json.loads(line)
+            if only_verified and not pair.get('verified', False):
+                continue
             # pair_verifier.py appends both 'pair' and 'twin' to the file.
             dissonance_score = pair.get('dissonance_score', 1.0)
             is_dissonant = dissonance_score > 0.5

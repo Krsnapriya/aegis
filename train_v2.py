@@ -44,7 +44,7 @@ CONFIG = {
 }
 
 # ============== PLUTCHIK CONSTANTS ==============
-from utils.constants import PLUTCHIK, NUM_EMOTIONS
+from utils.constants import PLUTCHIK, NUM_EMOTIONS, EMOTION_NAMES
 
 def run_antigravity_training():
     print("=" * 60)
@@ -58,6 +58,9 @@ def run_antigravity_training():
     else:
         device = "cpu"
     print(f"\n✓ Target Device: {device}")
+    
+    # Build idx_to_emotion mapping
+    idx_to_emotion = {i: e for i, e in enumerate(EMOTION_NAMES)}
     
     # 1. Build Dataset from Production CSV
     print(f"\n📊 Ingesting production data from {CONFIG['csv_path']}...")
@@ -108,13 +111,15 @@ def run_antigravity_training():
     print("\n🔧 Initializing RoBERTa-base Multi-Task Model...")
     model = PluTchikMultiTaskModel(num_emotions=NUM_EMOTIONS)
     
-    # 4. Loss Function (IAA Aware)
+    # 4. Loss Function (IAA Aware + Wheel-Distance Weighted)
     loss_fn = MultiTaskLoss(
         emotion_weight=1.0,
         sarcasm_weight=0.7,
         intensity_weight=0.5,
         adv_weight=CONFIG["adv_weight"],
-        iaa_weighting=CONFIG["iaa_weighting"]
+        iaa_weighting=CONFIG["iaa_weighting"],
+        wheel_distance_weighting=True,
+        idx_to_emotion=idx_to_emotion
     )
     
     # 5. Trainer (Hardware-Aware with FP16)

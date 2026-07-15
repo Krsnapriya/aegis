@@ -30,10 +30,19 @@ class PluTchikMultiTaskModel(nn.Module):
     3. Intensity Regression (0-1)
     """
     
-    def __init__(self, num_emotions=32, hidden_dim=768, dropout=0.2, pretrained_model="roberta-base"):
+    def __init__(self, num_emotions=32, hidden_dim=None, dropout=0.2, pretrained_model="roberta-base"):
         super(PluTchikMultiTaskModel, self).__init__()
         
         self.num_emotions = num_emotions
+        # Auto-detect hidden_dim from backbone config
+        if hidden_dim is None:
+            try:
+                from transformers import AutoConfig
+                _cfg = AutoConfig.from_pretrained(pretrained_model)
+                hidden_dim = _cfg.hidden_size
+            except (ValueError, OSError):
+                _fallback = {"prajjwal1/bert-tiny": 128, "roberta-base": 768, "roberta-large": 1024}
+                hidden_dim = _fallback.get(pretrained_model, 768)
         self.hidden_dim = hidden_dim
         
         # RoBERTa backbone
@@ -202,7 +211,8 @@ class MultiTaskLoss(nn.Module):
     """
     
     def __init__(self, emotion_weight=1.0, sarcasm_weight=0.7, intensity_weight=0.5, 
-                 adv_weight=0.3, dissonance_weight=1.0, iaa_weighting=False):
+                 adv_weight=0.3, dissonance_weight=1.0, iaa_weighting=False,
+                 wheel_distance_weighting=False, idx_to_emotion=None):
         super(MultiTaskLoss, self).__init__()
         self.emotion_weight = emotion_weight
         self.sarcasm_weight = sarcasm_weight
@@ -210,6 +220,8 @@ class MultiTaskLoss(nn.Module):
         self.adv_weight = adv_weight
         self.dissonance_weight = dissonance_weight
         self.iaa_weighting = iaa_weighting
+        self.wheel_distance_weighting = wheel_distance_weighting
+        self.idx_to_emotion = idx_to_emotion or {}
         
         self.ce_loss = nn.CrossEntropyLoss(reduction='none')
         self.mse_loss = nn.MSELoss(reduction='none')
@@ -233,6 +245,21 @@ class MultiTaskLoss(nn.Module):
             predictions["emotion_logits"],
             targets["emotion"]
         )
+        
+        # Wheel-distance scaling: misclassification penalty scaled by exp(2 * d(pred, true))
+        if self.wheel_distance_weighting and self.idx_to_emotion:
+            from utils.constants import wheel_distance_weight
+            batch_size = emotion_loss.shape[0]
+            pred_emotions = predictions["emotion_logits"].argmax(dim=1)
+            wd_scale = torch.ones(batch_size, device=emotion_loss.device)
+            for i in range(batch_size):
+                pred_name = self.idx_to_emotion.get(pred_emotions[i].item(), "")
+                true_name = self.idx_to_emotion.get(targets["emotion"][i].item(), "")
+                if pred_name != true_name:
+                    wd_scale[i] = wheel_distance_weight(
+                        pred_emotions[i].item(), targets["emotion"][i].item()
+                    )
+            emotion_loss = emotion_loss * wd_scale
         
         # Sarcasm loss (binary classification)
         sarcasm_loss = self.ce_loss(
